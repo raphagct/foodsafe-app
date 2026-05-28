@@ -8,14 +8,13 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
+import HomePage from "./pages/HomePage";
+
+
 setupIonicReact();
 
 function App() {
-
-
-    return (
-        <h1>Hello world</h1>
-    )
+  return <HomePage />;
 }
 
 export default App
