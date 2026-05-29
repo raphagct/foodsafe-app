@@ -1,0 +1,44 @@
+.history-section {
+  width: 100%;
+  background: #e9e9e9;
+  border-radius: 6px;
+  padding: 14px 12px;
+  margin-top: 16px;
+  box-sizing: border-box;
+
+  font-family: "Inter", sans-serif;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history-header h2 {
+  margin: 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.4px;
+}
+
+.view-all-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #159947;
+  cursor: pointer;
+}
+
+.history-content {
+  min-height: 110px;
+  margin-top: 16px;
+}

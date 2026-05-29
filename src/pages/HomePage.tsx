@@ -1,6 +1,7 @@
 import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
 import { globeOutline } from "ionicons/icons";
-import "./style.css";
+import "../theme/HomePage.css"
+import HistorySection from "../components/HistorySection";
 
 function HomePage() {
   return (
@@ -12,9 +13,13 @@ function HomePage() {
               <span className="logo-food">Food</span>
               <span className="logo-safe">Safe.</span>
             </div>
-
             <LanguageButton />
           </header>
+
+          <section>
+            <HistorySection title="Scan History" />
+            <HistorySection title="Report History" />
+          </section>
         </main>
       </IonContent>
     </IonPage>
