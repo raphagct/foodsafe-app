@@ -1,7 +1,7 @@
-import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
-import { globeOutline } from "ionicons/icons";
+import { IonPage, IonContent} from "@ionic/react";
 import "../theme/HomePage.css";
 import HistorySection from "../components/HistorySection";
+import LanguageButton from "../components/LanguageButton";
 
 function HomePage() {
   return (
@@ -30,12 +30,6 @@ function HomePage() {
   );
 }
 
-function LanguageButton() {
-  return (
-    <IonButton className="language-button" shape="round">
-      <IonIcon className="text-[26px]" slot="icon-only" icon={globeOutline} />
-    </IonButton>
-  );
-}
+
 
 export default HomePage;
