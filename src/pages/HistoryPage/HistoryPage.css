@@ -1,0 +1,9 @@
+.history-section {
+  --background: var(--color-surface-alt);
+  box-shadow: none;
+}
+
+.view-all-button {
+  --color: var(--color-primary);
+  text-transform: none;
+}
