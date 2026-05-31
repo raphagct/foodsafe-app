@@ -1,4 +1,11 @@
-import { IonButton, IonCard, IonCardContent } from "@ionic/react";
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+} from "@ionic/react";
+
 import "../theme/HistorySection.css";
 
 type HistorySectionProps = {
@@ -7,20 +14,29 @@ type HistorySectionProps = {
 
 function HistorySection({ title }: HistorySectionProps) {
   return (
-    <IonCard className="history-section">
-      <div className="history-header">
-        <h2 className="history-title">{title}</h2>
+    /* Combiné : Styles internes (.history-section) + Structure Tailwind */
+    <IonCard className="history-section w-full rounded-[6px] mt-4 box-border font-['Inter',sans-serif]">
+      
+      {/* Header en Flexbox avec Tailwind */}
+      <IonCardHeader className="flex flex-row items-center justify-between p-0 pt-[14px] px-[12px]">
+        
+        {/* Titre entièrement stylisé en Tailwind */}
+        <IonCardTitle className="m-0 font-['Inter',sans-serif] text-[18px] font-extrabold text-black tracking-[-0.4px]">
+          {title}
+        </IonCardTitle>
 
+        {/* Bouton : Variables complexes (.view-all-button) + Typographie Tailwind */}
         <IonButton
-          className="view-all-button"
+          className="view-all-button m-0 p-0 font-['Inter',sans-serif] text-[11px] font-extrabold"
           fill="clear"
           size="small"
         >
           VIEW ALL
         </IonButton>
-      </div>
+      </IonCardHeader>
 
-      <IonCardContent className="history-content">
+      {/* Contenu de la carte stylisé en Tailwind */}
+      <IonCardContent className="min-h-[110px] mt-4 p-0 pb-[14px] px-[12px]">
         {/* Ici on pourra mettre les photos des produits qu'on veut */}
       </IonCardContent>
     </IonCard>
