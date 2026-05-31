@@ -1,3 +1,4 @@
+import { IonButton, IonCard, IonCardContent } from "@ionic/react";
 import "../theme/HistorySection.css";
 
 type HistorySectionProps = {
@@ -6,16 +7,23 @@ type HistorySectionProps = {
 
 function HistorySection({ title }: HistorySectionProps) {
   return (
-    <section className="history-section">
+    <IonCard className="history-section">
       <div className="history-header">
-        <h2>{title}</h2>
-        <button className="view-all-button">VIEW ALL</button>
+        <h2 className="history-title">{title}</h2>
+
+        <IonButton
+          className="view-all-button"
+          fill="clear"
+          size="small"
+        >
+          VIEW ALL
+        </IonButton>
       </div>
 
-      <div className="history-content">
-        {/* Ici mon pourra mettre les photos des produits qu'on veut */}
-      </div>
-    </section>
+      <IonCardContent className="history-content">
+        {/* Ici on pourra mettre les photos des produits qu'on veut */}
+      </IonCardContent>
+    </IonCard>
   );
 }
 
