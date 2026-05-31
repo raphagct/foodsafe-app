@@ -1,57 +1,55 @@
 import {
-    IonRouterOutlet,
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel
-} from '@ionic/react';
-import {Route, Redirect} from 'react-router-dom';
+  IonRouterOutlet,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonIcon,
+  IonLabel,
+} from "@ionic/react";
+import { Route, Redirect } from "react-router-dom";
 
-import {home, camera, school, time} from 'ionicons/icons';
+import { home, camera, school, time } from "ionicons/icons";
 
-import HomePage from "../pages/HomePage.tsx";
-import CameraPage from "../pages/CameraPage.tsx";
-import EducationPage from "../pages/EducationPage.tsx";
-import HistoryPage from "../pages/HistoryPage.tsx";
-
+import HomePage from "../pages/HomePage/HomePage";
+import CameraPage from "../pages/CameraPage/CameraPage";
+import EducationPage from "../pages/EducationPage/EducationPage";
+import HistoryPage from "../pages/HistoryPage/HistoryPage";
 
 function NavBar() {
-    return (
-        <IonTabs>
-            <IonRouterOutlet>
-                <Route exact path="/home" render={() => <HomePage/>}/>
-                <Route exact path="/camera" render={() => <CameraPage/>}/>
-                <Route exact path="/education" render={() => <EducationPage/>}/>
-                <Route exact path="/history" render={() => <HistoryPage/>}/>
+  return (
+    <IonTabs>
+      <IonRouterOutlet>
+        <Route exact path="/tabs/home" component={HomePage} />
+        <Route exact path="/tabs/camera" component={CameraPage} />
+        <Route exact path="/tabs/education" component={EducationPage} />
+        <Route exact path="/tabs/history" component={HistoryPage} />
 
-                <Route exact path="/" render={() => <Redirect to="/home"/>}/>
-            </IonRouterOutlet>
+        <Redirect exact from="/tabs" to="/tabs/home" />
+      </IonRouterOutlet>
 
-            <IonTabBar slot="bottom">
-                <IonTabButton tab="home" href="/home">
-                    <IonIcon icon={home}/>
-                    <IonLabel>Accueil</IonLabel>
-                </IonTabButton>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/tabs/home">
+          <IonIcon icon={home} />
+          <IonLabel>Accueil</IonLabel>
+        </IonTabButton>
 
-                <IonTabButton tab="camera" href="/camera">
-                    <IonIcon icon={camera}/>
-                    <IonLabel>Caméra</IonLabel>
-                </IonTabButton>
+        <IonTabButton tab="camera" href="/tabs/camera">
+          <IonIcon icon={camera} />
+          <IonLabel>Caméra</IonLabel>
+        </IonTabButton>
 
-                <IonTabButton tab="education" href="/education">
-                    <IonIcon icon={school}/>
-                    <IonLabel>Éducation</IonLabel>
-                </IonTabButton>
+        <IonTabButton tab="education" href="/tabs/education">
+          <IonIcon icon={school} />
+          <IonLabel>Éducation</IonLabel>
+        </IonTabButton>
 
-                <IonTabButton tab="history" href="/history">
-                    <IonIcon icon={time}/>
-                    <IonLabel>Historique</IonLabel>
-                </IonTabButton>
-            </IonTabBar>
-
-        </IonTabs>
-    );
+        <IonTabButton tab="history" href="/tabs/history">
+          <IonIcon icon={time} />
+          <IonLabel>Historique</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
+  );
 }
 
 export default NavBar;

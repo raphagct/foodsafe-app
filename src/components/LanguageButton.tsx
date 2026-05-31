@@ -1,11 +1,9 @@
-import {IonButton, IonIcon} from "@ionic/react";
+import { IonButton, IonIcon } from "@ionic/react";
 import { globeOutline } from "ionicons/icons";
-
-import "../theme/LanguageButton.css";
 
 function LanguageButton() {
   return (
-    <IonButton className="language-button" shape="round">
+    <IonButton className="[--background:white] [--color:black] [--box-shadow:none] size-11 m-0" shape="round">
       <IonIcon className="text-[26px]" slot="icon-only" icon={globeOutline} />
     </IonButton>
   );
