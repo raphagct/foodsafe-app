@@ -1,9 +1,19 @@
-import { IonPage, IonContent } from "@ionic/react";
+import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
+import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
 
 function HomePage() {
+  const [reports, setReports] = useState<any[]>([]);
+
+  useIonViewWillEnter(() => {
+    const existing = localStorage.getItem("foodsafe_reports");
+    if (existing) {
+      setReports(JSON.parse(existing));
+    }
+  });
+
   return (
     <IonPage>
       <IonContent className="home-content">
@@ -18,8 +28,8 @@ function HomePage() {
           </header>
 
           <section className="mt-4">
-            <HistorySection title="Scan History" />
-            <HistorySection title="Report History" />
+            <HistorySection title="Scan History" type="scan" />
+            <HistorySection title="Report History" items={reports} type="report" />
           </section>
         </main>
       </IonContent>

@@ -14,6 +14,8 @@ import HomePage from "../pages/HomePage/HomePage";
 import CameraPage from "../pages/CameraPage/CameraPage";
 import EducationPage from "../pages/EducationPage/EducationPage";
 import HistoryPage from "../pages/HistoryPage/HistoryPage";
+import ReportDetailsPage from "../pages/HistoryPage/ReportDetailsPage";
+import TraceabilityPage from "../pages/CameraPage/TraceabiltyPage/TraceabilityPage";
 
 function NavBar() {
   return (
@@ -21,8 +23,18 @@ function NavBar() {
       <IonRouterOutlet>
         <Route exact path="/tabs/home" component={HomePage} />
         <Route exact path="/tabs/camera" component={CameraPage} />
+        <Route
+          exact
+          path="/tabs/camera/traceability/:id"
+          component={TraceabilityPage}
+        />
         <Route exact path="/tabs/education" component={EducationPage} />
         <Route exact path="/tabs/history" component={HistoryPage} />
+        <Route
+          exact
+          path="/tabs/history/report/:id"
+          component={ReportDetailsPage}
+        />
 
         <Redirect exact from="/tabs" to="/tabs/home" />
       </IonRouterOutlet>

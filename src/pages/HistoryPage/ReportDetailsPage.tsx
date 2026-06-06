@@ -1,0 +1,104 @@
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonBadge,
+  useIonViewWillEnter
+} from "@ionic/react";
+import { useParams } from "react-router";
+import { useState } from "react";
+
+interface Report {
+  id: string;
+  photoUrl: string | null;
+  productName: string;
+  riskLevel: string;
+  notes: string;
+  date: string;
+}
+
+function ReportDetailsPage() {
+  const { id } = useParams<{ id: string }>();
+  const [report, setReport] = useState<Report | null>(null);
+
+  useIonViewWillEnter(() => {
+    const existing = localStorage.getItem("foodsafe_reports");
+    if (existing) {
+      const reports: Report[] = JSON.parse(existing);
+      const found = reports.find(r => r.id === id);
+      if (found) {
+        setReport(found);
+      }
+    }
+  });
+
+  if (!report) {
+    return (
+      <IonPage>
+        <IonHeader className="ion-no-border">
+          <IonToolbar>
+            <IonButtons slot="start"><IonBackButton defaultHref="/tabs/history" /></IonButtons>
+            <IonTitle>Loading...</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div className="flex items-center justify-center h-full text-gray-500">Report not found.</div>
+        </IonContent>
+      </IonPage>
+    );
+  }
+
+  return (
+    <IonPage>
+      <IonHeader className="ion-no-border">
+        <IonToolbar className="py-2 px-2">
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/tabs/history" />
+          </IonButtons>
+          <IonTitle className="font-bold">Report Details</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent className="[--background:var(--color-surface)]">
+        {/* Hero Image Area */}
+        <div className="relative w-full h-[220px]">
+          <img
+            alt={report.productName}
+            src={report.photoUrl || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600&h=400"}
+            className="w-full h-full object-cover bg-gray-200"
+          />
+          <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[var(--color-surface)] to-transparent"></div>
+        </div>
+
+        <div className="px-5 pb-8 pt-4 flex flex-col gap-6 relative z-10 -mt-2">
+          {/* Header Info */}
+          <div className="flex justify-between items-start">
+            <div>
+              <h1 className="text-2xl font-black text-gray-900">{report.productName}</h1>
+              <p className="text-sm font-medium text-gray-500 mt-1">{new Date(report.date).toLocaleDateString()}</p>
+            </div>
+            <IonBadge color={report.riskLevel === 'unsafe' ? 'danger' : 'warning'} className="px-3 py-1 text-sm rounded-lg shadow-sm">
+              {report.riskLevel.toUpperCase()}
+            </IonBadge>
+          </div>
+
+          {/* Notes Section */}
+          <div className="bg-white rounded-xl shadow-sm px-5 py-4">
+            <h2 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">
+              Notes
+            </h2>
+            <p className="text-gray-800 font-medium leading-relaxed text-[15px]">
+              {report.notes || "No notes provided."}
+            </p>
+          </div>
+        </div>
+      </IonContent>
+    </IonPage>
+  );
+}
+
+export default ReportDetailsPage;

@@ -1,27 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  IonButton,
-  IonImg
+  useIonViewDidEnter,
 } from '@ionic/react';
-
+import { useIonRouter } from '@ionic/react';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import CreateReportModal from './ReportPage/ReportPage';
 
 function CameraTest() {
-  const [photos, setPhotos] = useState<string[]>([]);
-
-  // Chargement des photos sauvegardées au démarrage
-  useEffect(() => {
-    const photosSauvegardees = localStorage.getItem('photos_camera');
-
-    if (photosSauvegardees) {
-      setPhotos(JSON.parse(photosSauvegardees));
-    }
-  }, []);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const router = useIonRouter();
 
   const prendreUnePhoto = async () => {
     try {
@@ -33,73 +25,47 @@ function CameraTest() {
         width: 800
       });
 
-      if (!image.dataUrl) return;
-
-      const nouvellesPhotos = [image.dataUrl, ...photos];
-
-      setPhotos(nouvellesPhotos);
-      localStorage.setItem('photos_camera', JSON.stringify(nouvellesPhotos));
+      if (image.dataUrl) {
+        setSelectedPhoto(image.dataUrl);
+      }
     } catch (erreur) {
-      console.log("L'utilisateur a quitté la caméra ou une erreur est survenue :", erreur);
+      console.log("L'utilisateur a annulé ou une erreur est survenue :", erreur);
+      // Si l'utilisateur ferme la caméra sans prendre de photo, on le renvoie à l'accueil
+      router.push('/tabs/home', 'back', 'pop');
     }
   };
 
-  const supprimerPhotos = () => {
-    localStorage.removeItem('photos_camera');
-    setPhotos([]);
+  useIonViewDidEnter(() => {
+    if (!selectedPhoto) {
+      prendreUnePhoto();
+    }
+  });
+
+  const handleCloseModal = (wasSubmitted?: boolean) => {
+    setSelectedPhoto(null);
+    if (!wasSubmitted) {
+      // Si on a annulé le formulaire (pas de submit), on réouvre direct la caméra !
+      prendreUnePhoto();
+    }
   };
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader className="ion-no-border">
         <IonToolbar>
-          <IonTitle>Test Caméra Native</IonTitle>
+          <IonTitle className="font-bold">Scanner</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className="ion-padding">
-        <IonButton expand="block" onClick={prendreUnePhoto}>
-          Ouvrir la caméra Android
-        </IonButton>
-
-        {photos.length > 0 && (
-          <IonButton expand="block" color="danger" onClick={supprimerPhotos}>
-            Supprimer les photos
-          </IonButton>
-        )}
-
-        <div
-          style={{
-            display: 'flex',
-            gap: '10px',
-            flexWrap: 'wrap',
-            marginTop: '20px'
-          }}
-        >
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              style={{
-                width: '90px',
-                height: '90px',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                border: '1px solid #ccc'
-              }}
-            >
-              <IonImg
-                src={photo}
-                alt={`Photo ${index + 1}`}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
-            </div>
-          ))}
-        </div>
+      <IonContent className="ion-padding [--background:var(--color-surface)]">
+        {/* On laisse un écran noir ou vide car la caméra passe direct par dessus */}
       </IonContent>
+
+      <CreateReportModal 
+        isOpen={!!selectedPhoto} 
+        photoUrl={selectedPhoto} 
+        onClose={handleCloseModal} 
+      />
     </IonPage>
   );
 }
