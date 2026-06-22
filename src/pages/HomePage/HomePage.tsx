@@ -3,15 +3,36 @@ import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
+import { supabase } from "../../utils/supabase";
 
 function HomePage() {
   const [reports, setReports] = useState<any[]>([]);
 
   useIonViewWillEnter(() => {
-    const existing = localStorage.getItem("foodsafe_reports");
-    if (existing) {
-      setReports(JSON.parse(existing));
+    async function fetchReports() {
+      const { data, error } = await supabase
+        .from("report")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.error("Error fetching reports:", error);
+        return;
+      }
+
+      if (data) {
+        // Map DB columns to the shape HistorySection expects
+        const mapped = data.map((r: any) => ({
+          id: r.report_id,
+          photoUrl: r.image_url,
+          productName: r.product_name,
+        }));
+        setReports(mapped);
+      }
     }
+
+    fetchReports();
   });
 
   return (
@@ -38,3 +59,4 @@ function HomePage() {
 }
 
 export default HomePage;
+

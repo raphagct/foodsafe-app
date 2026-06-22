@@ -11,14 +11,15 @@ import {
 } from "@ionic/react";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { supabase } from "../../utils/supabase";
 
 interface Report {
-  id: string;
-  photoUrl: string | null;
-  productName: string;
-  riskLevel: string;
-  notes: string;
-  date: string;
+  report_id: string;
+  product_name: string;
+  risk_level: string;
+  description: string;
+  image_url: string;
+  created_at: string;
 }
 
 function ReportDetailsPage() {
@@ -26,14 +27,24 @@ function ReportDetailsPage() {
   const [report, setReport] = useState<Report | null>(null);
 
   useIonViewWillEnter(() => {
-    const existing = localStorage.getItem("foodsafe_reports");
-    if (existing) {
-      const reports: Report[] = JSON.parse(existing);
-      const found = reports.find(r => r.id === id);
-      if (found) {
-        setReport(found);
+    async function fetchReport() {
+      const { data, error } = await supabase
+        .from("report")
+        .select("*")
+        .eq("report_id", id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching report:", error);
+        return;
+      }
+
+      if (data) {
+        setReport(data);
       }
     }
+
+    fetchReport();
   });
 
   if (!report) {
@@ -67,8 +78,8 @@ function ReportDetailsPage() {
         {/* Hero Image Area */}
         <div className="relative w-full h-[220px]">
           <img
-            alt={report.productName}
-            src={report.photoUrl || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600&h=400"}
+            alt={report.product_name}
+            src={report.image_url || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600&h=400"}
             className="w-full h-full object-cover bg-gray-200"
           />
           <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[var(--color-surface)] to-transparent"></div>
@@ -78,11 +89,11 @@ function ReportDetailsPage() {
           {/* Header Info */}
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-2xl font-black text-gray-900">{report.productName}</h1>
-              <p className="text-sm font-medium text-gray-500 mt-1">{new Date(report.date).toLocaleDateString()}</p>
+              <h1 className="text-2xl font-black text-gray-900">{report.product_name}</h1>
+              <p className="text-sm font-medium text-gray-500 mt-1">{new Date(report.created_at).toLocaleDateString()}</p>
             </div>
-            <IonBadge color={report.riskLevel === 'unsafe' ? 'danger' : 'warning'} className="px-3 py-1 text-sm rounded-lg shadow-sm">
-              {report.riskLevel.toUpperCase()}
+            <IonBadge color={report.risk_level === 'Unsafe' ? 'danger' : 'warning'} className="px-3 py-1 text-sm rounded-lg shadow-sm">
+              {report.risk_level.toUpperCase()}
             </IonBadge>
           </div>
 
@@ -92,7 +103,7 @@ function ReportDetailsPage() {
               Notes
             </h2>
             <p className="text-gray-800 font-medium leading-relaxed text-[15px]">
-              {report.notes || "No notes provided."}
+              {report.description || "No notes provided."}
             </p>
           </div>
         </div>
@@ -102,3 +113,4 @@ function ReportDetailsPage() {
 }
 
 export default ReportDetailsPage;
+
