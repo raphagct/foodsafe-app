@@ -12,6 +12,7 @@ import {
 import { useParams } from "react-router";
 import { useState } from "react";
 import { supabase } from "../../utils/supabase";
+import { t, getLanguage } from "../../utils/i18n";
 
 interface Report {
   report_id: string;
@@ -25,6 +26,7 @@ interface Report {
 function ReportDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const [report, setReport] = useState<Report | null>(null);
+  const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
     async function fetchReport() {
@@ -53,11 +55,13 @@ function ReportDetailsPage() {
         <IonHeader className="ion-no-border">
           <IonToolbar>
             <IonButtons slot="start"><IonBackButton defaultHref="/tabs/history" /></IonButtons>
-            <IonTitle>Loading...</IonTitle>
+            <IonTitle>{t("loading", currentLanguage)}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <div className="flex items-center justify-center h-full text-gray-500">Report not found.</div>
+          <div className="flex items-center justify-center h-full text-gray-500">
+            {t("reportNotFound", currentLanguage)}
+          </div>
         </IonContent>
       </IonPage>
     );
@@ -70,12 +74,11 @@ function ReportDetailsPage() {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/tabs/history" />
           </IonButtons>
-          <IonTitle className="font-bold">Report Details</IonTitle>
+          <IonTitle className="font-bold">{t("reportDetailsTitle", currentLanguage)}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent className="[--background:var(--color-surface)]">
-        {/* Hero Image Area */}
         <div className="relative w-full h-[220px]">
           <img
             alt={report.product_name}
@@ -86,7 +89,6 @@ function ReportDetailsPage() {
         </div>
 
         <div className="px-5 pb-8 pt-4 flex flex-col gap-6 relative z-10 -mt-2">
-          {/* Header Info */}
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-2xl font-black text-gray-900">{report.product_name}</h1>
@@ -97,13 +99,12 @@ function ReportDetailsPage() {
             </IonBadge>
           </div>
 
-          {/* Notes Section */}
           <div className="bg-white rounded-xl shadow-sm px-5 py-4">
             <h2 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">
-              Notes
+              {t("notesTitle", currentLanguage)}
             </h2>
             <p className="text-gray-800 font-medium leading-relaxed text-[15px]">
-              {report.description || "No notes provided."}
+              {report.description || t("noNotesProvided", currentLanguage)}
             </p>
           </div>
         </div>

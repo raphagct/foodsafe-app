@@ -13,6 +13,7 @@ import {
   useIonViewWillEnter
 } from "@ionic/react";
 import { supabase } from "../../utils/supabase";
+import { t, getLanguage } from "../../utils/i18n";
 
 interface Report {
   report_id: string;
@@ -25,6 +26,7 @@ interface Report {
 
 function HistoryPage() {
   const [reports, setReports] = useState<Report[]>([]);
+  const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
     async function fetchReports() {
@@ -50,13 +52,13 @@ function HistoryPage() {
     <IonPage>
       <IonHeader className="ion-no-border">
         <IonToolbar>
-          <IonTitle className="font-bold">History</IonTitle>
+          <IonTitle className="font-bold">{t("historyPageTitle", currentLanguage)}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="[--background:var(--color-surface)]">
         {reports.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-gray-500 font-medium">
-            No reports yet.
+            {t("historyNoReports", currentLanguage)}
           </div>
         ) : (
           <IonList className="bg-transparent px-4 py-4" lines="none">

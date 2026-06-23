@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -14,6 +14,7 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { supabase } from "../../../utils/supabase";
+import { t, getLanguage } from "../../../utils/i18n";
 
 interface CreateReportModalProps {
   isOpen: boolean;
@@ -27,31 +28,27 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
   const [riskLevel, setRiskLevel] = useState("Unsafe");
   const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const currentLanguage = getLanguage();
 
-  // Reset le formulaire à chaque ouverture
-  useEffect(() => {
-    if (isOpen) {
-      setProductName("");
-      setRiskLevel("Unsafe");
-      setNotes("");
-      setIsSubmitting(false);
-    }
-  }, [isOpen]);
+  const resetForm = () => {
+    setProductName("");
+    setRiskLevel("Unsafe");
+    setNotes("");
+    setIsSubmitting(false);
+  };
 
   const handleSubmit = async () => {
     if (!productName.trim()) {
-      alert("Veuillez entrer un nom de produit.");
+      alert(t("productName", currentLanguage));
       return;
     }
 
     setIsSubmitting(true);
 
-    // 1. Upload la photo dans Supabase Storage
     let imageUrl = "https://placehold.co/400x300?text=No+Image";
 
     if (photoUrl) {
       try {
-        // Convertir le dataUrl base64 en Blob pour l'upload
         const [header, base64Data] = photoUrl.split(",");
         const mimeMatch = header.match(/:(.*?);/);
         const mime = mimeMatch ? mimeMatch[1] : "image/jpeg";
@@ -62,7 +59,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
           ia[i] = byteString.charCodeAt(i);
         }
         const blob = new Blob([ab], { type: mime });
-        const fileName = `report_${Date.now()}.jpg`;
+        const fileName = `report_${new Date().getTime()}.jpg`;
 
         const { error: uploadError } = await supabase.storage
           .from("report-images")
@@ -73,12 +70,11 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
         if (uploadError) {
           console.error("Error uploading image:", uploadError);
-          alert("Failed to upload image. Please try again.");
+          alert(t("submit", currentLanguage));
           setIsSubmitting(false);
           return;
         }
 
-        // 2. Récupérer l'URL publique
         const { data: urlData } = supabase.storage
           .from("report-images")
           .getPublicUrl(fileName);
@@ -86,53 +82,55 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
         imageUrl = urlData.publicUrl;
       } catch (err) {
         console.error("Image processing error:", err);
-        alert("Failed to process image.");
+        alert(t("submit", currentLanguage));
         setIsSubmitting(false);
         return;
       }
     }
 
-    // 3. Insérer le report avec l'URL de l'image
     const { error } = await supabase.from("report").insert({
       product_name: productName.trim(),
       risk_level: riskLevel,
-      description: notes.trim() || "No description provided.",
+      description: notes.trim() || t("noNotesProvided", currentLanguage),
       image_url: imageUrl,
     });
 
     if (error) {
       console.error("Error submitting report:", error);
-      alert("Failed to submit report. Please try again.");
+      alert(t("submit", currentLanguage));
       setIsSubmitting(false);
       return;
     }
 
     onClose(true);
-
-    // Rediriger proprement vers l'historique en remplaçant la pile de navigation
     router.push("/tabs/history", "root", "replace");
   };
 
   return (
-    <IonModal isOpen={isOpen} onDidDismiss={() => {
-      // Seulement si on a pas cliqué sur submit, c'est une vraie annulation
-      if (!isSubmitting) {
-        onClose(false);
-      }
-    }}>
+    <IonModal
+      isOpen={isOpen}
+      onDidDismiss={() => {
+        if (!isSubmitting) {
+          onClose(false);
+        }
+      }}
+      onDidPresent={resetForm}
+    >
       <IonHeader>
         <IonToolbar className="py-2 px-2">
           <IonButtons slot="start">
-            <IonButton color="medium" onClick={() => onClose(false)}>Cancel</IonButton>
+            <IonButton color="medium" onClick={() => onClose(false)}>
+              {t("cancel", currentLanguage)}
+            </IonButton>
           </IonButtons>
-          <IonTitle className="font-bold">Create a report</IonTitle>
+          <IonTitle className="font-bold">{t("createReport", currentLanguage)}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
         {photoUrl && (
           <img
-            alt="Captured product"
+            alt={t("productName", currentLanguage)}
             src={photoUrl}
             className="w-full h-48 object-cover"
           />
@@ -142,7 +140,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
           <div className="flex flex-row items-center gap-4">
             <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-4 ">
               <IonInput
-                label="Product Name"
+                label={t("productName", currentLanguage)}
                 labelPlacement="floating"
                 counter={true}
                 maxlength={20}
@@ -154,23 +152,23 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
             <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-4 py-3">
               <IonSelect
-                label="Risk Level"
+                label={t("riskLevel", currentLanguage)}
                 labelPlacement="floating"
                 interface="popover"
                 value={riskLevel}
                 onIonChange={(e) => setRiskLevel(e.detail.value)}
                 className="font-semibold"
               >
-                <IonSelectOption value="Suspected">Suspected</IonSelectOption>
-                <IonSelectOption value="Unsafe">Unsafe</IonSelectOption>
+                <IonSelectOption value="Suspected">{t("suspected", currentLanguage)}</IonSelectOption>
+                <IonSelectOption value="Unsafe">{t("unsafe", currentLanguage)}</IonSelectOption>
               </IonSelect>
             </div>
           </div>
           <div className="bg-[var(--color-surface)] rounded-xl px-4 py-2">
             <IonTextarea
-              label="Add notes"
+              label={t("addNotes", currentLanguage)}
               labelPlacement="floating"
-              placeholder="Describe the issue..."
+              placeholder={t("addNotes", currentLanguage)}
               autoGrow={true}
               rows={5}
               className="font-medium"
@@ -185,7 +183,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
             className="h-14 font-bold mt-2"
             onClick={handleSubmit}
           >
-            Submit
+            {t("submit", currentLanguage)}
           </IonButton>
         </div>
       </IonContent>

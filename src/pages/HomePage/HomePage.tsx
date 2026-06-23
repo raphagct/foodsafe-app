@@ -4,9 +4,16 @@ import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
 import { supabase } from "../../utils/supabase";
+import { t, getLanguage } from "../../utils/i18n";
+import type { ReportRecord } from "../../types/report";
 
 function HomePage() {
-  const [reports, setReports] = useState<any[]>([]);
+  const [reports, setReports] = useState<{
+    id: string;
+    photoUrl: string | null;
+    productName: string;
+  }[]>([]);
+  const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
     async function fetchReports() {
@@ -22,8 +29,7 @@ function HomePage() {
       }
 
       if (data) {
-        // Map DB columns to the shape HistorySection expects
-        const mapped = data.map((r: any) => ({
+        const mapped = data.map((r: ReportRecord) => ({
           id: r.report_id,
           photoUrl: r.image_url,
           productName: r.product_name,
@@ -41,16 +47,16 @@ function HomePage() {
         <main className="min-h-screen px-[18px] py-[13px]">
           <header className="flex items-center justify-between">
             <div className="flex flex-col items-start text-[18px] font-extrabold leading-[0.78] tracking-[-0.5px]">
-              <span className="text-black">Food</span>
-              <span className="text-[var(--color-primary)]">Safe.</span>
+              <span className="text-black">{t("appNameFood", currentLanguage)}</span>
+              <span className="text-[var(--color-primary)]">{t("appNameSafe", currentLanguage)}</span>
             </div>
 
             <LanguageButton />
           </header>
 
           <section className="mt-4">
-            <HistorySection title="Scan History" type="scan" />
-            <HistorySection title="Report History" items={reports} type="report" />
+            <HistorySection title={t("scanHistory", currentLanguage)} type="scan" />
+            <HistorySection title={t("reportHistory", currentLanguage)} items={reports} type="report" />
           </section>
         </main>
       </IonContent>

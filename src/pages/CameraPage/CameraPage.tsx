@@ -10,10 +10,12 @@ import {
 import { useIonRouter } from '@ionic/react';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import CreateReportModal from './ReportPage/ReportPage';
+import { t, getLanguage } from '../../utils/i18n';
 
 function CameraTest() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const router = useIonRouter();
+  const currentLanguage = getLanguage();
 
   const prendreUnePhoto = async () => {
     try {
@@ -53,7 +55,7 @@ function CameraTest() {
     <IonPage>
       <IonHeader className="ion-no-border">
         <IonToolbar>
-          <IonTitle className="font-bold">Scanner</IonTitle>
+          <IonTitle className="font-bold">{t("scannerTitle", currentLanguage)}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
