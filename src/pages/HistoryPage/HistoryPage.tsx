@@ -14,6 +14,7 @@ import {
 } from "@ionic/react";
 import { supabase } from "../../utils/supabase";
 import { t, getLanguage } from "../../utils/i18n";
+import LogoutButton from "../../components/LogoutButton";
 
 interface Report {
   report_id: string;
@@ -53,6 +54,9 @@ function HistoryPage() {
       <IonHeader className="ion-no-border">
         <IonToolbar>
           <IonTitle className="font-bold">{t("historyPageTitle", currentLanguage)}</IonTitle>
+          <div slot="end" className="pr-2">
+            <LogoutButton />
+          </div>
         </IonToolbar>
       </IonHeader>
       <IonContent className="[--background:var(--color-surface)]">

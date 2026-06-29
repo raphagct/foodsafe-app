@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
+import LogoutButton from "../../components/LogoutButton";
 import { supabase } from "../../utils/supabase";
 import { t, getLanguage } from "../../utils/i18n";
 import type { ReportRecord } from "../../types/report";
@@ -51,7 +52,10 @@ function HomePage() {
               <span className="text-[var(--color-primary)]">{t("appNameSafe", currentLanguage)}</span>
             </div>
 
-            <LanguageButton />
+            <div className="flex items-center gap-2">
+              <LanguageButton />
+              <LogoutButton />
+            </div>
           </header>
 
           <section className="mt-4">

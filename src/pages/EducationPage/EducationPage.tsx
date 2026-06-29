@@ -8,6 +8,7 @@ import {
   IonSearchbar,
 } from "@ionic/react";
 import { t, getLanguage } from "../../utils/i18n";
+import LogoutButton from "../../components/LogoutButton";
 
 function EducationPage() {
   const currentLanguage = getLanguage();
@@ -15,7 +16,10 @@ function EducationPage() {
   return (
     <IonPage>
       <IonHeader>
-        <h1 className="text-2xl font-bold">{t("educationTitle", currentLanguage)}</h1>
+        <div className="flex items-center justify-between p-4">
+          <h1 className="text-2xl font-bold m-0">{t("educationTitle", currentLanguage)}</h1>
+          <LogoutButton />
+        </div>
       </IonHeader>
       <IonContent>
         <IonSearchbar placeholder={t("searchPlaceholder", currentLanguage)}></IonSearchbar>

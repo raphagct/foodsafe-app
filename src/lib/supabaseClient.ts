@@ -1,9 +1,6 @@
-import { createClient } from '@supabase/supabase-js'
+// Re-export the unified Supabase client
+export { supabase } from '../utils/supabase'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? ''
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? ''
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 type RiskLevel = 'Unsafe' | 'Suspected'
 

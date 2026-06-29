@@ -58,7 +58,26 @@ export type TranslationKey =
   | "appMenuCamera"
   | "appMenuEducation"
   | "appMenuHistory"
-  | "selectLanguage";
+  | "selectLanguage"
+  | "loginTitle"
+  | "registerTitle"
+  | "email"
+  | "password"
+  | "confirmPassword"
+  | "loginButton"
+  | "registerButton"
+  | "noAccount"
+  | "hasAccount"
+  | "loginError"
+  | "registerError"
+  | "registerSuccess"
+  | "passwordMismatch"
+  | "logout"
+  | "allFieldsRequired"
+  | "passwordTooShort"
+  | "emailInvalid"
+  | "emailNotConfirmed"
+  | "userAlreadyExists";
 
 export const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -94,6 +113,25 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     appMenuEducation: "Éducation",
     appMenuHistory: "Historique",
     selectLanguage: "Choisir une langue",
+    loginTitle: "Connexion",
+    registerTitle: "Inscription",
+    email: "Adresse e-mail",
+    password: "Mot de passe",
+    confirmPassword: "Confirmer le mot de passe",
+    loginButton: "Se connecter",
+    registerButton: "S'inscrire",
+    noAccount: "Pas encore de compte ?",
+    hasAccount: "Déjà un compte ?",
+    loginError: "Email ou mot de passe incorrect.",
+    registerError: "Erreur lors de l'inscription.",
+    registerSuccess: "Compte créé ! Vérifiez votre e-mail pour confirmer.",
+    passwordMismatch: "Les mots de passe ne correspondent pas.",
+    logout: "Déconnexion",
+    allFieldsRequired: "Veuillez remplir tous les champs.",
+    passwordTooShort: "Le mot de passe doit contenir au moins 6 caractères.",
+    emailInvalid: "Adresse e-mail invalide.",
+    emailNotConfirmed: "Veuillez confirmer votre e-mail avant de vous connecter.",
+    userAlreadyExists: "Un compte existe déjà avec cette adresse e-mail.",
   },
   vi: {
     appNameFood: "Food",
@@ -128,6 +166,25 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     appMenuEducation: "Giáo dục",
     appMenuHistory: "Lịch sử",
     selectLanguage: "Chọn ngôn ngữ",
+    loginTitle: "Đăng nhập",
+    registerTitle: "Đăng ký",
+    email: "Địa chỉ email",
+    password: "Mật khẩu",
+    confirmPassword: "Xác nhận mật khẩu",
+    loginButton: "Đăng nhập",
+    registerButton: "Đăng ký",
+    noAccount: "Chưa có tài khoản?",
+    hasAccount: "Đã có tài khoản?",
+    loginError: "Email hoặc mật khẩu không đúng.",
+    registerError: "Lỗi khi đăng ký.",
+    registerSuccess: "Tạo tài khoản thành công! Kiểm tra email để xác nhận.",
+    passwordMismatch: "Mật khẩu không khớp.",
+    logout: "Đăng xuất",
+    allFieldsRequired: "Vui lòng điền đầy đủ thông tin.",
+    passwordTooShort: "Mật khẩu phải có ít nhất 6 ký tự.",
+    emailInvalid: "Địa chỉ email không hợp lệ.",
+    emailNotConfirmed: "Vui lòng xác nhận email trước khi đăng nhập.",
+    userAlreadyExists: "Tài khoản đã tồn tại với email này.",
   },
   en: {
     appNameFood: "Food",
@@ -162,6 +219,25 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     appMenuEducation: "Education",
     appMenuHistory: "History",
     selectLanguage: "Choose a language",
+    loginTitle: "Log In",
+    registerTitle: "Sign Up",
+    email: "Email address",
+    password: "Password",
+    confirmPassword: "Confirm password",
+    loginButton: "Log In",
+    registerButton: "Sign Up",
+    noAccount: "Don't have an account?",
+    hasAccount: "Already have an account?",
+    loginError: "Invalid email or password.",
+    registerError: "An error occurred during registration.",
+    registerSuccess: "Account created! Check your email to confirm.",
+    passwordMismatch: "Passwords do not match.",
+    logout: "Log Out",
+    allFieldsRequired: "Please fill in all fields.",
+    passwordTooShort: "Password must be at least 6 characters.",
+    emailInvalid: "Invalid email address.",
+    emailNotConfirmed: "Please confirm your email before logging in.",
+    userAlreadyExists: "An account already exists with this email.",
   },
 };
 

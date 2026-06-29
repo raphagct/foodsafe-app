@@ -11,6 +11,7 @@ import { useIonRouter } from '@ionic/react';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import CreateReportModal from './ReportPage/ReportPage';
 import { t, getLanguage } from '../../utils/i18n';
+import LogoutButton from '../../components/LogoutButton';
 
 function CameraTest() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
@@ -56,6 +57,9 @@ function CameraTest() {
       <IonHeader className="ion-no-border">
         <IonToolbar>
           <IonTitle className="font-bold">{t("scannerTitle", currentLanguage)}</IonTitle>
+          <div slot="end" className="pr-2">
+            <LogoutButton />
+          </div>
         </IonToolbar>
       </IonHeader>
 

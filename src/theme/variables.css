@@ -17,3 +17,18 @@
   --ion-tab-bar-color-selected: var(--color-text);
   --ion-card-background: var(--color-surface);
 }
+
+@theme {
+  --animate-auth-slide-up: auth-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes auth-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
