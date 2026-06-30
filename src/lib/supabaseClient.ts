@@ -1,5 +1,6 @@
-// Re-export the unified Supabase client
-export { supabase } from '../utils/supabase'
+// Import and re-export the unified Supabase client
+import { supabase } from '../utils/supabase'
+export { supabase }
 
 
 type RiskLevel = 'Unsafe' | 'Suspected'
