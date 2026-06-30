@@ -1,88 +1,130 @@
 # FoodSafe
 
-FoodSafe is a cross-platform mobile app built with Flutter and SQLite that helps users learn about food safety, trace products using QR codes, report suspicious food with photos, and keep a local history for offline access.
+FoodSafe is a mobile-first app built with React + Ionic + Capacitor. It helps users learn about food hygiene, scan QR codes for product traceability, report suspicious food with photos, and keep a local history for offline access.
 
-## Features
+## Key features
+- Interactive educational content about food safety.
+- Camera integration to scan QR codes and capture photos.
+- Product traceability view from QR scan results.
+- Report suspicious food with photo evidence and detailed reports.
+- Local history saved for offline access (client-side storage).
+- Multi-language UI (UI labels visible in components).
+- Supabase client included for optional backend integration.
 
-- Educational content about food hygiene and safe handling
-- QR code scanner for product traceability and easy access to product information
-- Report suspicious food items by taking photos and submitting reports
-- Local history stored in SQLite so users can access data offline
-- Simple, responsive UI built with Flutter
+## Stack
+- Language(s): TypeScript (primary), HTML, CSS
+- Framework / runtime: React 19 + Ionic React (Ionic ecosystem for UI)
+- Native runtime: Capacitor (for Android/iOS builds and native plugins)
+- Tooling: Vite, TypeScript, ESLint, Tailwind (dev)
+- Notable libraries:
+  - @ionic/react, @ionic/react-router — Ionic UI + routing
+  - @capacitor/core, @capacitor/cli, @capacitor/camera — native bridge & camera
+  - @ionic/pwa-elements — PWA elements (web camera support, etc.)
+  - @supabase/supabase-js — optional backend client
 
-## Tech stack
+## Quick start
 
-- Flutter (Dart) — cross-platform mobile UI
-- SQLite — local data storage
-- QR code scanning (e.g. using `qr_code_scanner` or `mobile_scanner` plugin)
+Prerequisites
+- Node.js (16+ recommended)
+- npm or yarn
+- Android Studio / Xcode if building native apps with Capacitor
 
-## Getting started
+Install
+```bash
+git clone https://github.com/raphagct/foodsafe-app.git
+cd foodsafe-app
+npm install
+```
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Run in the browser (development)
+```bash
+npm run dev
+# open http://localhost:5173 (Vite default)
+```
 
-### Prerequisites
+Build for production
+```bash
+npm run build
+```
 
-- Flutter SDK (stable) installed: https://flutter.dev/docs/get-started/install
-- Android Studio / Xcode (for device emulators and platform tooling)
-- A device or emulator to run the app
+Preview a production build locally
+```bash
+npm run preview
+```
 
-### Install
+Add / run native platforms with Capacitor
+```bash
+# After a production build step (or a dev build depending on workflow)
+npm run build
+npx cap sync android
+npx cap open android
 
-1. Clone the repository
+# For iOS
+npx cap sync ios
+npx cap open ios
+```
 
-   git clone https://github.com/raphagct/foodsafe-app.git
-   cd foodsafe-app
+Notes
+- Camera and QR scanning use Capacitor plugins; when testing in the browser, you may rely on @ionic/pwa-elements fallback behavior.
+- Make sure to add required platform permissions (camera, storage) in native projects.
 
-2. Install Flutter dependencies
+## Environment
+If you integrate with Supabase or another backend, set these env vars in your environment or a .env file used by your build:
+- SUPABASE_URL
+- SUPABASE_ANON_KEY
 
-   flutter pub get
+(Adjust names/details to match your actual environment-loading strategy.)
 
-3. Run the app
+## Project structure (top-level)
+```
+.
+├── capacitor.config.ts        # Capacitor configuration
+├── index.html
+├── package.json
+├── public/
+├── src/
+│   ├── main.tsx              # app bootstrap, ionic pwa elements init
+│   ├── App.tsx               # top-level routes + Ionic router
+│   ├── components/           # shared UI components (NavBar, HistorySection, LanguageButton)
+│   ├── pages/                # app pages (HomePage, CameraPage, EducationPage, HistoryPage, ReportDetailsPage, TraceabilityPage)
+│   ├── theme/                # theme variables and CSS
+│   └── utils/                # helper utilities
+├── tsconfig*.json
+├── vite.config.ts
+└── README.md
+```
 
-- On an Android device/emulator:
+How it fits together
+- The app bootstraps in `src/main.tsx` and mounts `src/App.tsx`.
+- `App.tsx` wires Ionic and React Router, and `NavBar` (in `src/components`) defines the app tabs and page routes.
+- Camera and traceability features are in pages under `src/pages` (CameraPage, TraceabilityPage). History and reporting live under `src/pages/HistoryPage`.
+- The app runs as a web app via Vite during development and is packaged for native platforms using Capacitor.
 
-  flutter run
-
-- To build an APK:
-
-  flutter build apk --release
-
-- To run on iOS device/simulator (macOS + Xcode required):
-
-  flutter run
-
-### Configuration
-
-- If the app integrates with any backend services or requires API keys, add them to a secure place (e.g., use environment variables, a local config file excluded from version control, or the platform's secure storage). Document any required keys or endpoints here.
-
-## Project structure (high level)
-
-- lib/ — Flutter app code (screens, models, services)
-- assets/ — images, icons, and other static assets
-- android/ — Android-specific files
-- ios/ — iOS-specific files
-- pubspec.yaml — Flutter dependencies and metadata
+## Development notes and pointers
+- UI text currently appears in multiple languages inside components (see `NavBar.tsx` labels). Check `LanguageButton` for language switching behavior.
+- The repository contains a Supabase client dependency — if you want server-backed persistence or remote report sync, wire Supabase keys and backend functions.
+- Camera and file uploads are handled using Capacitor plugins; when debugging on desktop, `@ionic/pwa-elements` provides web fallbacks.
 
 ## Contributing
-
-Contributions are welcome. Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/your-feature`
-3. Commit your changes: `git commit -m "Add some feature"`
-4. Push to the branch: `git push origin feat/your-feature`
-5. Open a pull request describing your changes
-
-Please open issues for bugs or feature requests so we can track and discuss them.
-
-## Screenshots
-
-_Add screenshots here in the `assets/` folder and link them below._
+- Open issues for bugs or feature requests.
+- Follow the existing code style (TypeScript + ESLint).
+- Create branches off `develop` and submit PRs against `develop`.
 
 ## License
+Specify a license for the project (e.g. MIT). If you want me to add a LICENSE file, tell me which license to use.
 
-This project is provided under the MIT License. See the `LICENSE` file for details.
+## Useful commands (summary)
+```bash
+# dev
+npm install
+npm run dev
 
-## Contact
+# build
+npm run build
+npm run preview
 
-Created by @raphagct. Feel free to open issues or pull requests on GitHub.
+# Capacitor native workflow
+npm run build
+npx cap sync
+npx cap open android  # or ios
+```
