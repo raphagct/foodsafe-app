@@ -67,7 +67,7 @@ function LoginPage() {
           <div className="absolute -bottom-20 -left-15 w-[280px] h-[280px] rounded-full bg-[radial-gradient(circle,rgba(21,153,71,0.06)_0%,transparent_70%)] pointer-events-none z-0" />
 
           {/* Language Selector */}
-          <div className="absolute top-6 right-6 z-20">
+          <div className="absolute right-6 z-20" style={{ top: 'calc(env(safe-area-inset-top, 0px) + 24px)' }}>
             <LanguageButton />
           </div>
 

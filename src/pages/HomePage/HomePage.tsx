@@ -1,4 +1,4 @@
-import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonToolbar, useIonViewWillEnter } from "@ionic/react";
 import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
@@ -44,10 +44,10 @@ function HomePage() {
 
   return (
     <IonPage>
-      <IonContent className="home-content">
-        <main className="min-h-screen px-[18px] py-[13px]">
-          <header className="flex items-center justify-between">
-            <div className="flex flex-col items-start text-[18px] font-extrabold leading-[0.78] tracking-[-0.5px]">
+      <IonHeader className="ion-no-border">
+        <IonToolbar>
+          <div className="flex items-center justify-between px-[18px] py-[8px]">
+            <div className="flex flex-col items-start text-[24px] font-extrabold leading-tight tracking-[-0.5px]">
               <span className="text-black">{t("appNameFood", currentLanguage)}</span>
               <span className="text-[var(--color-primary)]">{t("appNameSafe", currentLanguage)}</span>
             </div>
@@ -56,9 +56,13 @@ function HomePage() {
               <LanguageButton />
               <LogoutButton />
             </div>
-          </header>
+          </div>
+        </IonToolbar>
+      </IonHeader>
 
-          <section className="mt-4">
+      <IonContent className="home-content">
+        <main className="px-[18px] py-[13px]">
+          <section>
             <HistorySection title={t("scanHistory", currentLanguage)} type="scan" />
             <HistorySection title={t("reportHistory", currentLanguage)} items={reports} type="report" />
           </section>
@@ -69,4 +73,3 @@ function HomePage() {
 }
 
 export default HomePage;
-

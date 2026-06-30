@@ -1,12 +1,10 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import { logOutOutline } from "ionicons/icons";
 import { useAuth } from "../contexts/AuthContext";
-import { t, getLanguage } from "../utils/i18n";
 import { useHistory } from "react-router-dom";
 
 function LogoutButton() {
   const { signOut } = useAuth();
-  const lang = getLanguage();
   const history = useHistory();
 
   const handleLogout = async () => {
@@ -19,16 +17,20 @@ function LogoutButton() {
       fill="clear" 
       onClick={handleLogout} 
       className="m-0"
+      shape="round"
       style={{
         '--color': '#ef4444',
-        '--padding-start': '8px',
-        '--padding-end': '8px',
-        height: '32px',
-        fontSize: '13px'
+        '--padding-start': '0px',
+        '--padding-end': '0px',
+        width: '34px',
+        height: '34px',
+        minHeight: '34px',
+        '--background': 'rgba(239, 68, 68, 0.08)',
+        '--background-hover': 'rgba(239, 68, 68, 0.15)',
+        '--border-radius': '50%',
       } as React.CSSProperties}
     >
-      <IonIcon slot="start" icon={logOutOutline} className="mr-1" style={{ fontSize: '18px' }} />
-      {t("logout", lang)}
+      <IonIcon slot="icon-only" icon={logOutOutline} style={{ fontSize: '18px' }} />
     </IonButton>
   );
 }

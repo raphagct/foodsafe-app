@@ -97,7 +97,7 @@ function CameraTest() {
           <div className="absolute top-0 left-0 w-full h-full z-20 flex flex-col justify-between p-6 pointer-events-none">
             
             {/* Top Bar with Close Button */}
-            <div className="flex justify-start items-start pointer-events-auto mt-2">
+            <div className="flex justify-start items-start pointer-events-auto mt-8">
               <button 
                 onClick={closeCamera}
                 className="w-12 h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white active:bg-black/60 transition-colors"

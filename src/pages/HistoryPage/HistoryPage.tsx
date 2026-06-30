@@ -10,6 +10,7 @@ import {
   IonLabel,
   IonThumbnail,
   IonBadge,
+  IonButtons,
   useIonViewWillEnter
 } from "@ionic/react";
 import { supabase } from "../../utils/supabase";
@@ -54,9 +55,9 @@ function HistoryPage() {
       <IonHeader className="ion-no-border">
         <IonToolbar>
           <IonTitle className="font-bold">{t("historyPageTitle", currentLanguage)}</IonTitle>
-          <div slot="end" className="pr-2">
+          <IonButtons slot="end" className="pr-2">
             <LogoutButton />
-          </div>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="[--background:var(--color-surface)]">
@@ -65,28 +66,28 @@ function HistoryPage() {
             {t("historyNoReports", currentLanguage)}
           </div>
         ) : (
-          <IonList className="bg-transparent px-4 py-4" lines="none">
+          <IonList className="bg-transparent px-4 py-4 mt-4" lines="none">
             {reports.map((report) => (
-              <IonItem 
-                key={report.report_id} 
+              <IonItem
+                key={report.report_id}
                 routerLink={`/tabs/history/report/${report.report_id}`}
                 className="mb-4 rounded-xl shadow-sm [--background:white] py-1"
                 detail={true}
               >
                 <IonThumbnail slot="start" className="rounded-lg overflow-hidden border border-gray-100">
-                  <img 
-                    alt={report.product_name} 
-                    src={report.image_url || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=100&h=100"} 
-                    className="object-cover w-full h-full" 
+                  <img
+                    alt={report.product_name}
+                    src={report.image_url || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=100&h=100"}
+                    className="object-cover w-full h-full"
                   />
                 </IonThumbnail>
                 <IonLabel className="ml-2">
                   <h2 className="font-bold text-gray-900 text-lg">{report.product_name}</h2>
                   <p className="text-sm text-gray-500 font-medium">{new Date(report.created_at).toLocaleDateString()}</p>
                 </IonLabel>
-                <IonBadge 
-                  slot="end" 
-                  color={report.risk_level === 'Unsafe' ? 'danger' : 'warning'} 
+                <IonBadge
+                  slot="end"
+                  color={report.risk_level === 'Unsafe' ? 'danger' : 'warning'}
                   className="rounded-lg px-2 py-1 shadow-sm"
                 >
                   {report.risk_level.toUpperCase()}

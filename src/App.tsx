@@ -1,6 +1,5 @@
 import {
     IonApp, IonRouterOutlet,
-    IonSpinner,
     setupIonicReact,
 } from '@ionic/react';
 import {IonReactRouter} from "@ionic/react-router";
@@ -11,13 +10,26 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
+/* Safe Area padding utilities */
+import '@ionic/react/css/padding.css';
+
 import {Redirect, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import {useAuth} from "./contexts/AuthContext";
+import SplashScreen from "./components/SplashScreen";
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
+import { useState, useEffect } from 'react';
 
 setupIonicReact();
+
+// Configure the status bar on native iOS so the webview renders behind it
+if (Capacitor.isNativePlatform()) {
+    StatusBar.setStyle({ style: Style.Light });
+    StatusBar.setOverlaysWebView({ overlay: true });
+}
 
 /**
  * PrivateRoute — redirects to /login if the user is not authenticated.
@@ -30,11 +42,7 @@ function PrivateRoute({ component: Component, ...rest }: { component: React.Comp
             {...rest}
             render={(props) => {
                 if (loading) {
-                    return (
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                            <IonSpinner name="crescent" style={{ width: 40, height: 40, '--color': '#159947' } as React.CSSProperties} />
-                        </div>
-                    );
+                    return null;
                 }
                 return user ? <Component {...props} /> : <Redirect to="/login" />;
             }}
@@ -44,6 +52,19 @@ function PrivateRoute({ component: Component, ...rest }: { component: React.Comp
 
 function App() {
     const { user, loading } = useAuth();
+    const [showSplash, setShowSplash] = useState(true);
+
+    useEffect(() => {
+        // Show splash for a minimum of 2 seconds
+        const timer = setTimeout(() => {
+            setShowSplash(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (showSplash || loading) {
+        return <SplashScreen />;
+    }
 
     return (
         <IonApp>
@@ -58,7 +79,7 @@ function App() {
 
                     {/* Default redirect */}
                     <Route exact path="/">
-                        {loading ? null : user ? <Redirect to="/tabs/home"/> : <Redirect to="/login"/>}
+                        {user ? <Redirect to="/tabs/home"/> : <Redirect to="/login"/>}
                     </Route>
                 </IonRouterOutlet>
             </IonReactRouter>
