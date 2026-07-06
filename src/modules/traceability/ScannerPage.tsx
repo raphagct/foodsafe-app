@@ -84,7 +84,7 @@ function ScannerPage() {
           {/* QR Code Overlay (Grey background with clear square) */}
           {mode === 'qr' && (
             <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none flex items-center justify-center overflow-hidden">
-              <div 
+              <div
                 className="w-64 h-64 relative z-20"
                 style={{
                   boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.6)'
@@ -95,10 +95,10 @@ function ScannerPage() {
 
           {/* UI Layer */}
           <div className="absolute top-0 left-0 w-full h-full z-20 flex flex-col justify-between p-6 pointer-events-none">
-            
+
             {/* Top Bar with Close Button */}
             <div className="flex justify-start items-start pointer-events-auto mt-8">
-              <button 
+              <button
                 onClick={closeCamera}
                 className="w-12 h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white active:bg-black/60 transition-colors"
               >
@@ -111,7 +111,7 @@ function ScannerPage() {
               {/* Capture Button (only in photo mode) */}
               <div className="h-24 flex items-center justify-center mb-4">
                 {mode === 'photo' && (
-                  <button 
+                  <button
                     onClick={takePhoto}
                     className="w-16 h-16 rounded-full border-[3px] border-white p-1"
                   >
@@ -122,16 +122,16 @@ function ScannerPage() {
 
               {/* Mode Toggle Pill */}
               <div className="bg-black/40 backdrop-blur-md rounded-full p-1 flex w-72 h-12 relative">
-                <div 
+                <div
                   className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#d4d4d4] rounded-full transition-all duration-300 ease-in-out ${mode === 'qr' ? 'left-[50%]' : 'left-1'}`}
                 ></div>
-                <button 
+                <button
                   onClick={() => setMode('photo')}
                   className={`flex-1 relative z-10 font-medium text-sm transition-colors duration-300 ${mode === 'photo' ? 'text-black' : 'text-[#8e8e8e]'}`}
                 >
                   Photo Report
                 </button>
-                <button 
+                <button
                   onClick={() => setMode('qr')}
                   className={`flex-1 relative z-10 font-medium text-sm transition-colors duration-300 ${mode === 'qr' ? 'text-black' : 'text-[#8e8e8e]'}`}
                 >
@@ -143,10 +143,10 @@ function ScannerPage() {
         </div>
       </IonContent>
 
-      <CreateReportModal 
-        isOpen={!!selectedPhoto} 
-        photoUrl={selectedPhoto} 
-        onClose={handleCloseModal} 
+      <CreateReportModal
+        isOpen={!!selectedPhoto}
+        photoUrl={selectedPhoto}
+        onClose={handleCloseModal}
       />
     </IonPage>
   );
