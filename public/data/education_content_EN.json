@@ -1,0 +1,738 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "module": "Education",
+    "description": "Food Safety Education Content — structured for mobile app display",
+    "language": "en",
+    "last_updated": "2026-06-09",
+    "content_types": ["article", "quiz", "tip", "infographic_data", "regulation_ref"]
+  },
+
+  "categories": [
+    { "id": "CAT-01", "name": "Fundamentals", "icon": "book-open", "color": "#4CAF50", "article_count": 3 },
+    { "id": "CAT-02", "name": "Food Storage & Temperature", "icon": "thermometer", "color": "#2196F3", "article_count": 3 },
+    { "id": "CAT-03", "name": "Foodborne Illness", "icon": "alert-triangle", "color": "#F44336", "article_count": 3 },
+    { "id": "CAT-04", "name": "Smart Shopping", "icon": "shopping-cart", "color": "#FF9800", "article_count": 3 },
+    { "id": "CAT-05", "name": "Safe Food Handling", "icon": "utensils", "color": "#9C27B0", "article_count": 3 }
+  ],
+
+  "articles": [
+    {
+      "id": "ART-001",
+      "category_id": "CAT-01",
+      "title": "What Is Food Safety? Why It Matters",
+      "summary": "An introduction to food safety concepts, contamination types, and the real-world scale of foodborne illness worldwide.",
+      "difficulty": "beginner",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Food safety refers to the conditions and practices required to ensure that food does not cause harm when it is produced, processed, distributed, or consumed. It encompasses everything from how crops are grown and animals raised, to how food is handled in your kitchen."
+        },
+        {
+          "type": "heading",
+          "text": "Three Categories of Food Contamination"
+        },
+        {
+          "type": "list",
+          "items": [
+            "🦠 Biological: Bacteria (Salmonella, E. coli O157:H7, Listeria monocytogenes), viruses (Norovirus, Hepatitis A), molds (Aspergillus — produces aflatoxin), and parasites (Cryptosporidium, Toxoplasma gondii).",
+            "⚗️ Chemical: Pesticide residues above tolerance, unapproved food additives, heavy metals (lead, mercury, cadmium, arsenic), and naturally occurring toxins (mycotoxins, ciguatoxin).",
+            "🪨 Physical: Glass fragments, metal shavings, bone chips, stones, or packaging material that enter food during production or handling."
+          ]
+        },
+        {
+          "type": "stat_box",
+          "stats": [
+            { "value": "600 million", "label": "people sickened by unsafe food annually (WHO, 2024)" },
+            { "value": "420,000", "label": "deaths per year linked to contaminated food globally" },
+            { "value": "30%", "label": "of foodborne deaths occur in children under 5" },
+            { "value": "$15.6B", "label": "estimated annual cost of foodborne illness in the US (USDA ERS)" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In the United States, the CDC estimates that 48 million Americans (1 in 6) experience foodborne illness each year, resulting in 128,000 hospitalizations and 3,000 deaths. The most common pathogens causing serious illness are Salmonella, Listeria monocytogenes, Toxoplasma gondii, and E. coli O157:H7."
+        },
+        {
+          "type": "key_takeaway",
+          "text": "Food safety is a shared responsibility across the entire supply chain — from farm to fork. Every stage — farming, processing, distribution, retail, and the home kitchen — plays a critical role in preventing illness."
+        }
+      ],
+      "related_articles": ["ART-002", "ART-003"],
+      "tags": ["fundamentals", "contamination", "WHO", "CDC", "statistics"]
+    },
+    {
+      "id": "ART-002",
+      "category_id": "CAT-01",
+      "title": "The 4 Core Principles of Food Safety",
+      "summary": "Clean, Separate, Cook, Chill — the FDA's four core food safety principles explained with practical kitchen guidance.",
+      "difficulty": "beginner",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "The FDA and USDA promote four core food safety behaviors that, if consistently practiced, can prevent the vast majority of foodborne illnesses. They are: Clean, Separate, Cook, and Chill."
+        },
+        {
+          "type": "card_list",
+          "cards": [
+            {
+              "icon": "🧼",
+              "title": "CLEAN — Wash Hands & Surfaces Often",
+              "points": [
+                "Wash hands with soap and water for at least 20 seconds before and after handling food, after using the bathroom, or handling pets.",
+                "Rinse fresh produce under cool running tap water — even if you plan to peel it.",
+                "Sanitize cutting boards, countertops, and utensils with a 1 tbsp bleach / 1 gallon water solution after contact with raw meat, poultry, or seafood."
+              ]
+            },
+            {
+              "icon": "🔪",
+              "title": "SEPARATE — Prevent Cross-Contamination",
+              "points": [
+                "Use separate cutting boards and plates for raw meat, poultry, seafood, and produce.",
+                "Never place cooked food on a plate that previously held raw protein without washing first.",
+                "Store raw meat on the lowest refrigerator shelf, below ready-to-eat foods."
+              ]
+            },
+            {
+              "icon": "🌡️",
+              "title": "COOK — Heat to Safe Internal Temperatures",
+              "points": [
+                "Poultry (whole or ground): 165°F (74°C)",
+                "Ground beef, pork, veal, lamb: 160°F (71°C)",
+                "Whole cuts of beef, pork, veal: 145°F (63°C) + 3-minute rest",
+                "Fish & shellfish: 145°F (63°C)",
+                "Egg dishes, casseroles: 160°F (71°C)"
+              ]
+            },
+            {
+              "icon": "❄️",
+              "title": "CHILL — Refrigerate Promptly",
+              "points": [
+                "Keep your refrigerator at 40°F (4°C) or below; freezer at 0°F (-18°C) or below.",
+                "Refrigerate perishable food within 2 hours (1 hour if ambient temperature exceeds 90°F / 32°C).",
+                "Thaw food safely: in the refrigerator, in cold running water, or in the microwave (cook immediately after). Never thaw on the counter."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "key_takeaway",
+          "text": "Use a food thermometer — you cannot tell whether food is safely cooked by color or texture alone. This is the most common misconception in home cooking."
+        }
+      ],
+      "related_articles": ["ART-001", "ART-004"],
+      "tags": ["clean", "separate", "cook", "chill", "FDA", "USDA", "kitchen safety"]
+    },
+    {
+      "id": "ART-003",
+      "category_id": "CAT-03",
+      "title": "Foodborne Illness: Recognition, Causes & First Aid",
+      "summary": "Symptoms, incubation periods for common pathogens, and evidence-based first-aid guidance.",
+      "difficulty": "intermediate",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "alert_box",
+          "severity": "danger",
+          "text": "Call 911 (or your local emergency number) immediately if you observe: seizures, loss of consciousness, difficulty breathing, bloody vomit, or if a pregnant woman, infant, elderly person, or immunocompromised individual shows any symptoms."
+        },
+        {
+          "type": "heading",
+          "text": "Common Pathogens — Quick Reference"
+        },
+        {
+          "type": "symptoms_table",
+          "columns": ["Pathogen", "Incubation", "Key Symptoms", "Common Sources"],
+          "rows": [
+            ["Salmonella spp.", "6–72 hours", "Diarrhea, fever (100–102°F), stomach cramps, nausea", "Raw eggs, poultry, raw produce, unpasteurized juice"],
+            ["E. coli O157:H7", "3–4 days", "Severe stomach cramps, bloody diarrhea, vomiting", "Undercooked ground beef, raw leafy greens, raw milk"],
+            ["Staphylococcus aureus", "30 min–8 hours", "Sudden nausea, vomiting, stomach cramps — rapid onset", "Foods handled by infected workers; unrefrigerated prepared foods"],
+            ["Norovirus", "12–48 hours", "Sudden vomiting, watery diarrhea, chills, body aches", "Shellfish, contaminated water, infected food handlers"],
+            ["Listeria monocytogenes", "1–4 weeks", "Fever, muscle aches, headache; meningitis in high-risk groups", "Deli meats, soft cheeses, refrigerated smoked seafood, sprouts"],
+            ["Campylobacter", "2–5 days", "Diarrhea (often bloody), fever, abdominal cramping", "Raw or undercooked poultry, unpasteurized milk"],
+            ["Clostridium botulinum", "12–36 hours", "Double vision, difficulty swallowing, descending paralysis — EMERGENCY", "Home-canned foods, garlic-in-oil, improperly fermented foods"]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Initial Response — What To Do"
+        },
+        {
+          "type": "steps",
+          "steps": [
+            "Stop eating the suspected food. Save a sample in a sealed bag in the freezer — it may help identify the pathogen if testing is needed.",
+            "Stay hydrated: drink small, frequent sips of clear fluids. Oral Rehydration Solution (ORS) is preferred for adults and children with significant diarrhea.",
+            "Do NOT self-administer antidiarrheal medications (like loperamide) without medical advice — they may slow elimination of the pathogen or toxin.",
+            "Rest and monitor symptoms. Most healthy adults recover from mild foodborne illness within 24–48 hours.",
+            "Seek medical care if: symptoms persist beyond 3 days, you have blood in stool or urine, fever exceeds 102°F (39°C), or you are in a high-risk group (pregnant, elderly, immunocompromised, under 5)."
+          ]
+        },
+        {
+          "type": "tip_box",
+          "tips": [
+            "High-risk groups — pregnant women, young children, elderly, and immunocompromised individuals — should avoid raw or undercooked meat, raw sprouts, unpasteurized products, and soft cheeses made from unpasteurized milk.",
+            "Report suspected foodborne illness to your local health department. Your report helps identify outbreaks and protect the community.",
+            "The FDA MedWatch and CDC reporting systems track outbreaks nationally at foodsafety.gov."
+          ]
+        }
+      ],
+      "related_articles": ["ART-001", "ART-004"],
+      "tags": ["foodborne illness", "Salmonella", "E. coli", "Listeria", "symptoms", "first aid"]
+    },
+    {
+      "id": "ART-004",
+      "category_id": "CAT-02",
+      "title": "The Temperature Danger Zone Explained",
+      "summary": "Why temperature control is the most critical variable in food safety — with the science behind bacterial growth.",
+      "difficulty": "intermediate",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "infographic_data",
+          "chart_type": "temperature_scale",
+          "zones": [
+            { "temp_f": "165+", "temp_c": "74+", "label": "Safe — Poultry fully cooked", "color": "#4CAF50", "safe": true },
+            { "temp_f": "145–165", "temp_c": "63–74", "label": "Safe — Most proteins cooked", "color": "#8BC34A", "safe": true },
+            { "temp_f": "40–140", "temp_c": "4–60", "label": "⚠️ DANGER ZONE — Bacteria double every 20 min", "color": "#F44336", "safe": false },
+            { "temp_f": "33–40", "temp_c": "1–4", "label": "Refrigerator — Bacteria slow dramatically", "color": "#2196F3", "safe": true },
+            { "temp_f": "≤ 32", "temp_c": "≤ 0", "label": "Freezer — Bacteria dormant (do not die)", "color": "#1565C0", "safe": true }
+          ]
+        },
+        {
+          "type": "key_fact",
+          "text": "In the Danger Zone (40°F–140°F / 4°C–60°C), a single bacterium can multiply to over 1 million cells in just over 3 hours under ideal conditions. This is why the 2-hour rule is not a guideline — it's a hard limit."
+        },
+        {
+          "type": "rule",
+          "title": "The 2-Hour / 1-Hour Rule",
+          "description": "Perishable food — including cooked food, cut produce, dairy, meat, poultry, and seafood — must not remain in the Danger Zone for more than 2 hours total. If the ambient temperature is above 90°F (32°C) — such as an outdoor event — the limit drops to 1 hour."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "question": "Does freezing kill bacteria?",
+              "answer": "No. Freezing halts bacterial growth but does not kill most bacteria. When food thaws, survivors resume multiplying. Proper cooking to internal temperature is the only reliable kill step."
+            },
+            {
+              "question": "If food smells fine, is it safe to eat?",
+              "answer": "Not necessarily. Most dangerous pathogens — Salmonella, E. coli O157:H7, Listeria — produce no detectable odor, flavor, or color change. This myth ('when in doubt, smell it') causes real harm. When in doubt, throw it out."
+            },
+            {
+              "question": "Is it safe to re-freeze thawed meat?",
+              "answer": "Only if it was thawed in the refrigerator and never entered the Danger Zone. Meat thawed on the counter or in warm water should be cooked immediately and not re-frozen raw."
+            }
+          ]
+        }
+      ],
+      "related_articles": ["ART-002", "ART-005"],
+      "tags": ["temperature", "danger zone", "refrigeration", "bacteria", "2-hour rule"]
+    },
+    {
+      "id": "ART-005",
+      "category_id": "CAT-04",
+      "title": "How to Read a Food Label",
+      "summary": "A practical guide to decoding US Nutrition Facts panels, ingredient lists, date labels, and allergen disclosures.",
+      "difficulty": "beginner",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "The FDA mandates specific information on food labels under 21 CFR Part 101. Understanding labels helps consumers make safer and healthier choices. Here are the key components."
+        },
+        {
+          "type": "checklist",
+          "title": "Required Information on US Food Labels",
+          "items": [
+            { "label": "Statement of Identity", "note": "The product's common or usual name (e.g., 'Whole Wheat Bread')" },
+            { "label": "Net quantity of contents", "note": "Weight, volume, or count (e.g., '12 oz (340g)')" },
+            { "label": "Manufacturer / Distributor name and address", "note": "The responsible party for the product" },
+            { "label": "Ingredient list", "note": "Listed by weight, heaviest ingredient first (descending order)" },
+            { "label": "Nutrition Facts panel", "note": "Mandatory for most packaged foods since 1994; updated format mandated 2020" },
+            { "label": "Allergen declaration", "note": "Under FALCPA, the 9 major allergens must be declared plainly" },
+            { "label": "Date labeling", "note": "'Best if Used By', 'Use By', or 'Sell By' — each has a specific meaning" }
+          ]
+        },
+        {
+          "type": "date_label_explainer",
+          "title": "Date Labels — What They Actually Mean",
+          "items": [
+            {
+              "label": "Best if Used By / Best By",
+              "meaning": "Quality date set by manufacturer. Product may be safe after this date but quality (flavor, texture) may decline. Not a safety date.",
+              "action": "Use your judgment — inspect the product; it is often still safe.",
+              "icon": "🟡"
+            },
+            {
+              "label": "Use By",
+              "meaning": "Safety date for highly perishable products (infant formula, certain deli items). FDA recommends not consuming after this date.",
+              "action": "Do not consume after this date.",
+              "icon": "🔴"
+            },
+            {
+              "label": "Sell By",
+              "meaning": "Inventory management date for retailers. Product is expected to remain safe for a period after purchase if stored properly.",
+              "action": "Buy before this date; use within the safe window after purchase.",
+              "icon": "🟠"
+            },
+            {
+              "label": "Freeze By",
+              "meaning": "Date by which product should be frozen to maintain peak quality.",
+              "action": "Freeze on or before this date if not consuming.",
+              "icon": "🔵"
+            }
+          ]
+        },
+        {
+          "type": "allergen_list",
+          "title": "The 9 Major Food Allergens (FALCPA + FASTER Act 2021)",
+          "note": "These allergens must be declared on all FDA-regulated food labels in plain English — either in the ingredient list or in a separate 'Contains' statement.",
+          "items": [
+            { "icon": "🥛", "name": "Milk", "sources": "all dairy: butter, cheese, cream, lactose, whey, casein" },
+            { "icon": "🥚", "name": "Eggs", "sources": "all egg products, albumin, mayonnaise" },
+            { "icon": "🐟", "name": "Fish", "sources": "bass, flounder, cod, tuna, salmon — species must be declared" },
+            { "icon": "🦐", "name": "Shellfish (Crustacean)", "sources": "shrimp, crab, lobster, crawfish — species must be declared" },
+            { "icon": "🌾", "name": "Wheat", "sources": "flour, bread, pasta, bulgur, spelt, kamut, semolina" },
+            { "icon": "🫘", "name": "Soybeans", "sources": "tofu, edamame, miso, tempeh, soy lecithin" },
+            { "icon": "🥜", "name": "Peanuts", "sources": "peanut butter, peanut oil, mixed nuts, beer nuts" },
+            { "icon": "🌰", "name": "Tree Nuts", "sources": "almonds, cashews, walnuts, pecans — each species must be declared" },
+            { "icon": "🌿", "name": "Sesame", "sources": "tahini, sesame oil, sesame flour, sesame seeds (added 2023 under FASTER Act)" }
+          ]
+        }
+      ],
+      "related_articles": ["ART-006"],
+      "tags": ["food label", "nutrition facts", "allergens", "date labels", "FDA", "FALCPA", "FASTER Act"]
+    },
+    {
+      "id": "ART-006",
+      "category_id": "CAT-04",
+      "title": "Food Safety Certifications — What They Mean",
+      "summary": "Decoding USDA Organic, Non-GMO, HACCP, ISO 22000, MSC, ASC, and other seals you see on packaging.",
+      "difficulty": "intermediate",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "certification_cards",
+          "cards": [
+            {
+              "name": "USDA Organic",
+              "full_name": "USDA National Organic Program (NOP)",
+              "applies_to": "Crops, livestock, processed products",
+              "issued_by": "USDA Agricultural Marketing Service (AMS) via accredited certifiers",
+              "means": "Products produced without synthetic pesticides, synthetic fertilizers, GMOs, irradiation, or sewage sludge. Livestock raised with outdoor access and no routine antibiotic use.",
+              "consumer_value": "Lowest synthetic pesticide residue of any US certification; independently audited annually.",
+              "color": "#4CAF50",
+              "logo_description": "Green/white USDA Organic circle seal"
+            },
+            {
+              "name": "Non-GMO Project Verified",
+              "full_name": "Non-GMO Project Verified",
+              "applies_to": "Any food product",
+              "issued_by": "Non-GMO Project (non-profit)",
+              "means": "Product has been produced according to consensus-based best practices for GMO avoidance. Verified through third-party testing.",
+              "consumer_value": "Independent verification that GMO ingredients are below 0.9% threshold.",
+              "color": "#FF9800",
+              "logo_description": "Orange butterfly logo"
+            },
+            {
+              "name": "HACCP",
+              "full_name": "Hazard Analysis and Critical Control Points",
+              "applies_to": "Food processing facilities, commercial kitchens",
+              "issued_by": "Third-party auditors accredited by ANAB or SQF Institute",
+              "means": "Systematic preventive approach to food safety — identifies physical, chemical, and biological hazards at critical control points in the process.",
+              "consumer_value": "The facility has mapped every hazard in its process and has validated controls to prevent them — the foundation of modern food safety regulation.",
+              "color": "#2196F3"
+            },
+            {
+              "name": "ISO 22000:2018",
+              "full_name": "Food Safety Management System",
+              "applies_to": "Any organization in the food supply chain",
+              "issued_by": "ISO-accredited certification bodies (e.g., NSF, SGS, Bureau Veritas)",
+              "means": "Integrates HACCP principles with ISO 9001 management system requirements. Covers the entire supply chain.",
+              "consumer_value": "The company manages food safety at a documented, audited, continuously-improved organizational level — not just at the production floor.",
+              "color": "#9C27B0"
+            },
+            {
+              "name": "SQF",
+              "full_name": "Safe Quality Food Program",
+              "applies_to": "Food manufacturers, processors, distributors",
+              "issued_by": "SQF Institute (SQFI)",
+              "means": "Level 1 = food safety fundamentals; Level 2 = HACCP-based food safety; Level 3 = food safety + quality management. GFSI-recognized.",
+              "consumer_value": "One of the most widely accepted benchmarks by retail buyers (Walmart, Costco, Kroger require it).",
+              "color": "#009688"
+            },
+            {
+              "name": "MSC",
+              "full_name": "Marine Stewardship Council",
+              "applies_to": "Wild-caught seafood",
+              "issued_by": "Marine Stewardship Council (international non-profit)",
+              "means": "Fishery certified as sustainable — fish stocks are not overfished, bycatch is minimized, ecosystem impact is managed. Chain of custody tracked from ocean to label.",
+              "consumer_value": "The blue fish label is the most credible wild-catch sustainability seal globally.",
+              "color": "#1565C0"
+            },
+            {
+              "name": "ASC",
+              "full_name": "Aquaculture Stewardship Council",
+              "applies_to": "Farmed seafood (salmon, shrimp, tilapia, catfish)",
+              "issued_by": "Aquaculture Stewardship Council",
+              "means": "Farm certified for responsible environmental and social practices. No prohibited antibiotics, responsible chemical use, habitat protection.",
+              "consumer_value": "Farmed seafood that meets credible sustainability and safety standards — traceable to the farm.",
+              "color": "#00BCD4"
+            }
+          ]
+        },
+        {
+          "type": "warning_box",
+          "title": "Seals That Require Scrutiny",
+          "items": [
+            "\"Natural\" — Has NO legal definition from FDA. Any company can print it on any product. It means nothing from a food safety standpoint.",
+            "\"Hormone-free\" on poultry and pork — Federal law already prohibits added hormones in these animals. This claim is technically true but deliberately misleading.",
+            "\"Antibiotic-free\" without a third-party seal — A marketing claim with no mandatory verification unless backed by USDA Process Verified Program or equivalent audit."
+          ]
+        }
+      ],
+      "related_articles": ["ART-005"],
+      "tags": ["certifications", "USDA Organic", "HACCP", "ISO 22000", "MSC", "ASC", "Non-GMO"]
+    },
+    {
+      "id": "ART-007",
+      "category_id": "CAT-05",
+      "title": "Safe Food Handling in the Kitchen",
+      "summary": "Evidence-based practices for safe thawing, cooking, cooling, and storing food at home and in foodservice.",
+      "difficulty": "beginner",
+      "read_time_min": 6,
+      "content_blocks": [
+        {
+          "type": "heading",
+          "text": "Thawing Food Safely — 4 Approved Methods"
+        },
+        {
+          "type": "methods_list",
+          "methods": [
+            {
+              "icon": "❄️",
+              "name": "In the Refrigerator",
+              "description": "Safest method. Food stays at safe temperature throughout. Allow 1 day per 5 lbs of meat.",
+              "rating": "Best"
+            },
+            {
+              "icon": "💧",
+              "name": "Under Cold Running Water",
+              "description": "Submerge sealed package under cold running water (70°F or below). Cook immediately after thawing.",
+              "rating": "Good"
+            },
+            {
+              "icon": "📡",
+              "name": "In the Microwave",
+              "description": "Use defrost setting. Cook the food immediately after — parts may begin to cook and bacteria can multiply in warm areas.",
+              "rating": "Acceptable — cook immediately"
+            },
+            {
+              "icon": "🍳",
+              "name": "As Part of the Cooking Process",
+              "description": "Cook frozen food directly (e.g., frozen patties, fish fillets). Add approximately 50% more cooking time.",
+              "rating": "Acceptable"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The 2-Stage Cooling Method (Foodservice)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Per FDA Food Code, cooked food that will be stored must be cooled from 135°F (57°C) to 70°F (21°C) within 2 hours, then from 70°F to 41°F (5°C) or below within an additional 4 hours (total 6 hours). This prevents the Danger Zone growth window."
+        },
+        {
+          "type": "cooling_techniques",
+          "techniques": [
+            "Divide large batches into shallow containers (2 inches depth or less) to increase surface area.",
+            "Use an ice-water bath — place container in a sink of ice and water, stirring the food frequently.",
+            "Use a blast chiller if available in a commercial kitchen setting.",
+            "Never cool large volumes of hot food directly in the refrigerator — it raises the surrounding temperature and endangers other stored foods."
+          ]
+        },
+        {
+          "type": "refrigerator_storage_chart",
+          "title": "Safe Refrigerator Storage Times — 40°F (4°C) or below",
+          "rows": [
+            { "food": "Raw ground meat (beef, pork, turkey)", "days": "1–2 days" },
+            { "food": "Raw steaks, chops, roasts", "days": "3–5 days" },
+            { "food": "Raw poultry (chicken, turkey)", "days": "1–2 days" },
+            { "food": "Raw fish & shellfish", "days": "1–2 days" },
+            { "food": "Hard-boiled eggs", "days": "1 week" },
+            { "food": "Open deli meat packages", "days": "3–5 days" },
+            { "food": "Cooked leftovers", "days": "3–4 days" },
+            { "food": "Opened mayonnaise", "days": "2 months" },
+            { "food": "Soft cheeses (ricotta, brie)", "days": "1 week" },
+            { "food": "Hard cheeses (opened)", "days": "3–4 weeks" }
+          ]
+        }
+      ],
+      "related_articles": ["ART-002", "ART-004"],
+      "tags": ["thawing", "cooling", "storage", "kitchen safety", "refrigerator", "FDA Food Code"]
+    }
+  ],
+
+  "quizzes": [
+    {
+      "id": "QUIZ-001",
+      "title": "Food Safety Fundamentals",
+      "category_id": "CAT-01",
+      "difficulty": "beginner",
+      "question_count": 6,
+      "time_limit_seconds": 180,
+      "pass_score": 67,
+      "questions": [
+        {
+          "id": "Q001",
+          "question": "What is the FDA-defined \"Temperature Danger Zone\" for food?",
+          "options": [
+            "A. 32°F to 100°F (0°C to 38°C)",
+            "B. 40°F to 140°F (4°C to 60°C)",
+            "C. 50°F to 165°F (10°C to 74°C)",
+            "D. 33°F to 120°F (1°C to 49°C)"
+          ],
+          "correct_answer": "B",
+          "explanation": "40°F–140°F (4°C–60°C) is the FDA Danger Zone. In this range, bacteria such as Salmonella and E. coli can double in number in as little as 20 minutes."
+        },
+        {
+          "id": "Q002",
+          "question": "How long should you wash your hands with soap before handling food?",
+          "options": [
+            "A. 5 seconds",
+            "B. 10 seconds",
+            "C. 20 seconds",
+            "D. 60 seconds"
+          ],
+          "correct_answer": "C",
+          "explanation": "The CDC recommends at least 20 seconds with soap and water — roughly the time it takes to sing 'Happy Birthday' twice. This duration is needed to mechanically remove pathogens from skin surfaces."
+        },
+        {
+          "id": "Q003",
+          "question": "Which pathogen is most commonly associated with raw or undercooked poultry?",
+          "options": [
+            "A. Listeria monocytogenes",
+            "B. Clostridium botulinum",
+            "C. Salmonella",
+            "D. Staphylococcus aureus"
+          ],
+          "correct_answer": "C",
+          "explanation": "Salmonella naturally colonizes the gut of poultry with no visible signs of illness in the birds. Thorough cooking to 165°F (74°C) internal temperature is the reliable kill step."
+        },
+        {
+          "id": "Q004",
+          "question": "What does 'cross-contamination' mean in a food safety context?",
+          "options": [
+            "A. Cooking two different proteins at the same time",
+            "B. Transfer of harmful microorganisms from raw food to ready-to-eat food via surfaces, utensils, or hands",
+            "C. Storing food past its expiration date",
+            "D. Using the wrong cooking temperature"
+          ],
+          "correct_answer": "B",
+          "explanation": "Cross-contamination occurs when pathogens are physically transferred from one food or surface to another. Classic examples: using the same cutting board for raw chicken and then salad, or re-using a plate that held raw meat."
+        },
+        {
+          "id": "Q005",
+          "question": "What is the safest method to thaw frozen meat?",
+          "options": [
+            "A. Leave it on the kitchen counter at room temperature",
+            "B. Soak in warm water",
+            "C. Thaw in the refrigerator",
+            "D. Use a hair dryer on low heat"
+          ],
+          "correct_answer": "C",
+          "explanation": "Refrigerator thawing keeps food in the safe temperature zone throughout the process. Counter thawing allows the outside to enter the Danger Zone (40–140°F) while the center is still frozen."
+        },
+        {
+          "id": "Q006",
+          "question": "If food smells and looks fine, it is safe to eat — True or False?",
+          "options": [
+            "A. True — spoiled food always shows visible signs",
+            "B. False — most dangerous foodborne pathogens produce no detectable odor, color, or flavor change",
+            "C. True — your senses are reliable enough to detect harmful bacteria",
+            "D. It depends on the food type"
+          ],
+          "correct_answer": "B",
+          "explanation": "This is one of the most dangerous food safety myths. Salmonella, E. coli O157:H7, Listeria, and Norovirus do not alter food's appearance, smell, or taste. The saying 'when in doubt, throw it out' exists for this reason."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-002",
+      "title": "Reading Food Labels",
+      "category_id": "CAT-04",
+      "difficulty": "intermediate",
+      "question_count": 5,
+      "time_limit_seconds": 180,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q007",
+          "question": "On a US food label, ingredients are listed in what order?",
+          "options": [
+            "A. Alphabetical order",
+            "B. By nutritional importance",
+            "C. By weight — heaviest ingredient first",
+            "D. By potential allergenicity"
+          ],
+          "correct_answer": "C",
+          "explanation": "Per 21 CFR 101.4, ingredients must be listed in descending order of predominance by weight. The first ingredient is the most plentiful by weight in the product."
+        },
+        {
+          "id": "Q008",
+          "question": "A product is labeled 'Best if Used By June 15, 2026.' On June 16, the product:",
+          "options": [
+            "A. Is definitively unsafe and must be discarded",
+            "B. May have reduced quality but is not necessarily unsafe (if stored properly and shows no spoilage signs)",
+            "C. Is required by law to be removed from shelves",
+            "D. Is guaranteed to cause foodborne illness"
+          ],
+          "correct_answer": "B",
+          "explanation": "'Best if Used By' is a quality date, not a safety date. USDA guidance notes that most products remain safe for some time past this date if stored properly. 'Use By' on highly perishable items IS a safety date and should be strictly observed."
+        },
+        {
+          "id": "Q009",
+          "question": "Under FALCPA (Food Allergen Labeling and Consumer Protection Act), how many major allergens must be declared on US food labels?",
+          "options": [
+            "A. 5",
+            "B. 7",
+            "C. 8",
+            "D. 9"
+          ],
+          "correct_answer": "D",
+          "explanation": "Originally FALCPA (2004) covered 8 allergens. The FASTER Act (2021) added sesame as the 9th, effective January 1, 2023. The 9 are: milk, eggs, fish, shellfish, wheat, soybeans, peanuts, tree nuts, and sesame."
+        },
+        {
+          "id": "Q010",
+          "question": "The term 'Natural' on a food label means the product:",
+          "options": [
+            "A. Contains no artificial colors, flavors, or preservatives — verified by FDA",
+            "B. Was produced organically",
+            "C. Has no established legal definition from FDA — it is essentially unregulated",
+            "D. Contains no GMO ingredients"
+          ],
+          "correct_answer": "C",
+          "explanation": "Despite several regulatory efforts, FDA has not established a formal definition for 'Natural.' It is largely a marketing term with no mandatory verification. USDA Organic is the only legally defined and third-party verified seal for organic claims on food."
+        },
+        {
+          "id": "Q011",
+          "question": "On a Nutrition Facts panel, % Daily Value (% DV) is based on a diet of how many calories?",
+          "options": [
+            "A. 1,500 calories",
+            "B. 2,000 calories",
+            "C. 2,500 calories",
+            "D. 1,800 calories"
+          ],
+          "correct_answer": "B",
+          "explanation": "FDA's % DV is based on a 2,000 calorie reference diet for adults. A % DV of 5% or less is considered low; 20% or more is considered high for that nutrient."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-003",
+      "title": "Foodborne Illness & Pathogens",
+      "category_id": "CAT-03",
+      "difficulty": "advanced",
+      "question_count": 5,
+      "time_limit_seconds": 240,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q012",
+          "question": "Listeria monocytogenes is particularly dangerous to which population group?",
+          "options": [
+            "A. Athletic adults aged 20–40",
+            "B. Pregnant women, newborns, elderly, and immunocompromised individuals",
+            "C. People with gluten intolerance",
+            "D. Children aged 5–12"
+          ],
+          "correct_answer": "B",
+          "explanation": "Listeria can cross the blood-brain barrier and the placenta, causing meningitis, sepsis, and fetal death. Pregnant women are 10× more likely than the general population to contract listeriosis. High-risk foods include deli meats, soft cheeses, refrigerated smoked seafood, and sprouts."
+        },
+        {
+          "id": "Q013",
+          "question": "Which toxin-producing pathogen is responsible for illness from improperly home-canned low-acid foods?",
+          "options": [
+            "A. Salmonella typhi",
+            "B. Clostridium botulinum",
+            "C. Staphylococcus aureus",
+            "D. Bacillus cereus"
+          ],
+          "correct_answer": "B",
+          "explanation": "C. botulinum produces neurotoxin in anaerobic (oxygen-free), low-acid environments — classic home canning conditions. The botulinum toxin causes descending muscle paralysis and can be fatal. Standard boiling-water canning does NOT reach the 250°F (121°C) needed to destroy spores — a pressure canner is required for low-acid vegetables."
+        },
+        {
+          "id": "Q014",
+          "question": "Bacillus cereus is associated with a specific food known for causing rapid-onset (1–6 hour) vomiting syndrome. What food?",
+          "options": [
+            "A. Raw chicken",
+            "B. Cooked rice left at room temperature",
+            "C. Soft cheese",
+            "D. Raw oysters"
+          ],
+          "correct_answer": "B",
+          "explanation": "B. cereus produces two distinct toxins: an emetic toxin (in cooked starchy foods like rice left warm) causing vomiting within 1–6 hours, and a diarrheal toxin causing symptoms within 6–24 hours. Fried rice syndrome is the classic presentation."
+        },
+        {
+          "id": "Q015",
+          "question": "The FDA has set which action level for total mercury in commercial fish?",
+          "options": [
+            "A. 0.1 ppm",
+            "B. 0.5 ppm",
+            "C. 1.0 ppm",
+            "D. 5.0 ppm"
+          ],
+          "correct_answer": "C",
+          "explanation": "FDA's action level for methylmercury in fish is 1.0 ppm (mg/kg). Fish near this level include shark, swordfish, king mackerel, and tilefish — FDA and EPA advise pregnant women and young children to avoid these species and limit albacore tuna."
+        },
+        {
+          "id": "Q016",
+          "question": "What is the primary route of transmission for Norovirus in food settings?",
+          "options": [
+            "A. Undercooked meat",
+            "B. Airborne particles from sneezing",
+            "C. Fecal-oral route — contamination by infected food handlers or contaminated water/shellfish",
+            "D. Unpasteurized dairy products"
+          ],
+          "correct_answer": "C",
+          "explanation": "Norovirus is the leading cause of foodborne illness in the US (~19–21 million cases/year). It spreads primarily via the fecal-oral route — infected food handlers who don't wash hands after using the bathroom, or shellfish harvested from contaminated waters. An infected person sheds billions of viral particles; the infectious dose is as low as 18 particles."
+        }
+      ]
+    }
+  ],
+
+  "daily_tips": [
+    { "id": "TIP-001", "icon": "🧼", "text": "Wash your hands with soap for 20 seconds before cooking — that's two rounds of 'Happy Birthday.' It's the single most effective food safety habit.", "category": "hygiene" },
+    { "id": "TIP-002", "icon": "🌡️", "text": "Your fridge should be 40°F (4°C) or below. Check it monthly with a refrigerator thermometer — door seals degrade over time and temperature drifts upward.", "category": "storage" },
+    { "id": "TIP-003", "icon": "🔪", "text": "Color-coded cutting boards prevent cross-contamination: red for raw meat, yellow for poultry, green for produce, white for dairy and bread.", "category": "kitchen" },
+    { "id": "TIP-004", "icon": "📦", "text": "FIFO — First In, First Out. When you put away groceries, move older items to the front so they get used first. Reduces waste and improves safety.", "category": "storage" },
+    { "id": "TIP-005", "icon": "🌡️", "text": "A food thermometer is the only reliable way to know food is safely cooked. Juices running clear or brown coloring are not reliable doneness indicators.", "category": "cooking" },
+    { "id": "TIP-006", "icon": "🥫", "text": "Never eat from a bulging, rusted, or deeply dented can. These are signs of possible Clostridium botulinum contamination — do not taste-test.", "category": "storage" },
+    { "id": "TIP-007", "icon": "🥬", "text": "Rinse produce under running water — even if you're going to peel it. Cutting through unwashed produce can transfer surface bacteria to the flesh.", "category": "cooking" },
+    { "id": "TIP-008", "icon": "⏱️", "text": "Cooked food left out for more than 2 hours enters unsafe territory. In hot weather above 90°F (32°C), that window shrinks to just 1 hour.", "category": "storage" },
+    { "id": "TIP-009", "icon": "🐣", "text": "Refrigerate eggs promptly and store them in the original carton in the main body of the fridge — not the door, where temperature fluctuates more.", "category": "storage" },
+    { "id": "TIP-010", "icon": "🦪", "text": "Raw shellfish (oysters, clams, mussels) carry Vibrio and Norovirus risk. High-risk individuals should always choose fully cooked shellfish.", "category": "cooking" }
+  ],
+
+  "regulations_us": [
+    { "code": "21 CFR Part 101", "title": "Food Labeling", "authority": "FDA", "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-101" },
+    { "code": "21 CFR Part 110", "title": "Current Good Manufacturing Practice in Food (cGMP)", "authority": "FDA", "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-110" },
+    { "code": "21 CFR Part 117", "title": "Current Good Manufacturing Practice, Hazard Analysis, and Risk-Based Preventive Controls for Human Food (FSMA PC Rule)", "authority": "FDA", "year": 2015 },
+    { "code": "FSMA — Food Safety Modernization Act", "title": "Landmark food safety law shifting from response to prevention", "authority": "FDA", "year": 2011, "url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/full-text-food-safety-modernization-act-fsma" },
+    { "code": "9 CFR Parts 416 & 417", "title": "HACCP regulations for meat and poultry", "authority": "USDA FSIS", "url": "https://www.fsis.usda.gov/policy/fsis-regulations/regulations-index" },
+    { "code": "FALCPA (Public Law 108-282)", "title": "Food Allergen Labeling and Consumer Protection Act — 8 major allergens", "authority": "FDA", "year": 2004 },
+    { "code": "FASTER Act (Public Law 117-11)", "title": "Food Allergy Safety, Treatment, Education, and Research Act — adds sesame as 9th major allergen", "authority": "FDA", "year": 2021 }
+  ],
+
+  "emergency_contacts_us": {
+    "emergency": "911",
+    "fda_consumer_hotline": "1-888-723-3366",
+    "usda_meat_poultry_hotline": "1-888-674-6854",
+    "poison_control": "1-800-222-1222",
+    "cdc_info": "1-800-CDC-INFO (1-800-232-4636)",
+    "report_foodborne_illness": "https://www.foodsafety.gov/report-a-problem/report-a-foodborne-illness"
+  }
+}

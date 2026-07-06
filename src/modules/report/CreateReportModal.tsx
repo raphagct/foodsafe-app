@@ -13,8 +13,8 @@ import {
   IonTextarea,
   useIonRouter,
 } from "@ionic/react";
-import { supabase } from "../../../utils/supabase";
-import { t, getLanguage } from "../../../utils/i18n";
+import { supabase } from "../../services/supabaseClient";
+import { t, getLanguage } from "../../utils/i18n";
 
 interface CreateReportModalProps {
   isOpen: boolean;

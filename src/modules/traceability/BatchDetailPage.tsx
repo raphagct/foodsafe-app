@@ -1,6 +1,6 @@
 import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton } from "@ionic/react";
 
-function TraceabilityPage() {
+function BatchDetailPage() {
     return (
         <IonPage>
             <IonHeader className="ion-no-border">
@@ -8,14 +8,14 @@ function TraceabilityPage() {
                     <IonButtons slot="start">
                         <IonBackButton defaultHref="/tabs/camera" />
                     </IonButtons>
-                    <IonTitle className="font-bold">Traçabilité</IonTitle>
+                    <IonTitle className="font-bold">Traceability</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <h2>Bonjour, je suis le composant Traceability !</h2>
+                <h2>Batch Detail — Coming Soon</h2>
             </IonContent>
         </IonPage>
     );
 }
 
-export default TraceabilityPage;
+export default BatchDetailPage;

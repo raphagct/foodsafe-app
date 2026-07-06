@@ -8,9 +8,9 @@ import {
 } from '@ionic/react';
 import { useIonRouter } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
-import CreateReportModal from './ReportPage/ReportPage';
+import CreateReportModal from '../report/CreateReportModal';
 
-function CameraTest() {
+function ScannerPage() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [mode, setMode] = useState<'photo' | 'qr'>('qr');
   const router = useIonRouter();
@@ -27,7 +27,7 @@ function CameraTest() {
       }
       streamRef.current = stream;
     } catch (err) {
-      console.error("Erreur d'accès à la caméra:", err);
+      console.error("Camera access error:", err);
     }
   };
 
@@ -152,4 +152,4 @@ function CameraTest() {
   );
 }
 
-export default CameraTest;
+export default ScannerPage;

@@ -11,7 +11,7 @@ import {
 } from "@ionic/react";
 import { useParams } from "react-router";
 import { useState } from "react";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 
 interface Report {
@@ -23,7 +23,7 @@ interface Report {
   created_at: string;
 }
 
-function ReportDetailsPage() {
+function ReportDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [report, setReport] = useState<Report | null>(null);
   const currentLanguage = getLanguage();
@@ -113,5 +113,4 @@ function ReportDetailsPage() {
   );
 }
 
-export default ReportDetailsPage;
-
+export default ReportDetailPage;

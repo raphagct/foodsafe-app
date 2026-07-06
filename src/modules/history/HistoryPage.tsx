@@ -13,7 +13,7 @@ import {
   IonButtons,
   useIonViewWillEnter
 } from "@ionic/react";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import LogoutButton from "../../components/LogoutButton";
 

@@ -4,7 +4,7 @@ import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
 import LogoutButton from "../../components/LogoutButton";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import type { ReportRecord } from "../../types/report";
 

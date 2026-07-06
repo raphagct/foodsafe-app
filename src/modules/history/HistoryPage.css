@@ -1,15 +1,15 @@
 .history-section {
+  --background: var(--color-surface-alt);
   box-shadow: none;
-  --background: #e9e9e9;
 }
 
 .view-all-button {
-  --color: #159947;
+  --color: var(--color-primary);
   --background: transparent;
   --background-hover: transparent;
   --background-activated: transparent;
   --padding-start: 0;
   --padding-end: 0;
   --box-shadow: none;
-  text-transform: none; 
+  text-transform: none;
 }

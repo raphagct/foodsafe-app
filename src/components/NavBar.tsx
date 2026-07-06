@@ -11,12 +11,12 @@ import { Route, Redirect } from "react-router-dom";
 import { home, camera, school, time } from "ionicons/icons";
 import { t, getLanguage } from "../utils/i18n";
 
-import HomePage from "../pages/HomePage/HomePage";
-import CameraPage from "../pages/CameraPage/CameraPage";
-import EducationPage from "../pages/EducationPage/EducationPage";
-import HistoryPage from "../pages/HistoryPage/HistoryPage";
-import ReportDetailsPage from "../pages/HistoryPage/ReportDetailsPage";
-import TraceabilityPage from "../pages/CameraPage/TraceabiltyPage/TraceabilityPage";
+import HomePage from "../modules/home/HomePage";
+import ScannerPage from "../modules/traceability/ScannerPage";
+import EducationPage from "../modules/education/EducationPage";
+import HistoryPage from "../modules/history/HistoryPage";
+import ReportDetailPage from "../modules/report/ReportDetailPage";
+import BatchDetailPage from "../modules/traceability/BatchDetailPage";
 
 function NavBar() {
   const currentLanguage = getLanguage();
@@ -25,18 +25,18 @@ function NavBar() {
     <IonTabs>
       <IonRouterOutlet>
         <Route exact path="/tabs/home" component={HomePage} />
-        <Route exact path="/tabs/camera" component={CameraPage} />
+        <Route exact path="/tabs/camera" component={ScannerPage} />
         <Route
           exact
           path="/tabs/camera/traceability/:id"
-          component={TraceabilityPage}
+          component={BatchDetailPage}
         />
         <Route exact path="/tabs/education" component={EducationPage} />
         <Route exact path="/tabs/history" component={HistoryPage} />
         <Route
           exact
           path="/tabs/history/report/:id"
-          component={ReportDetailsPage}
+          component={ReportDetailPage}
         />
 
         <Redirect exact from="/tabs" to="/tabs/home" />

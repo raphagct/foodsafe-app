@@ -6,7 +6,7 @@ import {
   IonCardTitle,
   useIonRouter,
 } from "@ionic/react";
-import "../pages/HistoryPage/HistoryPage.css";
+import "../modules/history/HistoryPage.css";
 import { t, getLanguage } from "../utils/i18n";
 
 type HistorySectionProps = {

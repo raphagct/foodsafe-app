@@ -15,8 +15,8 @@ import '@ionic/react/css/padding.css';
 
 import {Redirect, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
-import LoginPage from "./pages/Auth/LoginPage";
-import RegisterPage from "./pages/Auth/RegisterPage";
+import LoginPage from "./modules/auth/LoginPage";
+import RegisterPage from "./modules/auth/RegisterPage";
 import {useAuth} from "./contexts/AuthContext";
 import SplashScreen from "./components/SplashScreen";
 import { StatusBar, Style } from '@capacitor/status-bar';
