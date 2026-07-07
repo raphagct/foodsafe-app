@@ -762,63 +762,73 @@
   "daily_tips": [
     {
       "id": "TIP-001",
-      "icon": "",
+      "icon": "🧼",
       "text": "Lavez vos mains au savon pendant 20 secondes avant de cuisiner.",
-      "category": "hygiene"
+      "category": "hygiene",
+      "fact": "C'est environ le temps de chanter deux fois 'Joyeux Anniversaire'. C'est le geste le plus simple et efficace pour éviter les contaminations."
     },
     {
       "id": "TIP-002",
-      "icon": "",
+      "icon": "🌡️",
       "text": "Gardez le refrigerateur a 4 \u00b0C ou moins.",
-      "category": "conservation"
+      "category": "conservation",
+      "fact": "Vérifiez-le tous les mois avec un thermomètre. Les joints de porte s'usent avec le temps et la température peut remonter à votre insu."
     },
     {
       "id": "TIP-003",
-      "icon": "",
+      "icon": "🔪",
       "text": "Utilisez des planches separees pour eviter la contamination croisee.",
-      "category": "cuisine"
+      "category": "cuisine",
+      "fact": "Codes couleurs standard : rouge pour la viande crue, jaune pour la volaille, vert pour les fruits et légumes, blanc pour le pain et les laitages."
     },
     {
       "id": "TIP-004",
-      "icon": "",
+      "icon": "📦",
       "text": "Appliquez FIFO: premier entre, premier sorti.",
-      "category": "conservation"
+      "category": "conservation",
+      "fact": "Placez les articles les plus anciens à l'avant lorsque vous rangez vos courses. Cela réduit le gaspillage et garantit une consommation sûre."
     },
     {
       "id": "TIP-005",
-      "icon": "",
+      "icon": "🌡️",
       "text": "Un thermometre alimentaire est le controle le plus fiable.",
-      "category": "cuisson"
+      "category": "cuisson",
+      "fact": "Les indices visuels comme la couleur de la viande ou du jus ne sont pas des indicateurs fiables. Seule la température garantit la sécurité."
     },
     {
       "id": "TIP-006",
-      "icon": "",
+      "icon": "🥫",
       "text": "Ne consommez jamais une conserve bombee ou tres cabossee.",
-      "category": "conservation"
+      "category": "conservation",
+      "fact": "Ce sont des signes de contamination potentielle par Clostridium botulinum. La toxine botulique est mortelle, ne goûtez jamais pour tester."
     },
     {
       "id": "TIP-007",
-      "icon": "",
+      "icon": "🥬",
       "text": "Rincez les fruits et legumes meme si vous les epluchez.",
-      "category": "cuisson"
+      "category": "cuisson",
+      "fact": "Couper des fruits ou légumes non lavés peut transférer les bactéries de la peau directement dans la chair que vous allez consommer."
     },
     {
       "id": "TIP-008",
-      "icon": "",
+      "icon": "⏱️",
       "text": "Un plat cuit laisse plus de 2 heures dehors devient risque.",
-      "category": "conservation"
+      "category": "conservation",
+      "fact": "Par temps chaud (plus de 32 °C), les bactéries se multiplient très vite, réduisant ce délai de sécurité à 1 heure seulement."
     },
     {
       "id": "TIP-009",
-      "icon": "",
+      "icon": "🐣",
       "text": "Gardez les oeufs dans leur boite au frais.",
-      "category": "conservation"
+      "category": "conservation",
+      "fact": "Conservez-les au centre du réfrigérateur là où la température est stable, plutôt que dans la porte où l'ouverture crée des écarts thermiques."
     },
     {
       "id": "TIP-010",
-      "icon": "",
+      "icon": "🦪",
       "text": "Les personnes vulnerables doivent eviter les coquillages crus.",
-      "category": "cuisson"
+      "category": "cuisson",
+      "fact": "Les personnes vulnérables (femmes enceintes, enfants, seniors) doivent toujours consommer les coquillages bien cuits."
     }
   ],
   "regulations_us": [

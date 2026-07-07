@@ -4,7 +4,6 @@ type CategoryListProps = {
   categories: EducationCategory[];
   activeCategory: string;
   allLabel: string;
-  title: string;
   onSelect: (categoryId: string) => void;
 };
 
@@ -12,38 +11,45 @@ function CategoryList({
   categories,
   activeCategory,
   allLabel,
-  title,
   onSelect,
 }: CategoryListProps) {
   return (
-    <section>
-      <h2 className="mb-3 mt-5 text-[18px] font-extrabold text-black">{title}</h2>
-      <div className="flex gap-2 overflow-x-auto pb-1">
+    <section className="mb-1">
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
         <button
           type="button"
           onClick={() => onSelect("all")}
-          className={`shrink-0 rounded-[6px] border-2 px-3 py-2 text-[13px] font-extrabold transition-colors ${
+          className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-bold transition-all duration-200 ${
             activeCategory === "all"
-              ? "border-[var(--color-primary)] bg-[#e8f6ee] text-[#0c6f35]"
-              : "border-transparent bg-white text-gray-800"
+              ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-sm"
+              : "border-transparent bg-gray-200/50 text-gray-600 hover:bg-gray-200/80"
           }`}
         >
           {allLabel}
         </button>
 
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            type="button"
-            onClick={() => onSelect(category.id)}
-            className={`shrink-0 rounded-[6px] border-2 bg-white px-3 py-2 text-[13px] font-extrabold text-gray-800 transition-colors ${
-              activeCategory === category.id ? "bg-[#e8f6ee] text-[#0c6f35]" : ""
-            }`}
-            style={{ borderColor: activeCategory === category.id ? category.color : "transparent" }}
-          >
-            {category.name}
-          </button>
-        ))}
+        {categories.map((category) => {
+          const isActive = activeCategory === category.id;
+          return (
+            <button
+              key={category.id}
+              type="button"
+              onClick={() => onSelect(category.id)}
+              className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-bold transition-all duration-200 ${
+                isActive
+                  ? "text-white shadow-sm border-transparent"
+                  : "border-transparent bg-gray-200/50 text-gray-600 hover:bg-gray-200/80"
+              }`}
+              style={
+                isActive
+                  ? { backgroundColor: category.color }
+                  : undefined
+              }
+            >
+              {category.name}
+            </button>
+          );
+        })}
       </div>
     </section>
   );

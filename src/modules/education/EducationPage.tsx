@@ -46,6 +46,8 @@ type EducationProgress = {
 
 const progressStorageKey = "foodsafe_education_progress";
 
+
+
 const labels: Record<
   LanguageCode,
   {
@@ -73,6 +75,7 @@ const labels: Record<
     passed: string;
     tryAgain: string;
     loadingError: string;
+    doneLabel: string;
   }
 > = {
   fr: {
@@ -100,6 +103,7 @@ const labels: Record<
     passed: "Réussi",
     tryAgain: "À revoir",
     loadingError: "Impossible de charger le contenu éducatif.",
+    doneLabel: "Fait :",
   },
   vi: {
     all: "Tất cả",
@@ -126,6 +130,7 @@ const labels: Record<
     passed: "Đạt",
     tryAgain: "Cần ôn lại",
     loadingError: "Không thể tải nội dung giáo dục.",
+    doneLabel: "Đã xong :",
   },
   en: {
     all: "All",
@@ -152,6 +157,7 @@ const labels: Record<
     passed: "Passed",
     tryAgain: "Review",
     loadingError: "Unable to load education content.",
+    doneLabel: "Done:",
   },
 };
 
@@ -283,7 +289,7 @@ function EducationPage() {
                 {t("educationTitle", currentLanguage)}
               </h1>
               <p className="mt-1 text-[13px] font-semibold text-gray-400">
-                {completedCount} {copy.articles.toLowerCase()} · {quizCount} {copy.quizzes.toLowerCase()}
+                {copy.doneLabel} {completedCount} {copy.articles.toLowerCase()} · {quizCount} {copy.quizzes.toLowerCase()}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -324,6 +330,7 @@ function EducationPage() {
                 value={activeCategory}
                 onIonChange={(event) => setActiveCategory(event.detail.value)}
                 className="font-bold text-gray-900"
+                style={{ '--border-width': '0', '--border-color': 'transparent', '--padding-bottom': '0' } as React.CSSProperties}
               >
                 <IonSelectOption value="all">{copy.all}</IonSelectOption>
                 {content.categories.map((category) => (
@@ -334,13 +341,7 @@ function EducationPage() {
               </IonSelect>
             </div>
 
-            <CategoryList
-              categories={content.categories}
-              activeCategory={activeCategory}
-              allLabel={copy.all}
-              title={copy.categories}
-              onSelect={setActiveCategory}
-            />
+
 
             <IonSegment
               value={viewMode}
@@ -359,7 +360,7 @@ function EducationPage() {
                   const bookmarked = progress.bookmarkedArticles.includes(article.id);
 
                   return (
-                    <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 bg-white shadow-sm">
+                    <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-sm">
                       <IonCardContent className="p-4">
                         <div className="flex items-start justify-between gap-3">
                           <span
@@ -375,7 +376,7 @@ function EducationPage() {
                           ) : null}
                         </div>
 
-                        <h3 className="mt-3 text-[17px] font-black leading-snug text-gray-950">{article.title}</h3>
+                        <h3 className="text-[17px] font-black leading-snug text-gray-950" style={{ marginTop: '20px' }}>{article.title}</h3>
                         <p className="mt-2 line-clamp-3 text-[14px] font-medium leading-relaxed text-gray-600">
                           {article.summary}
                         </p>
@@ -409,7 +410,7 @@ function EducationPage() {
                   const bestScore = progress.quizScores[quiz.id];
 
                   return (
-                    <IonCard key={quiz.id} className="m-0 rounded-xl border border-gray-100 bg-white shadow-sm">
+                    <IonCard key={quiz.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-sm">
                       <IonCardContent className="p-4">
                         <div className="flex items-start justify-between gap-3">
                           <span
@@ -428,7 +429,7 @@ function EducationPage() {
                           ) : null}
                         </div>
 
-                        <h3 className="mt-3 text-[17px] font-black leading-snug text-gray-950">{quiz.title}</h3>
+                        <h3 className="text-[17px] font-black leading-snug text-gray-950" style={{ marginTop: '20px' }}>{quiz.title}</h3>
                         <p className="mt-2 text-[14px] font-medium leading-relaxed text-gray-600">
                           {quiz.question_count} {copy.questions} · {quiz.pass_score}% {copy.passScore}
                         </p>

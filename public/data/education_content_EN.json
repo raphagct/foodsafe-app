@@ -705,16 +705,76 @@
   ],
 
   "daily_tips": [
-    { "id": "TIP-001", "icon": "🧼", "text": "Wash your hands with soap for 20 seconds before cooking — that's two rounds of 'Happy Birthday.' It's the single most effective food safety habit.", "category": "hygiene" },
-    { "id": "TIP-002", "icon": "🌡️", "text": "Your fridge should be 40°F (4°C) or below. Check it monthly with a refrigerator thermometer — door seals degrade over time and temperature drifts upward.", "category": "storage" },
-    { "id": "TIP-003", "icon": "🔪", "text": "Color-coded cutting boards prevent cross-contamination: red for raw meat, yellow for poultry, green for produce, white for dairy and bread.", "category": "kitchen" },
-    { "id": "TIP-004", "icon": "📦", "text": "FIFO — First In, First Out. When you put away groceries, move older items to the front so they get used first. Reduces waste and improves safety.", "category": "storage" },
-    { "id": "TIP-005", "icon": "🌡️", "text": "A food thermometer is the only reliable way to know food is safely cooked. Juices running clear or brown coloring are not reliable doneness indicators.", "category": "cooking" },
-    { "id": "TIP-006", "icon": "🥫", "text": "Never eat from a bulging, rusted, or deeply dented can. These are signs of possible Clostridium botulinum contamination — do not taste-test.", "category": "storage" },
-    { "id": "TIP-007", "icon": "🥬", "text": "Rinse produce under running water — even if you're going to peel it. Cutting through unwashed produce can transfer surface bacteria to the flesh.", "category": "cooking" },
-    { "id": "TIP-008", "icon": "⏱️", "text": "Cooked food left out for more than 2 hours enters unsafe territory. In hot weather above 90°F (32°C), that window shrinks to just 1 hour.", "category": "storage" },
-    { "id": "TIP-009", "icon": "🐣", "text": "Refrigerate eggs promptly and store them in the original carton in the main body of the fridge — not the door, where temperature fluctuates more.", "category": "storage" },
-    { "id": "TIP-010", "icon": "🦪", "text": "Raw shellfish (oysters, clams, mussels) carry Vibrio and Norovirus risk. High-risk individuals should always choose fully cooked shellfish.", "category": "cooking" }
+    {
+      "id": "TIP-001",
+      "icon": "🧼",
+      "text": "Wash your hands with soap for 20 seconds before cooking.",
+      "category": "hygiene",
+      "fact": "That's about the time it takes to sing 'Happy Birthday' twice. It is the single most effective food safety habit."
+    },
+    {
+      "id": "TIP-002",
+      "icon": "🌡️",
+      "text": "Your fridge should be 40°F (4°C) or below.",
+      "category": "storage",
+      "fact": "Check it monthly with a refrigerator thermometer — door seals degrade over time and temperature drifts upward."
+    },
+    {
+      "id": "TIP-003",
+      "icon": "🔪",
+      "text": "Use color-coded cutting boards to prevent cross-contamination.",
+      "category": "kitchen",
+      "fact": "Red is for raw meat, yellow for poultry, green for produce, white for dairy and bread."
+    },
+    {
+      "id": "TIP-004",
+      "icon": "📦",
+      "text": "Apply the FIFO method: First In, First Out.",
+      "category": "storage",
+      "fact": "When you put away groceries, move older items to the front so they get used first. This reduces waste and improves safety."
+    },
+    {
+      "id": "TIP-005",
+      "icon": "🌡️",
+      "text": "A food thermometer is the only reliable way to know food is safely cooked.",
+      "category": "cooking",
+      "fact": "Juices running clear or brown coloring are not reliable doneness indicators."
+    },
+    {
+      "id": "TIP-006",
+      "icon": "🥫",
+      "text": "Never eat from a bulging, rusted, or deeply dented can.",
+      "category": "storage",
+      "fact": "These are signs of possible Clostridium botulinum contamination — do not taste-test."
+    },
+    {
+      "id": "TIP-007",
+      "icon": "🥬",
+      "text": "Rinse produce under running water — even if you're going to peel it.",
+      "category": "cooking",
+      "fact": "Cutting through unwashed produce can transfer surface bacteria to the flesh."
+    },
+    {
+      "id": "TIP-008",
+      "icon": "⏱️",
+      "text": "Cooked food left out for more than 2 hours enters unsafe territory.",
+      "category": "storage",
+      "fact": "In hot weather above 90°F (32°C), that safe window shrinks to just 1 hour."
+    },
+    {
+      "id": "TIP-009",
+      "icon": "🐣",
+      "text": "Refrigerate eggs promptly and store them in the original carton.",
+      "category": "storage",
+      "fact": "Store them in the main body of the fridge — not the door, where temperature fluctuates more."
+    },
+    {
+      "id": "TIP-010",
+      "icon": "🦪",
+      "text": "Raw shellfish carry higher Vibrio and Norovirus risks.",
+      "category": "cooking",
+      "fact": "High-risk individuals should always choose fully cooked shellfish."
+    }
   ],
 
   "regulations_us": [

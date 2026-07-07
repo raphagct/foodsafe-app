@@ -60,6 +60,7 @@ export type DailyTip = {
   icon: string;
   text: string;
   category: string;
+  fact?: string;
 };
 
 export type RegulationRef = {
