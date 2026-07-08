@@ -68,3 +68,46 @@ body, html {
     transform: scale(1);
   }
 }
+
+/* ── html5-qrcode scanner overrides ────────────────────────────────────────── */
+
+/* Force the reader container to fill its parent */
+#qr-reader {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+/* The library injects a <video> — make it cover the container */
+#qr-reader video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Hide the library's built-in header text ("Scanning…") */
+#qr-reader__header_message,
+#qr-reader__status_span,
+#qr-reader__dashboard {
+  display: none !important;
+}
+
+/* The shaded region around the scan box */
+#qr-shaded-region {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ensure scan region canvas fills properly */
+#qr-reader canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}

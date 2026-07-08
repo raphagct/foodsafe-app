@@ -5,6 +5,7 @@ import HistorySection from "../../components/HistorySection";
 import LanguageButton from "../../components/LanguageButton";
 import LogoutButton from "../../components/LogoutButton";
 import { supabase } from "../../services/supabaseClient";
+import { getRecentScans } from "../../services/traceabilityService";
 import { t, getLanguage } from "../../utils/i18n";
 import type { ReportRecord } from "../../types/report";
 
@@ -14,6 +15,14 @@ function HomePage() {
     photoUrl: string | null;
     productName: string;
   }[]>([]);
+  const [scans, setScans] = useState<{
+    id: string;
+    batchId?: string | null;
+    photoUrl?: string | null;
+    productName: string;
+    isRecall?: boolean;
+    expiryStatus?: string;
+  }[]>([]);
   const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
@@ -22,7 +31,7 @@ function HomePage() {
         .from("report")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(3);
+        .limit(4);
 
       if (error) {
         console.error("Error fetching reports:", error);
@@ -39,7 +48,34 @@ function HomePage() {
       }
     }
 
+    async function fetchScans() {
+      const data = await getRecentScans(4);
+      const mapped = data.map((s) => {
+        let photoUrl = null;
+        if (s.full_response_json) {
+          try {
+            const parsed = JSON.parse(s.full_response_json);
+            if (parsed?.product?.image_url) {
+              photoUrl = parsed.product.image_url;
+            }
+          } catch {
+            // ignore
+          }
+        }
+        return {
+          id: s.id || s.lookup_key,
+          batchId: s.batch_id || s.lookup_key,
+          photoUrl,
+          productName: s.product_name || s.lookup_key,
+          isRecall: s.is_recall,
+          expiryStatus: s.expiry_status,
+        };
+      });
+      setScans(mapped);
+    }
+
     fetchReports();
+    fetchScans();
   });
 
   return (
@@ -63,7 +99,7 @@ function HomePage() {
       <IonContent className="home-content">
         <main className="px-[18px] py-[13px]">
           <section>
-            <HistorySection title={t("scanHistory", currentLanguage)} type="scan" />
+            <HistorySection title={t("scanHistory", currentLanguage)} items={scans} type="scan" />
             <HistorySection title={t("reportHistory", currentLanguage)} items={reports} type="report" />
           </section>
         </main>

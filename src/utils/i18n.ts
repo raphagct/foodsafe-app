@@ -35,6 +35,7 @@ export type TranslationKey =
   | "noRecentItems"
   | "historyPageTitle"
   | "historyNoReports"
+  | "historyNoScans"
   | "scannerTitle"
   | "educationTitle"
   | "searchPlaceholder"
@@ -54,6 +55,7 @@ export type TranslationKey =
   | "addNotes"
   | "suspected"
   | "unsafe"
+  | "safe"
   | "appMenuHome"
   | "appMenuCamera"
   | "appMenuEducation"
@@ -77,7 +79,54 @@ export type TranslationKey =
   | "passwordTooShort"
   | "emailInvalid"
   | "emailNotConfirmed"
-  | "userAlreadyExists";
+  | "userAlreadyExists"
+  // ── QR/Traceability ────────────────
+  | "scanQR"
+  | "photoReport"
+  | "lookingUp"
+  | "productNotFound"
+  | "scanSuccessful"
+  | "batchInfo"
+  | "producer"
+  | "qualityControl"
+  | "coldChainIntegrity"
+  | "containsAllergens"
+  | "distributionTrail"
+  | "recallBannerTitle"
+  | "recallNumber"
+  | "recallClass"
+  | "recallReason"
+  | "recallAction"
+  | "recallHotline"
+  | "batchId"
+  | "productionDate"
+  | "harvestDate"
+  | "bestBy"
+  | "expiresIn"
+  | "expiredAgo"
+  | "statusValid"
+  | "statusExpiringSoon"
+  | "statusExpired"
+  | "statusRecall"
+  | "coldChainPass"
+  | "coldChainWarning"
+  | "coldChainFail"
+  | "readings"
+  | "violations"
+  | "dangerZone"
+  | "lastInspection"
+  | "countryOfOrigin"
+  // ── Report enrichment ──────────────
+  | "category"
+  | "warningSigns"
+  | "storeName"
+  | "barcode"
+  | "reportedToStore"
+  | "yes"
+  | "no"
+  // ── History tabs ───────────────────
+  | "tabReports"
+  | "tabScans";
 
 export const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -89,6 +138,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     noRecentItems: "Aucun élément récent.",
     historyPageTitle: "Historique",
     historyNoReports: "Aucun rapport pour le moment.",
+    historyNoScans: "Aucun scan pour le moment.",
     scannerTitle: "Scanner",
     educationTitle: "Éducation",
     searchPlaceholder: "Rechercher",
@@ -108,6 +158,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     addNotes: "Ajouter des notes",
     suspected: "Suspect",
     unsafe: "Dangereux",
+    safe: "Sûr",
     appMenuHome: "Accueil",
     appMenuCamera: "Caméra",
     appMenuEducation: "Éducation",
@@ -132,6 +183,53 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     emailInvalid: "Adresse e-mail invalide.",
     emailNotConfirmed: "Veuillez confirmer votre e-mail avant de vous connecter.",
     userAlreadyExists: "Un compte existe déjà avec cette adresse e-mail.",
+    // QR/Traceability
+    scanQR: "Scanner QR",
+    photoReport: "Photo Rapport",
+    lookingUp: "Recherche du produit…",
+    productNotFound: "Produit non trouvé",
+    scanSuccessful: "Scan réussi",
+    batchInfo: "Informations du lot",
+    producer: "Producteur",
+    qualityControl: "Contrôle qualité",
+    coldChainIntegrity: "Intégrité chaîne du froid",
+    containsAllergens: "Contient des allergènes",
+    distributionTrail: "Parcours de distribution",
+    recallBannerTitle: "Produit rappelé — Ne pas consommer",
+    recallNumber: "N° de rappel",
+    recallClass: "Classe",
+    recallReason: "Motif",
+    recallAction: "Action requise",
+    recallHotline: "Hotline",
+    batchId: "ID du lot",
+    productionDate: "Date de production",
+    harvestDate: "Date de récolte",
+    bestBy: "À consommer avant le",
+    expiresIn: "Expire dans",
+    expiredAgo: "Expiré depuis",
+    statusValid: "Valide",
+    statusExpiringSoon: "Expire bientôt",
+    statusExpired: "Expiré",
+    statusRecall: "Rappelé",
+    coldChainPass: "Conforme",
+    coldChainWarning: "Attention",
+    coldChainFail: "Non conforme",
+    readings: "Lectures",
+    violations: "Violations",
+    dangerZone: "Zone de danger",
+    lastInspection: "Dernière inspection",
+    countryOfOrigin: "Pays d'origine",
+    // Report enrichment
+    category: "Catégorie",
+    warningSigns: "Signes d'alerte",
+    storeName: "Nom du magasin",
+    barcode: "Code-barres",
+    reportedToStore: "Signalé au magasin",
+    yes: "Oui",
+    no: "Non",
+    // History tabs
+    tabReports: "Rapports",
+    tabScans: "Scans",
   },
   vi: {
     appNameFood: "Food",
@@ -142,6 +240,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     noRecentItems: "Không có mục gần đây.",
     historyPageTitle: "Lịch sử",
     historyNoReports: "Chưa có báo cáo.",
+    historyNoScans: "Chưa có quét nào.",
     scannerTitle: "Quét",
     educationTitle: "Giáo dục",
     searchPlaceholder: "Tìm kiếm",
@@ -161,6 +260,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     addNotes: "Thêm ghi chú",
     suspected: "Nghi ngờ",
     unsafe: "Không an toàn",
+    safe: "An toàn",
     appMenuHome: "Trang chủ",
     appMenuCamera: "Máy ảnh",
     appMenuEducation: "Giáo dục",
@@ -185,6 +285,53 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     emailInvalid: "Địa chỉ email không hợp lệ.",
     emailNotConfirmed: "Vui lòng xác nhận email trước khi đăng nhập.",
     userAlreadyExists: "Tài khoản đã tồn tại với email này.",
+    // QR/Traceability
+    scanQR: "Quét QR",
+    photoReport: "Báo cáo ảnh",
+    lookingUp: "Đang tìm kiếm sản phẩm…",
+    productNotFound: "Không tìm thấy sản phẩm",
+    scanSuccessful: "Quét thành công",
+    batchInfo: "Thông tin lô hàng",
+    producer: "Nhà sản xuất",
+    qualityControl: "Kiểm soát chất lượng",
+    coldChainIntegrity: "Tính toàn vẹn chuỗi lạnh",
+    containsAllergens: "Chứa chất gây dị ứng",
+    distributionTrail: "Lộ trình phân phối",
+    recallBannerTitle: "Sản phẩm bị thu hồi — Không tiêu thụ",
+    recallNumber: "Số thu hồi",
+    recallClass: "Phân loại",
+    recallReason: "Lý do",
+    recallAction: "Hành động yêu cầu",
+    recallHotline: "Đường dây nóng",
+    batchId: "Mã lô hàng",
+    productionDate: "Ngày sản xuất",
+    harvestDate: "Ngày thu hoạch",
+    bestBy: "Hạn sử dụng",
+    expiresIn: "Hết hạn trong",
+    expiredAgo: "Đã hết hạn",
+    statusValid: "Hợp lệ",
+    statusExpiringSoon: "Sắp hết hạn",
+    statusExpired: "Đã hết hạn",
+    statusRecall: "Thu hồi",
+    coldChainPass: "Đạt",
+    coldChainWarning: "Cảnh báo",
+    coldChainFail: "Không đạt",
+    readings: "Số đo",
+    violations: "Vi phạm",
+    dangerZone: "Vùng nguy hiểm",
+    lastInspection: "Kiểm tra gần nhất",
+    countryOfOrigin: "Quốc gia xuất xứ",
+    // Report enrichment
+    category: "Danh mục",
+    warningSigns: "Dấu hiệu cảnh báo",
+    storeName: "Tên cửa hàng",
+    barcode: "Mã vạch",
+    reportedToStore: "Đã báo cáo cửa hàng",
+    yes: "Có",
+    no: "Không",
+    // History tabs
+    tabReports: "Báo cáo",
+    tabScans: "Quét",
   },
   en: {
     appNameFood: "Food",
@@ -195,6 +342,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     noRecentItems: "No recent items.",
     historyPageTitle: "History",
     historyNoReports: "No reports yet.",
+    historyNoScans: "No scans yet.",
     scannerTitle: "Scanner",
     educationTitle: "Education",
     searchPlaceholder: "Search",
@@ -214,6 +362,7 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     addNotes: "Add notes",
     suspected: "Suspected",
     unsafe: "Unsafe",
+    safe: "Safe",
     appMenuHome: "Home",
     appMenuCamera: "Camera",
     appMenuEducation: "Education",
@@ -238,6 +387,53 @@ export const translations: Record<LanguageCode, Record<TranslationKey, string>> 
     emailInvalid: "Invalid email address.",
     emailNotConfirmed: "Please confirm your email before logging in.",
     userAlreadyExists: "An account already exists with this email.",
+    // QR/Traceability
+    scanQR: "Scan QR",
+    photoReport: "Photo Report",
+    lookingUp: "Looking up product…",
+    productNotFound: "Product not found",
+    scanSuccessful: "Scan successful",
+    batchInfo: "Batch Information",
+    producer: "Producer",
+    qualityControl: "Quality Control",
+    coldChainIntegrity: "Cold Chain Integrity",
+    containsAllergens: "Contains Allergens",
+    distributionTrail: "Distribution Trail",
+    recallBannerTitle: "Product Recalled — Do Not Consume",
+    recallNumber: "Recall #",
+    recallClass: "Class",
+    recallReason: "Reason",
+    recallAction: "Action Required",
+    recallHotline: "Hotline",
+    batchId: "Batch ID",
+    productionDate: "Production Date",
+    harvestDate: "Harvest Date",
+    bestBy: "Best By / Use By",
+    expiresIn: "Expires in",
+    expiredAgo: "Expired",
+    statusValid: "In Date",
+    statusExpiringSoon: "Expires Soon",
+    statusExpired: "Expired",
+    statusRecall: "RECALLED",
+    coldChainPass: "Pass",
+    coldChainWarning: "Warning",
+    coldChainFail: "Fail",
+    readings: "Readings",
+    violations: "Violations",
+    dangerZone: "Danger Zone",
+    lastInspection: "Last inspection",
+    countryOfOrigin: "Country of Origin",
+    // Report enrichment
+    category: "Category",
+    warningSigns: "Warning Signs",
+    storeName: "Store Name",
+    barcode: "Barcode",
+    reportedToStore: "Reported to Store",
+    yes: "Yes",
+    no: "No",
+    // History tabs
+    tabReports: "Reports",
+    tabScans: "Scans",
   },
 };
 

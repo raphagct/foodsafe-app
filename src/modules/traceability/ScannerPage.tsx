@@ -1,21 +1,46 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   IonPage,
   IonContent,
   useIonViewDidEnter,
   useIonViewWillLeave,
   IonIcon,
+  IonSpinner,
 } from '@ionic/react';
 import { useIonRouter } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
+import { Html5Qrcode } from 'html5-qrcode';
 import CreateReportModal from '../report/CreateReportModal';
+import { lookupByQR, saveScanToHistory } from '../../services/traceabilityService';
+import type { TraceabilityResult, TraceabilityResultNotFound } from '../../types/traceability';
+import { t, getLanguage } from '../../utils/i18n';
 
 function ScannerPage() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [mode, setMode] = useState<'photo' | 'qr'>('qr');
+  const [isLoading, setIsLoading] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null);
   const router = useIonRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const qrScannerRef = useRef<Html5Qrcode | null>(null);
+  const isProcessingRef = useRef(false);
+  const currentLanguage = getLanguage();
+
+  const stopQrScanner = useCallback(async () => {
+    if (qrScannerRef.current) {
+      try {
+        const state = qrScannerRef.current.getState();
+        // State 2 = SCANNING
+        if (state === 2) {
+          await qrScannerRef.current.stop();
+        }
+      } catch {
+        // Ignore cleanup errors
+      }
+      qrScannerRef.current = null;
+    }
+  }, []);
 
   const startCamera = async () => {
     try {
@@ -38,12 +63,108 @@ function ScannerPage() {
     }
   };
 
+  const handleQrResult = useCallback(async (decodedText: string) => {
+    if (isProcessingRef.current) return;
+    isProcessingRef.current = true;
+    setIsLoading(true);
+    setScanError(null);
+
+    try {
+      await stopQrScanner();
+      const result: TraceabilityResult = await lookupByQR(decodedText);
+
+      // Save scan to Supabase history
+      await saveScanToHistory(decodedText, result);
+
+      if (!result.found) {
+        const notFound = result as TraceabilityResultNotFound;
+        setScanError(notFound.error);
+        // Restart scanner after showing error
+        setTimeout(() => {
+          setScanError(null);
+          isProcessingRef.current = false;
+          startQrScanner();
+        }, 3000);
+      } else {
+        // Store result in sessionStorage for BatchDetailPage to read
+        sessionStorage.setItem('lastScanResult', JSON.stringify(result));
+        router.push(`/tabs/camera/traceability/${result.batch.id}`, 'forward', 'push');
+      }
+    } catch (err) {
+      console.error("Lookup error:", err);
+      setScanError("An error occurred during lookup.");
+      setTimeout(() => {
+        setScanError(null);
+        isProcessingRef.current = false;
+        startQrScanner();
+      }, 3000);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [router, stopQrScanner]);
+
+  const startQrScanner = useCallback(async () => {
+    await stopQrScanner();
+    isProcessingRef.current = false;
+
+    const readerEl = document.getElementById("qr-reader");
+    if (!readerEl) return;
+
+    try {
+      const html5Qrcode = new Html5Qrcode("qr-reader");
+      qrScannerRef.current = html5Qrcode;
+
+      // Compute a square qrbox based on the container's actual size
+      const containerWidth = readerEl.clientWidth;
+      const containerHeight = readerEl.clientHeight;
+      const smallerDim = Math.min(containerWidth, containerHeight);
+      const qrboxSize = Math.max(200, Math.min(300, Math.floor(smallerDim * 0.65)));
+
+      await html5Qrcode.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: { width: qrboxSize, height: qrboxSize },
+          aspectRatio: containerHeight / containerWidth,
+        },
+        (decodedText) => {
+          handleQrResult(decodedText);
+        },
+        () => {
+          // Ignore non-fatal scan errors (no QR found in frame)
+        }
+      );
+    } catch (err) {
+      console.error("QR Scanner start error:", err);
+    }
+  }, [handleQrResult, stopQrScanner]);
+
+  // Switch between QR and Photo mode
+  useEffect(() => {
+    if (mode === 'qr') {
+      stopCamera();
+      // Small delay to let DOM render the #qr-reader div
+      const timer = setTimeout(() => {
+        startQrScanner();
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      stopQrScanner().then(() => startCamera());
+    }
+  }, [mode, startQrScanner, stopQrScanner]);
+
   useIonViewDidEnter(() => {
-    startCamera();
+    if (mode === 'qr') {
+      setTimeout(() => startQrScanner(), 100);
+    } else {
+      startCamera();
+    }
   });
 
   useIonViewWillLeave(() => {
     stopCamera();
+    stopQrScanner();
+    isProcessingRef.current = false;
   });
 
   const takePhoto = () => {
@@ -66,6 +187,7 @@ function ScannerPage() {
 
   const closeCamera = () => {
     stopCamera();
+    stopQrScanner();
     router.push('/tabs/home', 'back', 'pop');
   };
 
@@ -73,23 +195,42 @@ function ScannerPage() {
     <IonPage>
       <IonContent className="ion-padding-none">
         <div className="relative w-full h-full bg-black overflow-hidden flex flex-col">
-          {/* Video Feed */}
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          />
 
-          {/* QR Code Overlay (Grey background with clear square) */}
+          {/* QR mode: html5-qrcode renders its own video */}
           {mode === 'qr' && (
-            <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none flex items-center justify-center overflow-hidden">
-              <div
-                className="w-64 h-64 relative z-20"
-                style={{
-                  boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.6)'
-                }}
-              ></div>
+            <div
+              id="qr-reader"
+              className="absolute top-0 left-0 w-full h-full z-0"
+              style={{ background: '#000' }}
+            />
+          )}
+
+          {/* Photo mode: raw video feed */}
+          {mode === 'photo' && (
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover z-0"
+            />
+          )}
+
+          {/* Loading overlay */}
+          {isLoading && (
+            <div className="absolute top-0 left-0 w-full h-full z-30 bg-black/70 flex flex-col items-center justify-center gap-4">
+              <IonSpinner name="crescent" color="light" style={{ width: 48, height: 48 }} />
+              <p className="text-white font-semibold text-lg">{t("lookingUp", currentLanguage)}</p>
+            </div>
+          )}
+
+          {/* Error overlay */}
+          {scanError && (
+            <div className="absolute top-0 left-0 w-full h-full z-30 bg-black/70 flex flex-col items-center justify-center gap-4 px-8">
+              <div className="bg-red-500/20 border border-red-400 rounded-2xl p-6 max-w-sm text-center">
+                <p className="text-3xl mb-3">❌</p>
+                <p className="text-white font-bold text-lg mb-2">{t("productNotFound", currentLanguage)}</p>
+                <p className="text-white/80 text-sm">{scanError}</p>
+              </div>
             </div>
           )}
 
@@ -129,13 +270,13 @@ function ScannerPage() {
                   onClick={() => setMode('photo')}
                   className={`flex-1 relative z-10 font-medium text-sm transition-colors duration-300 ${mode === 'photo' ? 'text-black' : 'text-[#8e8e8e]'}`}
                 >
-                  Photo Report
+                  {t("photoReport", currentLanguage)}
                 </button>
                 <button
                   onClick={() => setMode('qr')}
                   className={`flex-1 relative z-10 font-medium text-sm transition-colors duration-300 ${mode === 'qr' ? 'text-black' : 'text-[#8e8e8e]'}`}
                 >
-                  Scan QR
+                  {t("scanQR", currentLanguage)}
                 </button>
               </div>
             </div>
