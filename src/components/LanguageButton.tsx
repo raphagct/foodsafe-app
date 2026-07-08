@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IonPopover } from "@ionic/react";
 import { getCurrentLanguage, languages, setLanguage, t } from "../utils/i18n";
 
@@ -47,17 +48,26 @@ function CheckIcon() {
 function LanguageButton() {
   const currentLanguage = getCurrentLanguage();
   const currentCode = currentLanguage.code as LanguageCode;
+  const [popoverEvent, setPopoverEvent] = useState<Event | undefined>(undefined);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (code: LanguageCode) => {
     setLanguage(code);
+    setIsOpen(false);
     window.location.reload();
+  };
+
+  const handleOpen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPopoverEvent(e.nativeEvent);
+    setIsOpen(true);
   };
 
   return (
     <>
       <button
-        id="language-trigger"
         type="button"
+        onClick={handleOpen}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -68,7 +78,6 @@ function LanguageButton() {
           boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
           cursor: "pointer",
           padding: "7px 12px 7px 10px",
-          /* Mobile touch fixes */
           minHeight: 44,
           minWidth: 44,
           touchAction: "manipulation",
@@ -99,8 +108,9 @@ function LanguageButton() {
       </button>
 
       <IonPopover
-        trigger="language-trigger"
-        triggerAction="click"
+        isOpen={isOpen}
+        event={popoverEvent}
+        onDidDismiss={() => setIsOpen(false)}
         side="bottom"
         alignment="center"
         showBackdrop={false}

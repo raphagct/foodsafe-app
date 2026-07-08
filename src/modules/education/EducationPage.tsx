@@ -9,7 +9,6 @@ import {
   IonIcon,
   IonModal,
   IonPage,
-  IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonSelect,
@@ -34,7 +33,6 @@ import type {
   EducationQuiz,
 } from "../../types/education";
 import ArticleDetail from "./ArticleDetail";
-import CategoryList from "./CategoryList";
 import DailyTip from "./DailyTip";
 import QuizEngine from "./QuizEngine";
 
@@ -184,7 +182,6 @@ function EducationPage() {
   const [dailyTip, setDailyTip] = useState<DailyTipType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [viewMode, setViewMode] = useState<"articles" | "quizzes">("articles");
   const [selectedArticle, setSelectedArticle] = useState<EducationArticle | null>(null);
@@ -215,31 +212,16 @@ function EducationPage() {
   }, [content]);
 
   const filteredArticles = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
     return (content?.articles ?? []).filter((article) => {
-      const matchesCategory = activeCategory === "all" || article.category_id === activeCategory;
-      const matchesSearch =
-        normalized.length === 0 ||
-        article.title.toLowerCase().includes(normalized) ||
-        article.summary.toLowerCase().includes(normalized) ||
-        article.tags?.some((tag) => tag.toLowerCase().includes(normalized));
-
-      return matchesCategory && matchesSearch;
+      return activeCategory === "all" || article.category_id === activeCategory;
     });
-  }, [activeCategory, content, query]);
+  }, [activeCategory, content]);
 
   const filteredQuizzes = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
     return (content?.quizzes ?? []).filter((quiz) => {
-      const matchesCategory = activeCategory === "all" || quiz.category_id === activeCategory;
-      const matchesSearch =
-        normalized.length === 0 ||
-        quiz.title.toLowerCase().includes(normalized) ||
-        quiz.difficulty.toLowerCase().includes(normalized);
-
-      return matchesCategory && matchesSearch;
+      return activeCategory === "all" || quiz.category_id === activeCategory;
     });
-  }, [activeCategory, content, query]);
+  }, [activeCategory, content]);
 
   function updateProgress(nextProgress: EducationProgress) {
     setProgress(nextProgress);
@@ -314,15 +296,7 @@ function EducationPage() {
           <main className="mx-auto max-w-[980px] px-[18px] py-4">
             {dailyTip ? <DailyTip tip={dailyTip} title={copy.dailyTip} /> : null}
 
-            <IonSearchbar
-              value={query}
-              placeholder={t("searchPlaceholder", currentLanguage)}
-              debounce={150}
-              onIonInput={(event) => setQuery(event.detail.value ?? "")}
-              className="my-3 p-0 [--background:white] [--border-radius:6px]"
-            />
-
-            <div className="mb-4 rounded-[6px] bg-white px-4 py-1 shadow-sm">
+            <div className="my-4 rounded-[6px] bg-white px-4 py-1 shadow-sm">
               <IonSelect
                 label={copy.articleType}
                 labelPlacement="floating"

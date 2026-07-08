@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonHeader, IonToolbar, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonToolbar, useIonViewWillEnter, useIonRouter } from "@ionic/react";
 import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
@@ -6,10 +6,13 @@ import LanguageButton from "../../components/LanguageButton";
 import LogoutButton from "../../components/LogoutButton";
 import { supabase } from "../../services/supabaseClient";
 import { getRecentScans } from "../../services/traceabilityService";
+import { getDailyTip } from "../../services/educationService";
 import { t, getLanguage } from "../../utils/i18n";
 import type { ReportRecord } from "../../types/report";
+import type { DailyTip as DailyTipType } from "../../types/education";
 
 function HomePage() {
+  const router = useIonRouter();
   const [reports, setReports] = useState<{
     id: string;
     photoUrl: string | null;
@@ -23,6 +26,7 @@ function HomePage() {
     isRecall?: boolean;
     expiryStatus?: string;
   }[]>([]);
+  const [dailyTip, setDailyTip] = useState<DailyTipType | null>(null);
   const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
@@ -74,9 +78,57 @@ function HomePage() {
       setScans(mapped);
     }
 
+    async function fetchTip() {
+      try {
+        const tip = await getDailyTip(currentLanguage);
+        setDailyTip(tip);
+      } catch {
+        setDailyTip(null);
+      }
+    }
+
     fetchReports();
     fetchScans();
+    fetchTip();
   });
+
+  const eduTexts = {
+    fr: {
+      sectionTitle: "Éducation & Prévention",
+      tipTitle: "Conseil du jour",
+      tipSub: dailyTip?.text || "Bonnes pratiques d'hygiène et conservation",
+      quizTitle: "Quiz express",
+      quizSub: "Testez vos connaissances en 2 minutes",
+      guideTitle: "Réglementations",
+      guideSub: "Normes sanitaires & contacts d'urgence"
+    },
+    en: {
+      sectionTitle: "Education & Prevention",
+      tipTitle: "Daily Tip",
+      tipSub: dailyTip?.text || "Best practices for hygiene & storage",
+      quizTitle: "Quick Quiz",
+      quizSub: "Test your food safety knowledge",
+      guideTitle: "Regulations",
+      guideSub: "Health standards & emergency contacts"
+    },
+    vi: {
+      sectionTitle: "Giáo dục & Phòng ngừa",
+      tipTitle: "Mẹo hôm nay",
+      tipSub: dailyTip?.text || "Thực hành vệ sinh & bảo quản tốt nhất",
+      quizTitle: "Câu hỏi nhanh",
+      quizSub: "Kiểm tra kiến thức an toàn thực phẩm",
+      guideTitle: "Quy định",
+      guideSub: "Tiêu chuẩn y tế & liên hệ khẩn cấp"
+    }
+  }[currentLanguage as "fr" | "en" | "vi"] || {
+    sectionTitle: "Éducation & Prévention",
+    tipTitle: "Conseil du jour",
+    tipSub: dailyTip?.text || "Bonnes pratiques d'hygiène et conservation",
+    quizTitle: "Quiz express",
+    quizSub: "Testez vos connaissances en 2 minutes",
+    guideTitle: "Réglementations",
+    guideSub: "Normes sanitaires & contacts d'urgence"
+  };
 
   return (
     <IonPage>
@@ -97,10 +149,82 @@ function HomePage() {
       </IonHeader>
 
       <IonContent className="home-content">
-        <main className="px-[18px] py-[13px]">
+        <main className="px-[18px] py-[13px] pb-8">
           <section>
             <HistorySection title={t("scanHistory", currentLanguage)} items={scans} type="scan" />
             <HistorySection title={t("reportHistory", currentLanguage)} items={reports} type="report" />
+          </section>
+
+          {/* Education Quick Access Section */}
+          <section className="mt-6">
+            <div className="flex items-center justify-between px-1 mb-3">
+              <h2 className="m-0 text-[18px] font-extrabold text-black tracking-[-0.4px]">
+                {eduTexts.sectionTitle}
+              </h2>
+              <button
+                type="button"
+                onClick={() => router.push("/tabs/education")}
+                className="bg-transparent border-none text-[12px] font-bold text-[var(--color-primary)] cursor-pointer p-0"
+              >
+                {t("viewAll", currentLanguage)}
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Daily Tip Card */}
+              <div
+                onClick={() => router.push("/tabs/education")}
+                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
+              >
+                <div className="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center text-xl flex-shrink-0">
+                  💡
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                    {eduTexts.tipTitle}
+                  </span>
+                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                    {eduTexts.tipSub}
+                  </span>
+                </div>
+              </div>
+
+              {/* Quick Quiz Card */}
+              <div
+                onClick={() => router.push("/tabs/education")}
+                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
+              >
+                <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center text-xl flex-shrink-0">
+                  🎓
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                    {eduTexts.quizTitle}
+                  </span>
+                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                    {eduTexts.quizSub}
+                  </span>
+                </div>
+              </div>
+
+              {/* Regulations & Guide Card */}
+              <div
+                onClick={() => router.push("/tabs/education")}
+                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
+              >
+                <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0">
+                  📚
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                    {eduTexts.guideTitle}
+                  </span>
+                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                    {eduTexts.guideSub}
+                  </span>
+                </div>
+              </div>
+            </div>
           </section>
         </main>
       </IonContent>
