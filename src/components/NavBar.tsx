@@ -31,6 +31,11 @@ function NavBar() {
           path="/tabs/camera/traceability/:id"
           component={BatchDetailPage}
         />
+        <Route
+          exact
+          path="/tabs/history/traceability/:id"
+          component={BatchDetailPage}
+        />
         <Route exact path="/tabs/education" component={EducationPage} />
         <Route exact path="/tabs/history" component={HistoryPage} />
         <Route

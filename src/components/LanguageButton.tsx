@@ -68,6 +68,14 @@ function LanguageButton() {
           boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
           cursor: "pointer",
           padding: "7px 12px 7px 10px",
+          /* Mobile touch fixes */
+          minHeight: 44,
+          minWidth: 44,
+          touchAction: "manipulation",
+          WebkitTapHighlightColor: "transparent",
+          position: "relative",
+          zIndex: 10,
+          userSelect: "none",
         }}
       >
         <img
@@ -79,16 +87,20 @@ function LanguageButton() {
             borderRadius: "50%",
             objectFit: "cover",
             boxShadow: "0 0 0 1px rgba(0,0,0,0.07)",
+            pointerEvents: "none",
           }}
         />
-        <span style={{ fontSize: 13, fontWeight: 500, color: "#111", letterSpacing: "0.02em" }}>
+        <span style={{ fontSize: 13, fontWeight: 500, color: "#111", letterSpacing: "0.02em", pointerEvents: "none" }}>
           {LANG_SHORT[currentCode]}
         </span>
-        <ChevronIcon />
+        <span style={{ pointerEvents: "none", display: "inline-flex" }}>
+          <ChevronIcon />
+        </span>
       </button>
 
       <IonPopover
         trigger="language-trigger"
+        triggerAction="click"
         side="bottom"
         alignment="center"
         showBackdrop={false}
@@ -133,6 +145,9 @@ function LanguageButton() {
                 border: "none",
                 cursor: "pointer",
                 textAlign: "left",
+                minHeight: 44,
+                touchAction: "manipulation",
+                WebkitTapHighlightColor: "transparent",
               }}
             >
               <img

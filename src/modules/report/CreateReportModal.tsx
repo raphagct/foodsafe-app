@@ -11,10 +11,17 @@ import {
   IonSelect,
   IonSelectOption,
   IonTextarea,
+  IonToggle,
+  IonItem,
+  IonLabel,
+  IonChip,
+  IonIcon,
   useIonRouter,
 } from "@ionic/react";
+import { checkmarkCircle } from "ionicons/icons";
 import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
+import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
 
 interface CreateReportModalProps {
   isOpen: boolean;
@@ -25,16 +32,32 @@ interface CreateReportModalProps {
 function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps) {
   const router = useIonRouter();
   const [productName, setProductName] = useState("");
-  const [riskLevel, setRiskLevel] = useState("Unsafe");
+  const [riskLevel, setRiskLevel] = useState("UNSAFE");
+  const [category, setCategory] = useState("");
   const [notes, setNotes] = useState("");
+  const [storeName, setStoreName] = useState("");
+  const [barcodeScanned, setBarcodeScanned] = useState("");
+  const [selectedWarningSigns, setSelectedWarningSigns] = useState<string[]>([]);
+  const [reportedToStore, setReportedToStore] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const currentLanguage = getLanguage();
 
   const resetForm = () => {
     setProductName("");
-    setRiskLevel("Unsafe");
+    setRiskLevel("UNSAFE");
+    setCategory("");
     setNotes("");
+    setStoreName("");
+    setBarcodeScanned("");
+    setSelectedWarningSigns([]);
+    setReportedToStore(false);
     setIsSubmitting(false);
+  };
+
+  const toggleWarningSign = (key: string) => {
+    setSelectedWarningSigns(prev =>
+      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+    );
   };
 
   const handleSubmit = async () => {
@@ -91,8 +114,14 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
     const { error } = await supabase.from("report").insert({
       product_name: productName.trim(),
       risk_level: riskLevel,
+      category: category || null,
       description: notes.trim() || t("noNotesProvided", currentLanguage),
       image_url: imageUrl,
+      warning_signs_json: selectedWarningSigns.length > 0 ? JSON.stringify(selectedWarningSigns) : null,
+      store_name: storeName.trim() || null,
+      barcode_scanned: barcodeScanned.trim() || null,
+      reported_to_store: reportedToStore,
+      tags_json: null,
     });
 
     if (error) {
@@ -136,55 +165,145 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
           />
         )}
 
-        <div className="flex flex-col p-6 gap-6">
-          <div className="flex flex-row items-center gap-4">
-            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-4 ">
+        <div className="flex flex-col p-4 gap-4">
+          {/* Product Name + Risk Level */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-3 py-0.5 border border-gray-100">
               <IonInput
                 label={t("productName", currentLanguage)}
                 labelPlacement="floating"
                 counter={true}
-                maxlength={20}
-                className="font-semibold"
+                maxlength={30}
+                className="font-semibold text-sm"
                 value={productName}
                 onIonInput={(e) => setProductName(e.detail.value!)}
-              ></IonInput>
+              />
             </div>
 
-            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-4 py-3">
+            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-3 py-1 border border-gray-100">
               <IonSelect
                 label={t("riskLevel", currentLanguage)}
                 labelPlacement="floating"
                 interface="popover"
                 value={riskLevel}
                 onIonChange={(e) => setRiskLevel(e.detail.value)}
-                className="font-semibold"
+                className="font-semibold text-sm"
               >
-                <IonSelectOption value="Suspected">{t("suspected", currentLanguage)}</IonSelectOption>
-                <IonSelectOption value="Unsafe">{t("unsafe", currentLanguage)}</IonSelectOption>
+                <IonSelectOption value="SUSPECTED">{t("suspected", currentLanguage)}</IonSelectOption>
+                <IonSelectOption value="UNSAFE">{t("unsafe", currentLanguage)}</IonSelectOption>
+                <IonSelectOption value="SAFE">{t("safe", currentLanguage)}</IonSelectOption>
               </IonSelect>
             </div>
           </div>
-          <div className="bg-[var(--color-surface)] rounded-xl px-4 py-2">
+
+          {/* Category */}
+          <div className="bg-[var(--color-surface)] rounded-xl px-3 py-1 border border-gray-100">
+            <IonSelect
+              label={t("category", currentLanguage)}
+              labelPlacement="floating"
+              interface="action-sheet"
+              value={category}
+              onIonChange={(e) => setCategory(e.detail.value)}
+              className="font-semibold text-sm"
+            >
+              {REPORT_CATEGORIES.map(cat => (
+                <IonSelectOption key={cat.value} value={cat.value}>
+                  {cat.icon} {cat.label}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </div>
+
+          {/* Warning Signs */}
+          <div>
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5 px-1">
+              {t("warningSigns", currentLanguage)}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {WARNING_SIGNS.map(ws => {
+                const isSelected = selectedWarningSigns.includes(ws.key);
+                return (
+                  <IonChip
+                    key={ws.key}
+                    color={isSelected ? (ws.severity === "HIGH" ? "danger" : "warning") : "medium"}
+                    outline={!isSelected}
+                    onClick={() => toggleWarningSign(ws.key)}
+                    style={{
+                      paddingStart: "12px",
+                      paddingEnd: "14px",
+                      height: "34px",
+                      borderRadius: "999px",
+                    }}
+                    className="text-xs font-semibold m-0"
+                  >
+                    {isSelected && <IonIcon icon={checkmarkCircle} />}
+                    <IonLabel>{ws.label}</IonLabel>
+                  </IonChip>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Store Name + Barcode */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-3 py-0.5 border border-gray-100">
+              <IonInput
+                label={t("storeName", currentLanguage)}
+                labelPlacement="floating"
+                className="font-semibold text-sm"
+                value={storeName}
+                onIonInput={(e) => setStoreName(e.detail.value!)}
+              />
+            </div>
+            <div className="flex-1 bg-[var(--color-surface)] rounded-xl px-3 py-0.5 border border-gray-100">
+              <IonInput
+                label={t("barcode", currentLanguage)}
+                labelPlacement="floating"
+                className="font-semibold text-sm"
+                value={barcodeScanned}
+                onIonInput={(e) => setBarcodeScanned(e.detail.value!)}
+              />
+            </div>
+          </div>
+
+          {/* Reported to store toggle */}
+          <IonItem lines="none" className="[--background:var(--color-surface)] rounded-xl border border-gray-100 py-0.5">
+            <IonLabel className="font-semibold text-sm">{t("reportedToStore", currentLanguage)}</IonLabel>
+            <IonToggle
+              slot="end"
+              checked={reportedToStore}
+              onIonChange={(e) => setReportedToStore(e.detail.checked)}
+              color="success"
+            />
+          </IonItem>
+
+          {/* Notes */}
+          <div className="bg-[var(--color-surface)] rounded-xl px-3 py-1 border border-gray-100">
             <IonTextarea
               label={t("addNotes", currentLanguage)}
               labelPlacement="floating"
               placeholder={t("addNotes", currentLanguage)}
               autoGrow={true}
-              rows={5}
-              className="font-medium"
+              rows={3}
+              className="font-medium text-sm"
               value={notes}
               onIonInput={(e) => setNotes(e.detail.value!)}
-            ></IonTextarea>
+            />
           </div>
 
-          <IonButton
-            expand="block"
-            shape="round"
-            className="h-14 font-bold mt-2"
+          <button
+            type="button"
             onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="w-full h-13 rounded-2xl font-bold text-white text-base shadow-md transition-all active:scale-[0.98] mt-2 flex items-center justify-center cursor-pointer"
+            style={{
+              background: isSubmitting ? "#86efac" : "#159947",
+              boxShadow: "0 4px 14px rgba(21, 153, 71, 0.25)",
+              border: "none",
+            }}
           >
             {t("submit", currentLanguage)}
-          </IonButton>
+          </button>
         </div>
       </IonContent>
     </IonModal>
