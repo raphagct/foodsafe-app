@@ -1,0 +1,685 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "module": "Education",
+    "description": "Noi dung giao duc an toan thuc pham cho ung dung di dong",
+    "language": "vi",
+    "last_updated": "2026-06-09",
+    "content_types": [
+      "article",
+      "quiz",
+      "tip",
+      "infographic_data",
+      "regulation_ref"
+    ]
+  },
+  "categories": [
+    {
+      "id": "CAT-01",
+      "name": "Co ban",
+      "icon": "book-open",
+      "color": "#4CAF50",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-02",
+      "name": "Bao quan va nhiet do",
+      "icon": "thermometer",
+      "color": "#2196F3",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-03",
+      "name": "Benh do thuc pham",
+      "icon": "alert-triangle",
+      "color": "#F44336",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-04",
+      "name": "Mua sam thong minh",
+      "icon": "shopping-cart",
+      "color": "#FF9800",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-05",
+      "name": "Xu ly an toan",
+      "icon": "utensils",
+      "color": "#9C27B0",
+      "article_count": 3
+    }
+  ],
+  "articles": [
+    {
+      "id": "ART-001",
+      "category_id": "CAT-01",
+      "title": "An toan thuc pham la gi",
+      "summary": "Gioi thieu ve an toan thuc pham, cac dang o nhiem va rui ro suc khoe.",
+      "difficulty": "co ban",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "An toan thuc pham gom cac thuc hanh giup thuc pham khong gay hai khi san xuat, van chuyen, ban hoac su dung."
+        },
+        {
+          "type": "heading",
+          "text": "Ba nhom o nhiem thuc pham"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Sinh hoc: vi khuan, virus, nam moc va ky sinh trung.",
+            "Hoa hoc: du luong thuoc, kim loai nang, phu gia khong phu hop.",
+            "Vat ly: manh thuy tinh, kim loai, xuong, da hoac bao bi."
+          ]
+        },
+        {
+          "type": "key_takeaway",
+          "text": "An toan thuc pham la trach nhiem chung tu trang trai den ban an."
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-003"
+      ],
+      "tags": [
+        "co ban",
+        "o nhiem",
+        "suc khoe"
+      ]
+    },
+    {
+      "id": "ART-002",
+      "category_id": "CAT-01",
+      "title": "4 nguyen tac cot loi",
+      "summary": "Lam sach, tach rieng, nau chin va lam lanh voi huong dan thuc te.",
+      "difficulty": "co ban",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Bon hanh vi don gian giup giam rui ro: lam sach, tach rieng, nau chin va lam lanh."
+        },
+        {
+          "type": "card_list",
+          "cards": [
+            {
+              "title": "LAM SACH",
+              "points": [
+                "Rua tay bang xa phong 20 giay.",
+                "Rua rau cu qua duoi voi nuoc.",
+                "Lam sach be mat sau khi tiep xuc do song."
+              ]
+            },
+            {
+              "title": "TACH RIENG",
+              "points": [
+                "Dung thot rieng cho thit song va do an lien.",
+                "Khong dat do chin len dia tung chua do song.",
+                "De thit song duoi thuc pham an lien."
+              ]
+            },
+            {
+              "title": "NAU CHIN",
+              "points": [
+                "Gia cam: 74 \u00b0C.",
+                "Thit xay: 71 \u00b0C.",
+                "Ca: 63 \u00b0C.",
+                "Dung nhiet ke thuc pham."
+              ]
+            },
+            {
+              "title": "LAM LANH",
+              "points": [
+                "Tu lanh 4 \u00b0C hoac thap hon.",
+                "Lam lanh thuc pham de hong trong 2 gio.",
+                "Ra dong trong tu lanh, nuoc lanh hoac lo vi song."
+              ]
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-001",
+        "ART-004"
+      ],
+      "tags": [
+        "lam sach",
+        "tach rieng",
+        "nau chin"
+      ]
+    },
+    {
+      "id": "ART-003",
+      "category_id": "CAT-03",
+      "title": "Benh do thuc pham va so cuu",
+      "summary": "Trieu chung thuong gap, nguyen nhan va cach xu ly ban dau.",
+      "difficulty": "trung cap",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "alert_box",
+          "severity": "danger",
+          "text": "Goi cap cuu neu co co giat, mat y thuc, kho tho, non ra mau hoac trieu chung o nguoi de ton thuong."
+        },
+        {
+          "type": "steps",
+          "steps": [
+            "Ngung an thuc pham nghi ngo.",
+            "Giu mau thuc pham kin neu can xet nghiem.",
+            "Uong nuoc tung ngum nho.",
+            "Khong tu dung thuoc khi chua co tu van.",
+            "Di kham neu trieu chung nang hoac keo dai."
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-001",
+        "ART-004"
+      ],
+      "tags": [
+        "benh",
+        "trieu chung"
+      ]
+    },
+    {
+      "id": "ART-004",
+      "category_id": "CAT-02",
+      "title": "Vung nhiet do nguy hiem",
+      "summary": "Vi sao nhiet do quan trong de han che vi khuan phat trien.",
+      "difficulty": "trung cap",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "key_fact",
+          "text": "Trong khoang 4 \u00b0C den 60 \u00b0C, vi khuan co the phat trien nhanh."
+        },
+        {
+          "type": "rule",
+          "title": "Quy tac 2 gio va 1 gio",
+          "description": "Thuc pham de hong khong nen o vung nguy hiem qua 2 gio. Neu moi truong tren 32 \u00b0C, gioi han la 1 gio."
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-005"
+      ],
+      "tags": [
+        "nhiet do",
+        "bao quan"
+      ]
+    },
+    {
+      "id": "ART-005",
+      "category_id": "CAT-04",
+      "title": "Doc nhan thuc pham",
+      "summary": "Hieu thanh phan, di ung, han dung va thong tin dinh duong.",
+      "difficulty": "co ban",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nhan thuc pham cung cap thong tin giup chon, bao quan va su dung san pham an toan hon."
+        },
+        {
+          "type": "checklist",
+          "title": "Thong tin quan trong",
+          "items": [
+            {
+              "label": "Ten san pham",
+              "note": "Ten thong dung cua thuc pham."
+            },
+            {
+              "label": "Khoi luong tinh",
+              "note": "Trong luong, the tich hoac so khau phan."
+            },
+            {
+              "label": "Thanh phan",
+              "note": "Sap xep theo luong giam dan."
+            },
+            {
+              "label": "Di ung",
+              "note": "Chat gay di ung chinh phai duoc ghi ro."
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-006"
+      ],
+      "tags": [
+        "nhan",
+        "di ung"
+      ]
+    },
+    {
+      "id": "ART-006",
+      "category_id": "CAT-04",
+      "title": "Chung nhan thuc pham",
+      "summary": "Hieu cac nhan va chung nhan tren bao bi.",
+      "difficulty": "trung cap",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "certification_cards",
+          "cards": [
+            {
+              "name": "USDA Organic",
+              "means": "San xuat voi han che ve thuoc tong hop, GMO va chieu xa."
+            },
+            {
+              "name": "HACCP",
+              "means": "Phuong phap kiem soat rui ro trong san xuat thuc pham."
+            },
+            {
+              "name": "ISO 22000",
+              "means": "Tieu chuan quan ly an toan thuc pham."
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-005"
+      ],
+      "tags": [
+        "chung nhan",
+        "HACCP"
+      ]
+    },
+    {
+      "id": "ART-007",
+      "category_id": "CAT-05",
+      "title": "Xu ly thuc pham trong bep",
+      "summary": "Thuc hanh tot khi ra dong, nau, lam nguoi va bao quan.",
+      "difficulty": "co ban",
+      "read_time_min": 6,
+      "content_blocks": [
+        {
+          "type": "heading",
+          "text": "Ra dong an toan"
+        },
+        {
+          "type": "methods_list",
+          "methods": [
+            {
+              "name": "Trong tu lanh",
+              "description": "An toan nhat vi thuc pham o nhiet do kiem soat.",
+              "rating": "Tot nhat"
+            },
+            {
+              "name": "Duoi nuoc lanh",
+              "description": "Giu bao bi kin va nau ngay sau khi ra dong.",
+              "rating": "Tot"
+            },
+            {
+              "name": "Lo vi song",
+              "description": "Nau ngay sau khi ra dong.",
+              "rating": "Chap nhan"
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-004"
+      ],
+      "tags": [
+        "bep",
+        "bao quan"
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "QUIZ-001",
+      "title": "Co ban ve an toan thuc pham",
+      "category_id": "CAT-01",
+      "difficulty": "co ban",
+      "question_count": 6,
+      "time_limit_seconds": 180,
+      "pass_score": 67,
+      "questions": [
+        {
+          "id": "Q001",
+          "question": "Vung nhiet do nguy hiem la gi.",
+          "options": [
+            "A. 0 \u00b0C den 38 \u00b0C",
+            "B. 4 \u00b0C den 60 \u00b0C",
+            "C. 10 \u00b0C den 74 \u00b0C",
+            "D. 1 \u00b0C den 49 \u00b0C"
+          ],
+          "correct_answer": "B",
+          "explanation": "Vung nguy hiem la 4 \u00b0C den 60 \u00b0C."
+        },
+        {
+          "id": "Q002",
+          "question": "Can rua tay bang xa phong bao lau.",
+          "options": [
+            "A. 5 giay",
+            "B. 10 giay",
+            "C. 20 giay",
+            "D. 60 giay"
+          ],
+          "correct_answer": "C",
+          "explanation": "Can it nhat 20 giay voi xa phong va nuoc."
+        },
+        {
+          "id": "Q003",
+          "question": "Tac nhan nao thuong lien quan den gia cam song.",
+          "options": [
+            "A. Listeria monocytogenes",
+            "B. Clostridium botulinum",
+            "C. Salmonella",
+            "D. Staphylococcus aureus"
+          ],
+          "correct_answer": "C",
+          "explanation": "Salmonella thuong lien quan den gia cam chua nau chin."
+        },
+        {
+          "id": "Q004",
+          "question": "Nhiem cheo nghia la gi.",
+          "options": [
+            "A. Nau hai loai thit cung luc",
+            "B. Vi sinh vat tu do song truyen sang do an lien",
+            "C. Bao quan qua han",
+            "D. Dung sai nhiet do"
+          ],
+          "correct_answer": "B",
+          "explanation": "Do la su truyen mam benh giua thuc pham hoac be mat."
+        },
+        {
+          "id": "Q005",
+          "question": "Cach ra dong thit an toan nhat la gi.",
+          "options": [
+            "A. De tren ban bep",
+            "B. Ngam nuoc nong",
+            "C. Trong tu lanh",
+            "D. Dung nguon nhiet"
+          ],
+          "correct_answer": "C",
+          "explanation": "Tu lanh giu thit o nhiet do an toan."
+        },
+        {
+          "id": "Q006",
+          "question": "Thuc pham co mui binh thuong thi luon an toan. Dung hay sai.",
+          "options": [
+            "A. Dung",
+            "B. Sai",
+            "C. Dung, giac quan du",
+            "D. Luon tuy loai"
+          ],
+          "correct_answer": "B",
+          "explanation": "Nhieu mam benh khong lam doi mui hoac mau."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-002",
+      "title": "Doc nhan thuc pham",
+      "category_id": "CAT-04",
+      "difficulty": "trung cap",
+      "question_count": 5,
+      "time_limit_seconds": 180,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q007",
+          "question": "Thanh phan duoc liet ke theo thu tu nao.",
+          "options": [
+            "A. Theo bang chu cai",
+            "B. Theo tam quan trong dinh duong",
+            "C. Theo khoi luong, nhieu nhat truoc",
+            "D. Theo kha nang gay di ung"
+          ],
+          "correct_answer": "C",
+          "explanation": "Thanh phan duoc liet ke theo khoi luong giam dan."
+        },
+        {
+          "id": "Q008",
+          "question": "Nhan dung tot nhat truoc co nghia la gi.",
+          "options": [
+            "A. Chac chan nguy hiem sau ngay do",
+            "B. Chat luong co the giam nhung khong nhat thiet mat an toan",
+            "C. Phai loai khoi ke",
+            "D. Chac chan gay benh"
+          ],
+          "correct_answer": "B",
+          "explanation": "Day thuong la ngay chat luong."
+        },
+        {
+          "id": "Q009",
+          "question": "Co bao nhieu chat gay di ung chinh can khai bao.",
+          "options": [
+            "A. 5",
+            "B. 7",
+            "C. 8",
+            "D. 9"
+          ],
+          "correct_answer": "D",
+          "explanation": "Me la chat gay di ung chinh thu 9."
+        },
+        {
+          "id": "Q010",
+          "question": "Tu tu nhien tren nhan thuong co nghia la.",
+          "options": [
+            "A. Duoc xac minh khong co phu gia",
+            "B. La huu co",
+            "C. Chua co dinh nghia phap ly ro",
+            "D. Khong chua GMO"
+          ],
+          "correct_answer": "C",
+          "explanation": "Day thuong la tu tiep thi neu khong co chung nhan."
+        },
+        {
+          "id": "Q011",
+          "question": "Gia tri hang ngay dua tren bao nhieu calo.",
+          "options": [
+            "A. 1500",
+            "B. 2000",
+            "C. 2500",
+            "D. 1800"
+          ],
+          "correct_answer": "B",
+          "explanation": "Moc tham chieu thuong la 2000 calo."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-003",
+      "title": "Benh va tac nhan gay benh",
+      "category_id": "CAT-03",
+      "difficulty": "nang cao",
+      "question_count": 5,
+      "time_limit_seconds": 240,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q012",
+          "question": "Listeria nguy hiem voi nhom nao.",
+          "options": [
+            "A. Nguoi truong thanh choi the thao",
+            "B. Phu nu mang thai, tre so sinh, nguoi cao tuoi va nguoi suy giam mien dich",
+            "C. Nguoi khong dung nap gluten",
+            "D. Tre em 5 den 12 tuoi"
+          ],
+          "correct_answer": "B",
+          "explanation": "Cac nhom nay co nguy co bien chung cao."
+        },
+        {
+          "id": "Q013",
+          "question": "Tac nhan nao tao doc to trong do hop lam sai cach.",
+          "options": [
+            "A. Salmonella typhi",
+            "B. Clostridium botulinum",
+            "C. Staphylococcus aureus",
+            "D. Bacillus cereus"
+          ],
+          "correct_answer": "B",
+          "explanation": "C botulinum co the tao doc to than kinh nguy hiem."
+        },
+        {
+          "id": "Q014",
+          "question": "Bacillus cereus thuong lien quan den thuc pham nao.",
+          "options": [
+            "A. Ga song",
+            "B. Com chin de o nhiet do phong",
+            "C. Pho mai mem",
+            "D. Hau song"
+          ],
+          "correct_answer": "B",
+          "explanation": "Com chin de am la vi du dien hinh."
+        },
+        {
+          "id": "Q015",
+          "question": "Muc FDA doi voi thuy ngan trong ca la bao nhieu.",
+          "options": [
+            "A. 0.1 ppm",
+            "B. 0.5 ppm",
+            "C. 1.0 ppm",
+            "D. 5.0 ppm"
+          ],
+          "correct_answer": "C",
+          "explanation": "Muc hanh dong la 1.0 ppm."
+        },
+        {
+          "id": "Q016",
+          "question": "Duong lay truyen chinh cua Norovirus la gi.",
+          "options": [
+            "A. Thit chua nau chin",
+            "B. Khong khi khi hat hoi",
+            "C. Duong phan mieng",
+            "D. Sua chua tiet trung"
+          ],
+          "correct_answer": "C",
+          "explanation": "Norovirus lay chu yeu qua duong phan mieng."
+        }
+      ]
+    }
+  ],
+  "daily_tips": [
+    {
+      "id": "TIP-001",
+      "icon": "🧼",
+      "text": "Rua tay bang xa phong 20 giay truoc khi nau.",
+      "category": "ve sinh",
+      "fact": "Khoảng thời gian đó tương đương hát hai lần bài 'Chúc mừng sinh nhật'. Đây là thói quen hiệu quả nhất để ngăn ngừa nhiễm khuẩn."
+    },
+    {
+      "id": "TIP-002",
+      "icon": "🌡️",
+      "text": "Giu tu lanh o 4 \u00b0C hoac thap hon.",
+      "category": "bao quan",
+      "fact": "Kiểm tra hàng tháng bằng nhiệt kế. Đệm cửa tủ lạnh có thể bị hỏng theo thời gian và nhiệt độ có thể tăng lên mà bạn không biết."
+    },
+    {
+      "id": "TIP-003",
+      "icon": "🔪",
+      "text": "Dung thot rieng de tranh nhiem cheo.",
+      "category": "bep",
+      "fact": "Quy tắc màu sắc tiêu chuẩn: đỏ cho thịt sống, vàng cho gia cầm, xanh lá cho rau củ, và trắng cho bánh mì hoặc sữa."
+    },
+    {
+      "id": "TIP-004",
+      "icon": "📦",
+      "text": "Ap dung FIFO: nhap truoc, dung truoc.",
+      "category": "bao quan",
+      "fact": "Xếp các thực phẩm cũ ra phía trước khi cất đồ tạp hóa. Việc này giúp giảm lãng phí thực phẩm và đảm bảo sử dụng an toàn."
+    },
+    {
+      "id": "TIP-005",
+      "icon": "🌡️",
+      "text": "Nhiet ke thuc pham la cach kiem tra dang tin cay.",
+      "category": "nau",
+      "fact": "Nhìn nước thịt chảy ra hoặc thịt chuyển màu nâu không phải là chỉ báo chính xác. Chỉ có nhiệt độ mới phản ánh đúng độ chín."
+    },
+    {
+      "id": "TIP-006",
+      "icon": "🥫",
+      "text": "Khong an thuc pham tu hop phong hoac mop sau.",
+      "category": "bao quan",
+      "fact": "Đây là cảnh báo nhiễm vi khuẩn Clostridium botulinum. Độc tố botulinum cực kỳ nguy hiểm, tuyệt đối không nếm thử để kiểm tra."
+    },
+    {
+      "id": "TIP-007",
+      "icon": "🥬",
+      "text": "Rua rau qua ke ca khi se got vo.",
+      "category": "nau",
+      "fact": "Dao cắt qua vỏ rau quả chưa rửa có thể đưa vi khuẩn và chất bẩn ngoài bề mặt trực tiếp vào phần thịt quả bạn ăn."
+    },
+    {
+      "id": "TIP-008",
+      "icon": "⏱️",
+      "text": "Thuc an chin de ngoai hon 2 gio co the nguy hiem.",
+      "category": "bao quan",
+      "fact": "Khi thời tiết nóng trên 32°C, vi khuẩn sinh sôi cực nhanh, rút ngắn thời gian an toàn xuống chỉ còn 1 giờ."
+    },
+    {
+      "id": "TIP-009",
+      "icon": "🐣",
+      "text": "Giu trung trong hop goc trong tu lanh.",
+      "category": "bao quan",
+      "fact": "Nên để trứng ở khoang chính tủ lạnh nơi nhiệt độ ổn định, tránh để ở cánh cửa tủ vì nhiệt độ ở đây thay đổi mỗi lần mở tủ."
+    },
+    {
+      "id": "TIP-010",
+      "icon": "🦪",
+      "text": "Nguoi de ton thuong nen tranh hai san co vo an song.",
+      "category": "nau",
+      "fact": "Những người có hệ miễn dịch yếu, phụ nữ mang thai, trẻ em và người già nên ăn động vật có vỏ đã nấu chín hoàn toàn để tránh ngộ độc."
+    }
+  ],
+  "regulations_us": [
+    {
+      "code": "21 CFR Part 101",
+      "title": "Ghi nhan thuc pham",
+      "authority": "FDA",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-101"
+    },
+    {
+      "code": "21 CFR Part 110",
+      "title": "Thuc hanh san xuat tot trong thuc pham",
+      "authority": "FDA",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-110"
+    },
+    {
+      "code": "21 CFR Part 117",
+      "title": "Phan tich moi nguy va kiem soat phong ngua",
+      "authority": "FDA",
+      "year": 2015
+    },
+    {
+      "code": "FSMA",
+      "title": "Luat an toan thuc pham huong den phong ngua",
+      "authority": "FDA",
+      "year": 2011,
+      "url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/full-text-food-safety-modernization-act-fsma"
+    },
+    {
+      "code": "9 CFR Parts 416 & 417",
+      "title": "Quy dinh HACCP cho thit va gia cam",
+      "authority": "USDA FSIS"
+    },
+    {
+      "code": "FALCPA",
+      "title": "Ghi nhan chat gay di ung thuc pham",
+      "authority": "FDA",
+      "year": 2004
+    },
+    {
+      "code": "FASTER Act",
+      "title": "Them me la chat gay di ung chinh",
+      "authority": "FDA",
+      "year": 2021
+    }
+  ],
+  "emergency_contacts_us": {
+    "emergency": "911",
+    "fda_consumer_hotline": "1-888-723-3366",
+    "usda_meat_poultry_hotline": "1-888-674-6854",
+    "poison_control": "1-800-222-1222",
+    "cdc_info": "1-800-CDC-INFO (1-800-232-4636)",
+    "report_foodborne_illness": "https://www.foodsafety.gov/report-a-problem/report-a-foodborne-illness"
+  }
+}
