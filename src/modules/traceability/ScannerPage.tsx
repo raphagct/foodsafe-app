@@ -252,12 +252,30 @@ function ScannerPage() {
               {/* Capture Button (only in photo mode) */}
               <div className="h-24 flex items-center justify-center mb-4">
                 {mode === 'photo' && (
-                  <button
+                  <div
                     onClick={takePhoto}
-                    className="w-16 h-16 rounded-full border-[3px] border-white p-1"
+                    role="button"
+                    style={{
+                      width: 72,
+                      height: 72,
+                      borderRadius: '50%',
+                      border: '3px solid rgba(255,255,255,0.9)',
+                      padding: 2,
+                      background: 'transparent',
+                      cursor: 'pointer',
+                      boxSizing: 'border-box',
+                    }}
+                    className="active:scale-90 transition-transform duration-150"
                   >
-                    <div className="w-full h-full bg-white rounded-full"></div>
-                  </button>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        backgroundColor: '#ffffff',
+                      }}
+                    />
+                  </div>
                 )}
               </div>
 

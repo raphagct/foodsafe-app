@@ -21,6 +21,7 @@ import {
   bookOutline,
   ribbonOutline,
   timeOutline,
+  openOutline,
 } from "ionicons/icons";
 import LogoutButton from "../../components/LogoutButton";
 import LanguageButton from "../../components/LanguageButton";
@@ -31,18 +32,14 @@ import type {
   EducationArticle,
   EducationContent,
   EducationQuiz,
+  EducationProgress,
 } from "../../types/education";
 import ArticleDetail from "./ArticleDetail";
 import DailyTip from "./DailyTip";
 import QuizEngine from "./QuizEngine";
+import { useAuth } from "../../contexts/AuthContext";
+import { fetchUserProgress, markContentComplete } from "../../services/educationProgressService";
 
-type EducationProgress = {
-  completedArticles: string[];
-  bookmarkedArticles: string[];
-  quizScores: Record<string, number>;
-};
-
-const progressStorageKey = "foodsafe_education_progress";
 
 
 
@@ -59,6 +56,7 @@ const labels: Record<
     startQuiz: string;
     questions: string;
     passScore: string;
+    progressTitle: string;
     markComplete: string;
     completed: string;
     bookmark: string;
@@ -87,11 +85,12 @@ const labels: Record<
     startQuiz: "Commencer",
     questions: "questions",
     passScore: "score requis",
+    progressTitle: "Votre progression",
     markComplete: "Marquer comme lu",
     completed: "Lu",
     bookmark: "Favoris",
     bookmarked: "Retirer des favoris",
-    articleType: "Type d'article",
+    articleType: "Catégorie",
     close: "OK",
     regulations: "Références réglementaires",
     emergency: "Contacts d'urgence",
@@ -114,11 +113,12 @@ const labels: Record<
     startQuiz: "Bắt đầu",
     questions: "câu hỏi",
     passScore: "điểm đạt",
+    progressTitle: "Tiến độ của bạn",
     markComplete: "Đánh dấu đã đọc",
     completed: "Đã đọc",
     bookmark: "Yeu thich",
     bookmarked: "Bo yeu thich",
-    articleType: "Loai bai",
+    articleType: "Danh mục",
     close: "OK",
     regulations: "Quy định tham khảo",
     emergency: "Liên hệ khẩn cấp",
@@ -141,11 +141,12 @@ const labels: Record<
     startQuiz: "Start",
     questions: "questions",
     passScore: "pass score",
+    progressTitle: "Your progress",
     markComplete: "Mark complete",
     completed: "Complete",
     bookmark: "Favorite",
     bookmarked: "Remove favorite",
-    articleType: "Article type",
+    articleType: "Category",
     close: "OK",
     regulations: "Regulation references",
     emergency: "Emergency contacts",
@@ -159,25 +160,11 @@ const labels: Record<
   },
 };
 
-function readProgress(): EducationProgress {
-  try {
-    const saved = window.localStorage.getItem(progressStorageKey);
-    if (!saved) {
-      return { completedArticles: [], bookmarkedArticles: [], quizScores: {} };
-    }
-    return JSON.parse(saved) as EducationProgress;
-  } catch {
-    return { completedArticles: [], bookmarkedArticles: [], quizScores: {} };
-  }
-}
-
-function saveProgress(progress: EducationProgress) {
-  window.localStorage.setItem(progressStorageKey, JSON.stringify(progress));
-}
 
 function EducationPage() {
   const currentLanguage = getLanguage();
   const copy = labels[currentLanguage];
+  const { user } = useAuth();
   const [content, setContent] = useState<EducationContent | null>(null);
   const [dailyTip, setDailyTip] = useState<DailyTipType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -186,7 +173,8 @@ function EducationPage() {
   const [viewMode, setViewMode] = useState<"articles" | "quizzes">("articles");
   const [selectedArticle, setSelectedArticle] = useState<EducationArticle | null>(null);
   const [selectedQuiz, setSelectedQuiz] = useState<EducationQuiz | null>(null);
-  const [progress, setProgress] = useState<EducationProgress>(() => readProgress());
+  const [progress, setProgress] = useState<EducationProgress>({ completedArticles: [], bookmarkedArticles: [], quizScores: {} });
+  const [showAllRegulations, setShowAllRegulations] = useState(false);
 
   useEffect(() => {
     async function loadEducation() {
@@ -197,6 +185,11 @@ function EducationPage() {
         ]);
         setContent(educationContent);
         setDailyTip(tip);
+        
+        if (user) {
+          const userProgress = await fetchUserProgress(user.id);
+          setProgress(userProgress);
+        }
       } catch {
         setError(copy.loadingError);
       } finally {
@@ -205,7 +198,7 @@ function EducationPage() {
     }
 
     loadEducation();
-  }, [copy.loadingError, currentLanguage]);
+  }, [copy.loadingError, currentLanguage, user]);
 
   const categoriesById = useMemo(() => {
     return new Map((content?.categories ?? []).map((category) => [category.id, category]));
@@ -223,39 +216,39 @@ function EducationPage() {
     });
   }, [activeCategory, content]);
 
-  function updateProgress(nextProgress: EducationProgress) {
-    setProgress(nextProgress);
-    saveProgress(nextProgress);
+  async function markArticleComplete(articleId: string) {
+    const isCurrentlyCompleted = progress.completedArticles.includes(articleId);
+    const newCompletedState = !isCurrentlyCompleted;
+    
+    // Optimistic UI update
+    setProgress(prev => ({
+      ...prev,
+      completedArticles: newCompletedState
+        ? [...prev.completedArticles, articleId]
+        : prev.completedArticles.filter((id) => id !== articleId),
+    }));
+
+    if (user) {
+      await markContentComplete(user.id, articleId, "article", newCompletedState);
+    }
   }
 
-  function toggleBookmark(articleId: string) {
-    const bookmarked = progress.bookmarkedArticles.includes(articleId);
-    updateProgress({
-      ...progress,
-      bookmarkedArticles: bookmarked
-        ? progress.bookmarkedArticles.filter((id) => id !== articleId)
-        : [...progress.bookmarkedArticles, articleId],
-    });
-  }
-
-  function markArticleComplete(articleId: string) {
-    const completed = progress.completedArticles.includes(articleId);
-    updateProgress({
-      ...progress,
-      completedArticles: completed
-        ? progress.completedArticles.filter((id) => id !== articleId)
-        : [...progress.completedArticles, articleId],
-    });
-  }
-
-  function saveQuizScore(quizId: string, score: number) {
-    updateProgress({
-      ...progress,
+  async function saveQuizScore(quizId: string, score: number) {
+    const currentBest = progress.quizScores[quizId] ?? 0;
+    const newBest = Math.max(currentBest, score);
+    
+    // Optimistic UI update
+    setProgress(prev => ({
+      ...prev,
       quizScores: {
-        ...progress.quizScores,
-        [quizId]: Math.max(progress.quizScores[quizId] ?? 0, score),
+        ...prev.quizScores,
+        [quizId]: newBest,
       },
-    });
+    }));
+
+    if (user) {
+      await markContentComplete(user.id, quizId, "quiz", true, newBest);
+    }
   }
 
   const completedCount = progress.completedArticles.length;
@@ -270,9 +263,6 @@ function EducationPage() {
               <h1 className="m-0 text-[24px] font-black leading-tight text-black">
                 {t("educationTitle", currentLanguage)}
               </h1>
-              <p className="mt-1 text-[13px] font-semibold text-gray-400">
-                {copy.doneLabel} {completedCount} {copy.articles.toLowerCase()} · {quizCount} {copy.quizzes.toLowerCase()}
-              </p>
             </div>
             <div className="flex items-center gap-2">
               <LanguageButton />
@@ -294,6 +284,34 @@ function EducationPage() {
           </div>
         ) : content ? (
           <main className="mx-auto max-w-[980px] px-[18px] py-4">
+            {user && content && (
+              <div className="mb-5 flex flex-col gap-3 rounded-xl bg-white px-3.5 pb-3.5 pt-2 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-gray-600">
+                      <IonIcon icon={bookOutline} className="text-[16px]" />
+                    </div>
+                    <div>
+                      <h3 className="text-[14px] font-black tracking-tight text-gray-900">{copy.progressTitle}</h3>
+                      <p className="mt-0.5 text-[12px] font-medium text-gray-500">
+                        {completedCount}/{content.articles.length} articles • {quizCount}/{content.quizzes.length} quiz
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[14px] font-black tracking-tighter text-gray-900">
+                    {Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%
+                  </span>
+                </div>
+                
+                <div className="h-[4px] w-full overflow-hidden rounded-full bg-gray-100">
+                  <div 
+                    className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-1000 ease-out"
+                    style={{ width: `${Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
             {dailyTip ? <DailyTip tip={dailyTip} title={copy.dailyTip} /> : null}
 
             <div className="my-4 rounded-[6px] bg-white px-4 py-1 shadow-sm">
@@ -334,7 +352,7 @@ function EducationPage() {
                   const bookmarked = progress.bookmarkedArticles.includes(article.id);
 
                   return (
-                    <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-sm">
+                    <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-none">
                       <IonCardContent className="p-4">
                         <div className="flex items-start justify-between gap-3">
                           <span
@@ -359,7 +377,7 @@ function EducationPage() {
                           <span className="inline-flex items-center gap-1">
                             <IonIcon icon={timeOutline} /> {article.read_time_min} {copy.minRead}
                           </span>
-                          <span className="inline-flex items-center gap-1">
+                          <span className="inline-flex items-center gap-1 capitalize">
                             <IonIcon icon={bookOutline} /> {article.difficulty}
                           </span>
                         </div>
@@ -367,9 +385,6 @@ function EducationPage() {
                         <div className="mt-4 flex flex-wrap gap-2">
                           <IonButton size="small" onClick={() => setSelectedArticle(article)} className="font-bold [--border-radius:6px]">
                             {copy.read}
-                          </IonButton>
-                          <IonButton size="small" fill="clear" onClick={() => toggleBookmark(article.id)} className="font-bold [--border-radius:6px]">
-                            {bookmarked ? copy.bookmarked : copy.bookmark}
                           </IonButton>
                         </div>
                       </IonCardContent>
@@ -384,7 +399,7 @@ function EducationPage() {
                   const bestScore = progress.quizScores[quiz.id];
 
                   return (
-                    <IonCard key={quiz.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-sm">
+                    <IonCard key={quiz.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-none">
                       <IonCardContent className="p-4">
                         <div className="flex items-start justify-between gap-3">
                           <span
@@ -430,31 +445,70 @@ function EducationPage() {
             <section className="mt-6 grid grid-cols-1 gap-4 pb-8 md:grid-cols-2">
               <div>
                 <h2 className="mb-3 text-[18px] font-extrabold text-black">{copy.regulations}</h2>
-                <div className="grid gap-2">
-                  {content.regulations_us.slice(0, 4).map((regulation) => (
-                    <a
-                      key={regulation.code}
-                      href={regulation.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-xl bg-white px-4 py-3 text-gray-900 no-underline shadow-sm"
+                <div className="grid gap-3">
+                  {(showAllRegulations ? content.regulations_us : content.regulations_us.slice(0, 4)).map((regulation) => {
+                    const hasUrl = Boolean(regulation.url);
+                    return (
+                      <IonCard 
+                        key={regulation.code} 
+                        className={`m-0 rounded-xl bg-white ${hasUrl ? 'shadow-sm transition-all hover:bg-gray-50 active:scale-[0.98]' : 'shadow-sm opacity-90'}`}
+                        button={hasUrl} 
+                        href={hasUrl ? regulation.url : undefined} 
+                        target={hasUrl ? "_blank" : undefined} 
+                        rel={hasUrl ? "noreferrer" : undefined}
+                      >
+                        <IonCardContent className="p-3">
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <strong className="block text-[14px] font-black text-gray-900">{regulation.code}</strong>
+                              <span className="mt-1 block text-[13px] font-medium leading-snug text-gray-500">{regulation.title}</span>
+                              {(regulation.authority || regulation.year) && (
+                                <div className="mt-2 flex gap-2">
+                                  {regulation.authority && (
+                                    <span className="rounded bg-gray-100 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-600">
+                                      {regulation.authority}
+                                    </span>
+                                  )}
+                                  {regulation.year && (
+                                    <span className="rounded bg-gray-100 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-600">
+                                      {regulation.year}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                            {hasUrl && (
+                              <IonIcon icon={openOutline} className="mt-0.5 shrink-0 text-[16px] text-gray-400" />
+                            )}
+                          </div>
+                        </IonCardContent>
+                      </IonCard>
+                    );
+                  })}
+                  
+                  {!showAllRegulations && content.regulations_us.length > 4 && (
+                    <IonButton 
+                      fill="clear" 
+                      onClick={() => setShowAllRegulations(true)} 
+                      className="mt-1 font-bold [--border-radius:8px]"
                     >
-                      <strong className="block text-[14px] font-black">{regulation.code}</strong>
-                      <span className="mt-1 block text-[13px] font-medium leading-snug text-gray-500">{regulation.title}</span>
-                    </a>
-                  ))}
+                      Voir les {content.regulations_us.length} réglementations
+                    </IonButton>
+                  )}
                 </div>
               </div>
 
               <div>
                 <h2 className="mb-3 text-[18px] font-extrabold text-black">{copy.emergency}</h2>
-                <div className="grid gap-2">
+                <div className="flex flex-col gap-5">
                   {Object.entries(content.emergency_contacts_us).map(([key, value]) => (
-                    <div key={key} className="rounded-xl bg-white px-4 py-3 shadow-sm">
-                      <span className="block text-[12px] font-bold capitalize text-gray-400">
+                    <div key={key} className="flex flex-col">
+                      <span className="text-[12px] font-semibold capitalize text-gray-500">
                         {key.replaceAll("_", " ")}
                       </span>
-                      <strong className="mt-1 block break-words text-[14px] font-black text-gray-900">{value}</strong>
+                      <strong className="mt-0.5 break-words text-[14px] font-black text-gray-900">
+                        {value}
+                      </strong>
                     </div>
                   ))}
                 </div>
@@ -470,10 +524,8 @@ function EducationPage() {
               categoryName={categoriesById.get(selectedArticle.category_id)?.name}
               labels={copy}
               isCompleted={progress.completedArticles.includes(selectedArticle.id)}
-              isBookmarked={progress.bookmarkedArticles.includes(selectedArticle.id)}
               onBack={() => setSelectedArticle(null)}
               onMarkComplete={markArticleComplete}
-              onToggleBookmark={toggleBookmark}
             />
           ) : null}
         </IonModal>

@@ -1,4 +1,5 @@
-import { IonPage, IonContent, IonHeader, IonToolbar, useIonViewWillEnter, useIonRouter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonToolbar, useIonViewWillEnter, useIonRouter, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from "@ionic/react";
+import { bulbOutline, schoolOutline, bookOutline } from "ionicons/icons";
 import { useState } from "react";
 import "./HomePage.css";
 import HistorySection from "../../components/HistorySection";
@@ -156,76 +157,79 @@ function HomePage() {
           </section>
 
           {/* Education Quick Access Section */}
-          <section className="mt-6">
-            <div className="flex items-center justify-between px-1 mb-3">
-              <h2 className="m-0 text-[18px] font-extrabold text-black tracking-[-0.4px]">
+          <IonCard className="w-full rounded-[14px] mt-4 box-border shadow-none border border-gray-100 bg-white">
+            <IonCardHeader className="flex flex-row items-center justify-between p-0 pt-[16px] px-[16px]">
+              <IonCardTitle className="m-0 text-[18px] font-extrabold text-black tracking-[-0.4px]">
                 {eduTexts.sectionTitle}
-              </h2>
-              <button
-                type="button"
+              </IonCardTitle>
+              <IonButton
+                className="view-all-button m-0 p-0 text-[13px] font-bold text-[var(--color-primary)]"
+                fill="clear"
+                size="small"
                 onClick={() => router.push("/tabs/education")}
-                className="bg-transparent border-none text-[12px] font-bold text-[var(--color-primary)] cursor-pointer p-0"
               >
                 {t("viewAll", currentLanguage)}
-              </button>
-            </div>
+              </IonButton>
+            </IonCardHeader>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {/* Daily Tip Card */}
-              <div
-                onClick={() => router.push("/tabs/education")}
-                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
-              >
-                <div className="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center text-xl flex-shrink-0">
-                  💡
+            <IonCardContent className="mt-4 p-0 pb-[16px] px-[16px]">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* Daily Tip Card */}
+                <div
+                  onClick={() => router.push("/tabs/education")}
+                  className="bg-white rounded-[14px] p-4 border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0 border border-gray-100">
+                    <IonIcon icon={bulbOutline} className="text-xl text-gray-700" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                      {eduTexts.tipTitle}
+                    </span>
+                    <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                      {eduTexts.tipSub}
+                    </span>
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
-                    {eduTexts.tipTitle}
-                  </span>
-                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
-                    {eduTexts.tipSub}
-                  </span>
+
+                {/* Quick Quiz Card */}
+                <div
+                  onClick={() => router.push("/tabs/education")}
+                  className="bg-white rounded-[14px] p-4 border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0 border border-gray-100">
+                    <IonIcon icon={schoolOutline} className="text-xl text-gray-700" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                      {eduTexts.quizTitle}
+                    </span>
+                    <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                      {eduTexts.quizSub}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Regulations & Guide Card */}
+                <div
+                  onClick={() => router.push("/tabs/education")}
+                  className="bg-white rounded-[14px] p-4 border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0 border border-gray-100">
+                    <IonIcon icon={bookOutline} className="text-xl text-gray-700" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[14px] font-extrabold text-gray-900 block truncate">
+                      {eduTexts.guideTitle}
+                    </span>
+                    <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
+                      {eduTexts.guideSub}
+                    </span>
+                  </div>
                 </div>
               </div>
-
-              {/* Quick Quiz Card */}
-              <div
-                onClick={() => router.push("/tabs/education")}
-                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
-              >
-                <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center text-xl flex-shrink-0">
-                  🎓
-                </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
-                    {eduTexts.quizTitle}
-                  </span>
-                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
-                    {eduTexts.quizSub}
-                  </span>
-                </div>
-              </div>
-
-              {/* Regulations & Guide Card */}
-              <div
-                onClick={() => router.push("/tabs/education")}
-                className="bg-white rounded-[14px] p-4 border border-gray-100 shadow-sm flex items-center gap-3.5 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]"
-              >
-                <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0">
-                  📚
-                </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[14px] font-extrabold text-gray-900 block truncate">
-                    {eduTexts.guideTitle}
-                  </span>
-                  <span className="text-[12px] font-medium text-gray-500 block truncate mt-0.5">
-                    {eduTexts.guideSub}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </section>
+            </IonCardContent>
+          </IonCard>
         </main>
       </IonContent>
     </IonPage>

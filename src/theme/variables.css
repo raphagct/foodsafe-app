@@ -22,6 +22,11 @@
   --ion-tab-bar-color: var(--color-text-secondary);
   --ion-tab-bar-color-selected: var(--color-text);
   --ion-card-background: var(--color-surface);
+  
+  /* Brand Color Enforcement (overrides Ionic default blue) */
+  --ion-color-primary: var(--color-primary);
+  --ion-color-primary-rgb: 21, 153, 71;
+  --ion-color-primary-contrast: #ffffff;
 }
 
 ion-title {
@@ -33,7 +38,8 @@ ion-tab-bar {
   padding-bottom: env(safe-area-inset-bottom, 0px) !important;
 }
 
-body, html {
+body,
+html {
   font-family: "Inter", sans-serif;
 }
 
@@ -47,6 +53,7 @@ body, html {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -54,8 +61,13 @@ body, html {
 }
 
 @keyframes splash-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes splash-scale-in {
@@ -63,6 +75,7 @@ body, html {
     opacity: 0;
     transform: scale(0.85);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

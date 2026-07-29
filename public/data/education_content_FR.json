@@ -2,7 +2,7 @@
   "_meta": {
     "version": "1.0.0",
     "module": "Education",
-    "description": "Contenu pedagogique sur la securite alimentaire pour affichage mobile",
+    "description": "Contenu pédagogique sur la sécurité alimentaire pour affichage mobile",
     "language": "fr",
     "last_updated": "2026-06-09",
     "content_types": [
@@ -23,7 +23,7 @@
     },
     {
       "id": "CAT-02",
-      "name": "Conservation et temperature",
+      "name": "Conservation et température",
       "icon": "thermometer",
       "color": "#2196F3",
       "article_count": 3
@@ -54,9 +54,9 @@
     {
       "id": "ART-001",
       "category_id": "CAT-01",
-      "title": "Qu est ce que la securite alimentaire",
+      "title": "Qu'est-ce que la sécurité alimentaire ?",
       "summary": "Introduction aux notions de securite alimentaire, aux contaminations et aux risques pour la sante.",
-      "difficulty": "debutant",
+      "difficulty": "débutant",
       "read_time_min": 5,
       "content_blocks": [
         {
@@ -116,7 +116,7 @@
       "category_id": "CAT-01",
       "title": "Les 4 principes essentiels",
       "summary": "Nettoyer, separer, cuire et refroidir avec des conseils pratiques.",
-      "difficulty": "debutant",
+      "difficulty": "débutant",
       "read_time_min": 5,
       "content_blocks": [
         {
@@ -182,7 +182,7 @@
       "category_id": "CAT-03",
       "title": "Maladies alimentaires et premiers gestes",
       "summary": "Symptomes frequents, causes possibles et actions utiles en cas de doute.",
-      "difficulty": "intermediaire",
+      "difficulty": "intermédiaire",
       "read_time_min": 7,
       "content_blocks": [
         {
@@ -249,9 +249,9 @@
     {
       "id": "ART-004",
       "category_id": "CAT-02",
-      "title": "La zone de danger des temperatures",
-      "summary": "Pourquoi la temperature est essentielle pour limiter la multiplication bacterienne.",
-      "difficulty": "intermediaire",
+      "title": "La zone de danger des températures",
+      "summary": "Pourquoi la température est essentielle pour limiter la multiplication bactérienne.",
+      "difficulty": "intermédiaire",
       "read_time_min": 5,
       "content_blocks": [
         {
@@ -261,7 +261,7 @@
             {
               "temp_f": "165+",
               "temp_c": "74+",
-              "label": "Surete pour volaille bien cuite",
+              "label": "Sûreté pour volaille bien cuite",
               "color": "#4CAF50",
               "safe": true
             },
@@ -323,7 +323,7 @@
         "ART-005"
       ],
       "tags": [
-        "temperature",
+        "température",
         "refrigeration"
       ]
     },
@@ -332,7 +332,7 @@
       "category_id": "CAT-04",
       "title": "Lire une etiquette alimentaire",
       "summary": "Comprendre ingredients, allergenes, dates et informations nutritionnelles.",
-      "difficulty": "debutant",
+      "difficulty": "débutant",
       "read_time_min": 7,
       "content_blocks": [
         {
@@ -421,7 +421,7 @@
       "category_id": "CAT-04",
       "title": "Certifications alimentaires",
       "summary": "Comprendre les labels et certifications que l on voit sur les emballages.",
-      "difficulty": "intermediaire",
+      "difficulty": "intermédiaire",
       "read_time_min": 7,
       "content_blocks": [
         {
@@ -464,7 +464,7 @@
       "category_id": "CAT-05",
       "title": "Manipuler les aliments en cuisine",
       "summary": "Bonnes pratiques pour decongeler, cuire, refroidir et conserver.",
-      "difficulty": "debutant",
+      "difficulty": "débutant",
       "read_time_min": 6,
       "content_blocks": [
         {
@@ -537,7 +537,7 @@
       "id": "QUIZ-001",
       "title": "Bases de la securite alimentaire",
       "category_id": "CAT-01",
-      "difficulty": "debutant",
+      "difficulty": "débutant",
       "question_count": 6,
       "time_limit_seconds": 180,
       "pass_score": 67,
@@ -620,7 +620,7 @@
       "id": "QUIZ-002",
       "title": "Lire les etiquettes alimentaires",
       "category_id": "CAT-04",
-      "difficulty": "intermediaire",
+      "difficulty": "intermédiaire",
       "question_count": 5,
       "time_limit_seconds": 180,
       "pass_score": 80,
@@ -691,7 +691,7 @@
       "id": "QUIZ-003",
       "title": "Maladies alimentaires et pathogenes",
       "category_id": "CAT-03",
-      "difficulty": "avance",
+      "difficulty": "avancé",
       "question_count": 5,
       "time_limit_seconds": 240,
       "pass_score": 80,
@@ -784,7 +784,7 @@
     {
       "id": "TIP-004",
       "icon": "📦",
-      "text": "Appliquez FIFO: premier entre, premier sorti.",
+      "text": "Appliquez FIFO: premier entré, premier sorti.",
       "category": "conservation",
       "fact": "Placez les articles les plus anciens à l'avant lorsque vous rangez vos courses. Cela réduit le gaspillage et garantit une consommation sûre."
     },

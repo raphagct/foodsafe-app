@@ -95,3 +95,9 @@ export type QuizGradeResult = {
     explanation: string;
   }>;
 };
+
+export type EducationProgress = {
+  completedArticles: string[];
+  bookmarkedArticles: string[];
+  quizScores: Record<string, number>;
+};
