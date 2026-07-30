@@ -42,7 +42,7 @@ function ScannerPage() {
     }
   }, []);
 
-  const startCamera = async () => {
+  const startCamera = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' }
@@ -54,14 +54,16 @@ function ScannerPage() {
     } catch (err) {
       console.error("Camera access error:", err);
     }
-  };
+  }, []);
 
-  const stopCamera = () => {
+  const stopCamera = useCallback(() => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach(track => track.stop());
       streamRef.current = null;
     }
-  };
+  }, []);
+
+  const startQrScannerRef = useRef<(() => void) | null>(null);
 
   const handleQrResult = useCallback(async (decodedText: string) => {
     if (isProcessingRef.current) return;
@@ -83,7 +85,7 @@ function ScannerPage() {
         setTimeout(() => {
           setScanError(null);
           isProcessingRef.current = false;
-          startQrScanner();
+          startQrScannerRef.current?.();
         }, 3000);
       } else {
         // Store result in sessionStorage for BatchDetailPage to read
@@ -96,7 +98,7 @@ function ScannerPage() {
       setTimeout(() => {
         setScanError(null);
         isProcessingRef.current = false;
-        startQrScanner();
+        startQrScannerRef.current?.();
       }, 3000);
     } finally {
       setIsLoading(false);
@@ -139,6 +141,10 @@ function ScannerPage() {
     }
   }, [handleQrResult, stopQrScanner]);
 
+  useEffect(() => {
+    startQrScannerRef.current = startQrScanner;
+  }, [startQrScanner]);
+
   // Switch between QR and Photo mode
   useEffect(() => {
     if (mode === 'qr') {
@@ -149,9 +155,10 @@ function ScannerPage() {
       }, 100);
       return () => clearTimeout(timer);
     } else {
-      stopQrScanner().then(() => startCamera());
+      stopQrScanner();
+      startCamera();
     }
-  }, [mode, startQrScanner, stopQrScanner]);
+  }, [mode, startQrScanner, stopQrScanner, stopCamera, startCamera]);
 
   useIonViewDidEnter(() => {
     if (mode === 'qr') {

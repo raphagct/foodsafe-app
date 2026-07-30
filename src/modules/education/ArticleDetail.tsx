@@ -31,6 +31,7 @@ type ArticleDetailProps = {
   labels: ArticleDetailLabels;
   isCompleted: boolean;
   onMarkComplete: (articleId: string) => void;
+  onBack: () => void;
 };
 
 function asRecord(value: unknown): Record<string, unknown> {

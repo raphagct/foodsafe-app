@@ -35,7 +35,7 @@ function HistorySection({ title, items = [], type }: HistorySectionProps) {
   const currentLanguage = getLanguage();
 
   const handleViewAll = () => {
-    router.push("/tabs/history");
+    router.push(`/tabs/history?tab=${type}s`);
   };
 
   const handleItemClick = (item: HistoryItem) => {
@@ -52,12 +52,12 @@ function HistorySection({ title, items = [], type }: HistorySectionProps) {
 
   const getStatusBadge = (item: HistoryItem) => {
     if (item.isRecall) {
-      return { bg: "#fee2e2", color: "#991b1b", label: "RAPPEL", icon: alertCircleOutline };
+      return { bg: "#fee2e2", color: "#991b1b", label: t("statusRecall", currentLanguage).toUpperCase(), icon: alertCircleOutline };
     }
     if (item.expiryStatus === "EXPIRED") {
-      return { bg: "#fef9c3", color: "#854d0e", label: "EXPIRÉ", icon: warningOutline };
+      return { bg: "#fef9c3", color: "#854d0e", label: t("statusExpired", currentLanguage).toUpperCase(), icon: warningOutline };
     }
-    return { bg: "#dcfce7", color: "#166534", label: "VALIDE", icon: checkmarkCircleOutline };
+    return { bg: "#dcfce7", color: "#166534", label: t("statusValid", currentLanguage).toUpperCase(), icon: checkmarkCircleOutline };
   };
 
   return (

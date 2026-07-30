@@ -284,35 +284,37 @@ function EducationPage() {
           </div>
         ) : content ? (
           <main className="mx-auto max-w-[980px] px-[18px] py-4">
-            {user && content && (
-              <div className="mb-5 flex flex-col gap-3 rounded-xl bg-white px-3.5 pb-3.5 pt-2 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-gray-600">
-                      <IonIcon icon={bookOutline} className="text-[16px]" />
+            <div className="mb-5 grid auto-rows-fr grid-cols-1 items-stretch gap-4 md:grid-cols-2">
+              {user && content && (
+                <div className="flex h-full flex-col justify-between rounded-2xl bg-white p-5 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-50 text-gray-600">
+                        <IonIcon icon={bookOutline} className="text-[18px]" />
+                      </div>
+                      <div>
+                        <h3 className="text-[15px] font-black tracking-tight text-gray-900">{copy.progressTitle}</h3>
+                        <p className="mt-0.5 text-[13px] font-medium text-gray-500">
+                          {completedCount}/{content.articles.length} articles • {quizCount}/{content.quizzes.length} quiz
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-[14px] font-black tracking-tight text-gray-900">{copy.progressTitle}</h3>
-                      <p className="mt-0.5 text-[12px] font-medium text-gray-500">
-                        {completedCount}/{content.articles.length} articles • {quizCount}/{content.quizzes.length} quiz
-                      </p>
-                    </div>
+                    <span className="text-[16px] font-black tracking-tighter text-gray-900">
+                      {Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%
+                    </span>
                   </div>
-                  <span className="text-[14px] font-black tracking-tighter text-gray-900">
-                    {Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%
-                  </span>
+                  
+                  <div className="mt-4 h-[6px] w-full overflow-hidden rounded-full bg-gray-100">
+                    <div 
+                      className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-1000 ease-out"
+                      style={{ width: `${Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%` }}
+                    />
+                  </div>
                 </div>
-                
-                <div className="h-[4px] w-full overflow-hidden rounded-full bg-gray-100">
-                  <div 
-                    className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-1000 ease-out"
-                    style={{ width: `${Math.round(((completedCount + quizCount) / (content.articles.length + content.quizzes.length)) * 100) || 0}%` }}
-                  />
-                </div>
-              </div>
-            )}
+              )}
 
-            {dailyTip ? <DailyTip tip={dailyTip} title={copy.dailyTip} /> : null}
+              {dailyTip ? <DailyTip tip={dailyTip} title={copy.dailyTip} /> : null}
+            </div>
 
             <div className="my-4 rounded-[6px] bg-white px-4 py-1 shadow-sm">
               <IonSelect
@@ -349,7 +351,6 @@ function EducationPage() {
                 {filteredArticles.map((article) => {
                   const category = categoriesById.get(article.category_id);
                   const complete = progress.completedArticles.includes(article.id);
-                  const bookmarked = progress.bookmarkedArticles.includes(article.id);
 
                   return (
                     <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-none">
@@ -368,8 +369,8 @@ function EducationPage() {
                           ) : null}
                         </div>
 
-                        <h3 className="text-[17px] font-black leading-snug text-gray-950" style={{ marginTop: '20px' }}>{article.title}</h3>
-                        <p className="mt-2 line-clamp-3 text-[14px] font-medium leading-relaxed text-gray-600">
+                        <h3 className="text-[18px] font-black tracking-tight leading-snug text-black" style={{ marginTop: '20px' }}>{article.title}</h3>
+                        <p className="mt-2 line-clamp-3 text-[14px] font-normal leading-relaxed text-gray-500">
                           {article.summary}
                         </p>
 
@@ -418,8 +419,8 @@ function EducationPage() {
                           ) : null}
                         </div>
 
-                        <h3 className="text-[17px] font-black leading-snug text-gray-950" style={{ marginTop: '20px' }}>{quiz.title}</h3>
-                        <p className="mt-2 text-[14px] font-medium leading-relaxed text-gray-600">
+                        <h3 className="text-[18px] font-black tracking-tight leading-snug text-black" style={{ marginTop: '20px' }}>{quiz.title}</h3>
+                        <p className="mt-2 text-[14px] font-normal leading-relaxed text-gray-500">
                           {quiz.question_count} {copy.questions} · {quiz.pass_score}% {copy.passScore}
                         </p>
 
@@ -491,6 +492,7 @@ function EducationPage() {
                       fill="clear" 
                       onClick={() => setShowAllRegulations(true)} 
                       className="mt-1 font-bold [--border-radius:8px]"
+                      style={{ '--background-hover': 'transparent', '--background-activated': 'transparent', '--background-focused': 'transparent', '--ripple-color': 'transparent' } as React.CSSProperties}
                     >
                       Voir les {content.regulations_us.length} réglementations
                     </IonButton>

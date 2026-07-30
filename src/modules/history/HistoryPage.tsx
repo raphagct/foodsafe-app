@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   IonContent,
   IonPage,
   IonHeader,
   IonToolbar,
-  IonTitle,
   IonList,
   IonItem,
   IonLabel,
   IonThumbnail,
   IonBadge,
-  IonButtons,
   IonSegment,
   IonSegmentButton,
   IonIcon,
@@ -32,7 +31,16 @@ function HistoryPage() {
   const router = useIonRouter();
   const [reports, setReports] = useState<ReportRecord[]>([]);
   const [scans, setScans] = useState<ScanHistoryRecord[]>([]);
-  const [activeTab, setActiveTab] = useState<"reports" | "scans">("reports");
+  const location = useLocation();
+
+  const [activeTab, setActiveTab] = useState<"reports" | "scans">(
+    () => {
+      const params = new URLSearchParams(location.search);
+      const tabParam = params.get("tab");
+      return tabParam === "scans" || tabParam === "reports" ? tabParam : "reports";
+    }
+  );
+
   const [isLoading, setIsLoading] = useState(true);
   const currentLanguage = getLanguage();
 

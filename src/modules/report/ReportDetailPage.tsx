@@ -7,12 +7,9 @@ import {
   IonButtons,
   IonBackButton,
   IonBadge,
-  IonCard,
-  IonCardContent,
   IonChip,
   IonLabel,
   IonIcon,
-  IonItem,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { useParams } from "react-router";

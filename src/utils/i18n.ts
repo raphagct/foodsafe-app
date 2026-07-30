@@ -1,6 +1,6 @@
 export type LanguageCode = "fr" | "vi" | "en";
 
-export const LANGUAGE_STORAGE_KEY = "foodsafe_language";
+const LANGUAGE_STORAGE_KEY = "foodsafe_language";
 
 export const languages: Array<{
   code: LanguageCode;
@@ -24,7 +24,7 @@ export const languages: Array<{
   },
 ];
 
-export const defaultLanguage: LanguageCode = "fr";
+const defaultLanguage: LanguageCode = "en";
 
 export type TranslationKey =
   | "appNameFood"
@@ -128,7 +128,7 @@ export type TranslationKey =
   | "tabReports"
   | "tabScans";
 
-export const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
+const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
     appNameFood: "Food",
     appNameSafe: "Safe.",

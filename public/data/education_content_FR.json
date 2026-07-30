@@ -55,13 +55,13 @@
       "id": "ART-001",
       "category_id": "CAT-01",
       "title": "Qu'est-ce que la sécurité alimentaire ?",
-      "summary": "Introduction aux notions de securite alimentaire, aux contaminations et aux risques pour la sante.",
+      "summary": "Introduction aux notions de sécurité alimentaire, aux contaminations et aux risques pour la sante.",
       "difficulty": "débutant",
       "read_time_min": 5,
       "content_blocks": [
         {
           "type": "paragraph",
-          "text": "La securite alimentaire regroupe les pratiques qui evitent qu un aliment rende malade pendant sa production, son transport, sa vente ou sa consommation."
+          "text": "La sécurité alimentaire regroupe les pratiques qui evitent qu un aliment rende malade pendant sa production, son transport, sa vente ou sa consommation."
         },
         {
           "type": "heading",
@@ -70,7 +70,7 @@
         {
           "type": "list",
           "items": [
-            "Biologique: bacteries, virus, moisissures et parasites.",
+            "Biologique: bactéries, virus, moisissures et parasites.",
             "Chimique: pesticides, metaux lourds, additifs non adaptes ou toxines.",
             "Physique: verre, metal, os, pierre ou morceau d emballage."
           ]
@@ -98,7 +98,7 @@
         },
         {
           "type": "key_takeaway",
-          "text": "La securite alimentaire est une responsabilite partagee, de la ferme a l assiette."
+          "text": "La sécurité alimentaire est une responsabilite partagee, de la ferme a l assiette."
         }
       ],
       "related_articles": [
@@ -154,9 +154,9 @@
             {
               "title": "REFROIDIR",
               "points": [
-                "Refrigerateur a 4 \u00b0C ou moins.",
+                "Réfrigérateur a 4 \u00b0C ou moins.",
                 "Refrigerer les aliments perissables dans les 2 heures.",
-                "Decongeler au refrigerateur, a l eau froide ou au micro ondes."
+                "Decongeler au réfrigérateur, a l eau froide ou au micro ondes."
               ]
             }
           ]
@@ -256,7 +256,7 @@
       "content_blocks": [
         {
           "type": "infographic_data",
-          "chart_type": "temperature_scale",
+          "chart_type": "température_scale",
           "zones": [
             {
               "temp_f": "165+",
@@ -282,14 +282,14 @@
             {
               "temp_f": "33-40",
               "temp_c": "1-4",
-              "label": "Refrigerateur",
+              "label": "Réfrigérateur",
               "color": "#2196F3",
               "safe": true
             },
             {
               "temp_f": "<=32",
               "temp_c": "<=0",
-              "label": "Congelateur",
+              "label": "Congélateur",
               "color": "#1565C0",
               "safe": true
             }
@@ -297,7 +297,7 @@
         },
         {
           "type": "key_fact",
-          "text": "Entre 4 \u00b0C et 60 \u00b0C, les bacteries peuvent se multiplier rapidement."
+          "text": "Entre 4 \u00b0C et 60 \u00b0C, les bactéries peuvent se multiplier rapidement."
         },
         {
           "type": "rule",
@@ -308,7 +308,7 @@
           "type": "faq",
           "items": [
             {
-              "question": "La congelation tue les bacteries",
+              "question": "La congelation tue les bactéries",
               "answer": "Non. Elle ralentit surtout leur croissance. Une cuisson correcte reste necessaire."
             },
             {
@@ -437,7 +437,7 @@
             },
             {
               "name": "ISO 22000",
-              "means": "Norme internationale de management de la securite alimentaire."
+              "means": "Norme internationale de management de la sécurité alimentaire."
             },
             {
               "name": "MSC et ASC",
@@ -469,14 +469,14 @@
       "content_blocks": [
         {
           "type": "heading",
-          "text": "Decongeler en securite"
+          "text": "Decongeler en sécurité"
         },
         {
           "type": "methods_list",
           "methods": [
             {
-              "name": "Au refrigerateur",
-              "description": "Methode la plus sure car l aliment reste a temperature controlee.",
+              "name": "Au réfrigérateur",
+              "description": "Methode la plus sure car l aliment reste a température controlee.",
               "rating": "Meilleur"
             },
             {
@@ -486,7 +486,7 @@
             },
             {
               "name": "Au micro ondes",
-              "description": "Cuire immediatement apres decongelation.",
+              "description": "Cuire immediatement apres décongélation.",
               "rating": "Acceptable"
             }
           ]
@@ -496,12 +496,12 @@
           "techniques": [
             "Diviser les grands volumes.",
             "Utiliser un bain d eau glacee.",
-            "Ne pas placer un grand volume chaud directement au refrigerateur."
+            "Ne pas placer un grand volume chaud directement au réfrigérateur."
           ]
         },
         {
           "type": "refrigerator_storage_chart",
-          "title": "Durees indicatives au refrigerateur",
+          "title": "Durees indicatives au réfrigérateur",
           "rows": [
             {
               "food": "Viande hachee crue",
@@ -535,7 +535,7 @@
   "quizzes": [
     {
       "id": "QUIZ-001",
-      "title": "Bases de la securite alimentaire",
+      "title": "Bases de la sécurité alimentaire",
       "category_id": "CAT-01",
       "difficulty": "débutant",
       "question_count": 6,
@@ -544,7 +544,7 @@
       "questions": [
         {
           "id": "Q001",
-          "question": "Quelle est la zone de danger des temperatures.",
+          "question": "Quelle est la zone de danger des températures.",
           "options": [
             "A. 0 \u00b0C a 38 \u00b0C",
             "B. 4 \u00b0C a 60 \u00b0C",
@@ -580,12 +580,12 @@
         },
         {
           "id": "Q004",
-          "question": "Que signifie la contamination croisee.",
+          "question": "Que signifie la contamination croisée.",
           "options": [
             "A. Cuire deux proteines ensemble",
             "B. Transfert de microbes du cru vers le pret a manger",
             "C. Conserver apres expiration",
-            "D. Utiliser une mauvaise temperature"
+            "D. Utiliser une mauvaise température"
           ],
           "correct_answer": "B",
           "explanation": "Elle correspond au transfert de microbes entre aliments ou surfaces."
@@ -596,11 +596,11 @@
           "options": [
             "A. Sur le plan de travail",
             "B. Dans l eau chaude",
-            "C. Au refrigerateur",
+            "C. Au réfrigérateur",
             "D. Avec une source de chaleur"
           ],
           "correct_answer": "C",
-          "explanation": "Le refrigerateur maintient la viande a temperature sure."
+          "explanation": "Le réfrigérateur maintient la viande a température sure."
         },
         {
           "id": "Q006",
@@ -725,9 +725,9 @@
           "question": "Bacillus cereus est souvent lie a quel aliment.",
           "options": [
             "A. Poulet cru",
-            "B. Riz cuit laisse a temperature ambiante",
+            "B. Riz cuit laisse a température ambiante",
             "C. Fromage mou",
-            "D. Huitres crues"
+            "D. Huîtres crues"
           ],
           "correct_answer": "B",
           "explanation": "Le riz cuit garde au chaud est un cas classique."
@@ -764,20 +764,20 @@
       "id": "TIP-001",
       "icon": "🧼",
       "text": "Lavez vos mains au savon pendant 20 secondes avant de cuisiner.",
-      "category": "hygiene",
+      "category": "hygiène",
       "fact": "C'est environ le temps de chanter deux fois 'Joyeux Anniversaire'. C'est le geste le plus simple et efficace pour éviter les contaminations."
     },
     {
       "id": "TIP-002",
       "icon": "🌡️",
-      "text": "Gardez le refrigerateur a 4 \u00b0C ou moins.",
+      "text": "Gardez le réfrigérateur a 4 \u00b0C ou moins.",
       "category": "conservation",
       "fact": "Vérifiez-le tous les mois avec un thermomètre. Les joints de porte s'usent avec le temps et la température peut remonter à votre insu."
     },
     {
       "id": "TIP-003",
       "icon": "🔪",
-      "text": "Utilisez des planches separees pour eviter la contamination croisee.",
+      "text": "Utilisez des planches séparées pour éviter la contamination croisée.",
       "category": "cuisine",
       "fact": "Codes couleurs standard : rouge pour la viande crue, jaune pour la volaille, vert pour les fruits et légumes, blanc pour le pain et les laitages."
     },
@@ -798,7 +798,7 @@
     {
       "id": "TIP-006",
       "icon": "🥫",
-      "text": "Ne consommez jamais une conserve bombee ou tres cabossee.",
+      "text": "Ne consommez jamais une conserve bombée ou très cabossée.",
       "category": "conservation",
       "fact": "Ce sont des signes de contamination potentielle par Clostridium botulinum. La toxine botulique est mortelle, ne goûtez jamais pour tester."
     },
@@ -826,7 +826,7 @@
     {
       "id": "TIP-010",
       "icon": "🦪",
-      "text": "Les personnes vulnerables doivent eviter les coquillages crus.",
+      "text": "Les personnes vulnerables doivent éviter les coquillages crus.",
       "category": "cuisson",
       "fact": "Les personnes vulnérables (femmes enceintes, enfants, seniors) doivent toujours consommer les coquillages bien cuits."
     }
@@ -852,14 +852,14 @@
     },
     {
       "code": "FSMA",
-      "title": "Loi de securite alimentaire orientee prevention",
+      "title": "Loi de sécurité alimentaire orientée prévention",
       "authority": "FDA",
       "year": 2011,
       "url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/full-text-food-safety-modernization-act-fsma"
     },
     {
       "code": "9 CFR Parts 416 & 417",
-      "title": "Regles HACCP pour viande et volaille",
+      "title": "Règles HACCP pour viande et volaille",
       "authority": "USDA FSIS"
     },
     {
