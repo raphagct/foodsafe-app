@@ -182,7 +182,7 @@ export async function saveScanToHistory(
   rawValue: string,
   result: TraceabilityResult,
   userId: string
-): Promise<void> {
+): Promise<boolean> {
   const record: Omit<ScanHistoryRecord, "id"> = {
     user_id: userId,
     scanned_at: new Date().toISOString(),
@@ -221,7 +221,9 @@ export async function saveScanToHistory(
   const { error } = await supabase.from("scan_history").insert(record);
   if (error) {
     console.error("Error saving scan to history:", error);
+    return false;
   }
+  return true;
 }
 
 /**

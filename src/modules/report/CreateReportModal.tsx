@@ -23,6 +23,7 @@ import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
 import { useAuth } from "../../contexts/AuthContext";
+import { useToast } from "../../contexts/ToastContext";
 
 interface CreateReportModalProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ interface CreateReportModalProps {
 function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps) {
   const router = useIonRouter();
   const { user } = useAuth();
+  const { showToast } = useToast();
   const [productName, setProductName] = useState("");
   const [riskLevel, setRiskLevel] = useState("UNSAFE");
   const [category, setCategory] = useState("");
@@ -64,7 +66,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
   const handleSubmit = async () => {
     if (!productName.trim()) {
-      alert(t("productName", currentLanguage));
+      showToast({ type: "warning", message: t("productNameRequired", currentLanguage) });
       return;
     }
 
@@ -100,7 +102,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
         if (uploadError) {
           console.error("Error uploading image:", uploadError);
-          alert(t("submit", currentLanguage));
+          showToast({ type: "error", message: t("reportImageUploadError", currentLanguage) });
           setIsSubmitting(false);
           return;
         }
@@ -112,7 +114,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
         imageUrl = urlData.publicUrl;
       } catch (err) {
         console.error("Image processing error:", err);
-        alert(t("submit", currentLanguage));
+        showToast({ type: "error", message: t("reportImageUploadError", currentLanguage) });
         setIsSubmitting(false);
         return;
       }
@@ -134,11 +136,16 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
     if (error) {
       console.error("Error submitting report:", error);
-      alert(t("submit", currentLanguage));
+      showToast({ type: "error", message: t("reportSubmitError", currentLanguage) });
       setIsSubmitting(false);
       return;
     }
 
+    showToast({
+      type: "success",
+      title: t("reportSubmitSuccess", currentLanguage),
+      message: productName.trim(),
+    });
     onClose(true);
     router.push("/tabs/history", "root", "replace");
   };

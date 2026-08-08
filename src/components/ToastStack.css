@@ -1,0 +1,138 @@
+.toast-stack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 14px);
+  padding-left: 16px;
+  padding-right: 16px;
+  pointer-events: none;
+}
+
+.toast-card {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.toast-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 12px 14px;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.toast-text {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.toast-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 14px;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.toast-message {
+  margin: 2px 0 0;
+  font-weight: 500;
+  font-size: 12.5px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.toast-close {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 1px;
+}
+
+.toast-progress-track {
+  height: 3px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toast-progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  animation-name: toast-progress-shrink;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes toast-progress-shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.toast-card-enter {
+  animation: toast-slide-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.toast-card-leave {
+  animation: toast-slide-out 0.22s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+}

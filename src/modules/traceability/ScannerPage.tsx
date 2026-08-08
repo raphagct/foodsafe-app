@@ -15,9 +15,11 @@ import { lookupByQR, saveScanToHistory } from '../../services/traceabilityServic
 import type { TraceabilityResult, TraceabilityResultNotFound } from '../../types/traceability';
 import { t, getLanguage } from '../../utils/i18n';
 import { useAuth } from '../../contexts/AuthContext';
+import { useToast } from '../../contexts/ToastContext';
 
 function ScannerPage() {
   const { user } = useAuth();
+  const { showToast } = useToast();
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [mode, setMode] = useState<'photo' | 'qr'>('qr');
   const [isLoading, setIsLoading] = useState(false);
@@ -82,7 +84,10 @@ function ScannerPage() {
       const result: TraceabilityResult = await lookupByQR(decodedText);
 
       // Save scan to Supabase history
-      await saveScanToHistory(decodedText, result, user.id);
+      const saved = await saveScanToHistory(decodedText, result, user.id);
+      if (!saved) {
+        showToast({ type: "warning", message: t("scanSaveError", currentLanguage) });
+      }
 
       if (!result.found) {
         const notFound = result as TraceabilityResultNotFound;
@@ -94,6 +99,11 @@ function ScannerPage() {
           startQrScannerRef.current?.();
         }, 3000);
       } else {
+        showToast({
+          type: "success",
+          title: t("scanSuccessful", currentLanguage),
+          message: result.product.name,
+        });
         // Store result in sessionStorage for BatchDetailPage to read
         sessionStorage.setItem('lastScanResult', JSON.stringify(result));
         router.push(`/tabs/camera/traceability/${result.batch.id}`, 'forward', 'push');
@@ -109,7 +119,7 @@ function ScannerPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [router, stopQrScanner, user]);
+  }, [router, stopQrScanner, user, showToast, currentLanguage]);
 
   const startQrScanner = useCallback(async () => {
     await stopQrScanner();

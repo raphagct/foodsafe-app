@@ -126,7 +126,13 @@ export type TranslationKey =
   | "no"
   // ── History tabs ───────────────────
   | "tabReports"
-  | "tabScans";
+  | "tabScans"
+  // ── Alerts / Toasts ─────────────────
+  | "productNameRequired"
+  | "reportImageUploadError"
+  | "reportSubmitError"
+  | "reportSubmitSuccess"
+  | "scanSaveError";
 
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -230,6 +236,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Rapports",
     tabScans: "Scans",
+    // Alerts / Toasts
+    productNameRequired: "Merci de renseigner le nom du produit.",
+    reportImageUploadError: "Erreur lors de l'envoi de la photo. Réessayez.",
+    reportSubmitError: "Impossible d'envoyer le rapport. Réessayez.",
+    reportSubmitSuccess: "Rapport envoyé avec succès !",
+    scanSaveError: "Scan effectué, mais non sauvegardé dans l'historique.",
   },
   vi: {
     appNameFood: "Food",
@@ -332,6 +344,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Báo cáo",
     tabScans: "Quét",
+    // Alerts / Toasts
+    productNameRequired: "Vui lòng nhập tên sản phẩm.",
+    reportImageUploadError: "Lỗi khi tải ảnh lên. Vui lòng thử lại.",
+    reportSubmitError: "Không thể gửi báo cáo. Vui lòng thử lại.",
+    reportSubmitSuccess: "Gửi báo cáo thành công!",
+    scanSaveError: "Đã quét xong nhưng không lưu được vào lịch sử.",
   },
   en: {
     appNameFood: "Food",
@@ -434,6 +452,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Reports",
     tabScans: "Scans",
+    // Alerts / Toasts
+    productNameRequired: "Please enter a product name.",
+    reportImageUploadError: "Error uploading the photo. Please try again.",
+    reportSubmitError: "Couldn't submit the report. Please try again.",
+    reportSubmitSuccess: "Report submitted successfully!",
+    scanSaveError: "Scan completed, but couldn't be saved to history.",
   },
 };
 
