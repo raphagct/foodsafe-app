@@ -30,10 +30,8 @@ type ArticleDetailProps = {
   categoryName?: string;
   labels: ArticleDetailLabels;
   isCompleted: boolean;
-  isBookmarked: boolean;
-  onBack: () => void;
   onMarkComplete: (articleId: string) => void;
-  onToggleBookmark: (articleId: string) => void;
+  onBack: () => void;
 };
 
 function asRecord(value: unknown): Record<string, unknown> {
@@ -283,10 +281,8 @@ function ArticleDetail({
   categoryName,
   labels,
   isCompleted,
-  isBookmarked,
-  onBack,
   onMarkComplete,
-  onToggleBookmark,
+  onBack,
 }: ArticleDetailProps) {
   return (
     <IonPage>
@@ -310,7 +306,7 @@ function ArticleDetail({
               <span className="inline-flex items-center gap-1">
                 <IonIcon icon={timeOutline} /> {article.read_time_min} {labels.minRead}
               </span>
-              <span className="inline-flex items-center gap-1">
+              <span className="inline-flex items-center gap-1 capitalize">
                 <IonIcon icon={bookOutline} /> {article.difficulty}
               </span>
             </div>
@@ -322,9 +318,6 @@ function ArticleDetail({
             <IonButton onClick={() => onMarkComplete(article.id)} className="font-bold [--border-radius:6px]">
               <IonIcon icon={checkmarkCircleOutline} slot="start" />
               {isCompleted ? labels.completed : labels.markComplete}
-            </IonButton>
-            <IonButton fill="outline" onClick={() => onToggleBookmark(article.id)} className="font-bold [--border-radius:6px]">
-              {isBookmarked ? labels.bookmarked : labels.bookmark}
             </IonButton>
             <IonButton onClick={onBack} className="ml-auto font-bold [--border-radius:6px]">
               {labels.close}

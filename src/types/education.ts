@@ -36,7 +36,7 @@ export type EducationArticle = {
   tags?: string[];
 };
 
-export type QuizQuestion = {
+type QuizQuestion = {
   id: string;
   question: string;
   options: string[];
@@ -63,7 +63,7 @@ export type DailyTip = {
   fact?: string;
 };
 
-export type RegulationRef = {
+type RegulationRef = {
   code: string;
   title: string;
   authority: string;
@@ -94,4 +94,10 @@ export type QuizGradeResult = {
     isCorrect: boolean;
     explanation: string;
   }>;
+};
+
+export type EducationProgress = {
+  completedArticles: string[];
+  bookmarkedArticles: string[];
+  quizScores: Record<string, number>;
 };

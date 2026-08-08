@@ -7,12 +7,9 @@ import {
   IonButtons,
   IonBackButton,
   IonBadge,
-  IonCard,
-  IonCardContent,
   IonChip,
   IonLabel,
   IonIcon,
-  IonItem,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { useParams } from "react-router";
@@ -22,6 +19,7 @@ import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
 import type { ReportRecord } from "../../types/report";
+import "../history/HistoryPage.css";
 
 function ReportDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -105,8 +103,8 @@ function ReportDetailPage() {
 
   return (
     <IonPage>
-      <IonHeader className="ion-no-border">
-        <IonToolbar className="py-2 px-2">
+      <IonHeader className="ion-no-border bg-white">
+        <IonToolbar className="[--background:white] py-2 px-2">
           <IonButtons slot="start">
             <IonBackButton defaultHref="/tabs/history" />
           </IonButtons>
@@ -114,7 +112,7 @@ function ReportDetailPage() {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className="[--background:var(--color-surface)]">
+      <IonContent className="history-content">
         {/* Image */}
         <div className="relative w-full h-[220px]">
           <img
@@ -144,68 +142,61 @@ function ReportDetailPage() {
 
           {/* Category */}
           {categoryInfo && (
-            <IonCard className="rounded-2xl shadow-sm m-0">
-              <IonCardContent className="p-4 flex items-center gap-3">
-                <span className="text-2xl">{categoryInfo.icon}</span>
-                <div>
-                  <p className="text-xs text-gray-400 font-semibold uppercase">{t("category", currentLanguage)}</p>
-                  <p className="font-bold text-gray-900">{categoryInfo.label}</p>
-                </div>
-              </IonCardContent>
-            </IonCard>
+            <div className="bg-white rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-5 flex items-center gap-3">
+              <span className="text-3xl">{categoryInfo.icon}</span>
+              <div>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{t("category", currentLanguage)}</p>
+                <p className="font-bold text-gray-900 text-base">{categoryInfo.label}</p>
+              </div>
+            </div>
           )}
 
           {/* Warning Signs */}
           {warningSigns.length > 0 && (
-            <IonCard className="rounded-2xl shadow-sm m-0">
-              <IonCardContent className="p-4">
-                <p className="text-xs text-gray-400 font-semibold uppercase mb-2">{t("warningSigns", currentLanguage)}</p>
-                <div className="flex flex-wrap gap-2">
-                  {warningSigns.map(key => (
-                    <IonChip key={key} color={getWarningSeverityColor(key)} className="text-xs font-medium">
-                      <IonLabel>{getWarningLabel(key)}</IonLabel>
-                    </IonChip>
-                  ))}
-                </div>
-              </IonCardContent>
-            </IonCard>
+            <div className="bg-white rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-5">
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-3">{t("warningSigns", currentLanguage)}</p>
+              <div className="flex flex-wrap gap-2">
+                {warningSigns.map(key => (
+                  <IonChip key={key} color={getWarningSeverityColor(key)} className="text-xs font-semibold h-7 rounded-lg">
+                    <IonLabel>{getWarningLabel(key)}</IonLabel>
+                  </IonChip>
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Notes */}
-          <IonCard className="rounded-2xl shadow-sm m-0">
-            <IonCardContent className="p-4">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                {t("notesTitle", currentLanguage)}
-              </p>
-              <p className="text-gray-800 font-medium leading-relaxed text-[15px]">
-                {report.description || t("noNotesProvided", currentLanguage)}
-              </p>
-            </IonCardContent>
-          </IonCard>
+          <div className="bg-white rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-5">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+              {t("notesTitle", currentLanguage)}
+            </p>
+            <p className="text-gray-800 font-medium leading-relaxed text-[15px]">
+              {report.description || t("noNotesProvided", currentLanguage)}
+            </p>
+          </div>
 
           {/* Store & Barcode Info */}
           {(report.store_name || report.barcode_scanned) && (
-            <IonCard className="rounded-2xl shadow-sm m-0">
-              <IonCardContent className="p-4 flex flex-col gap-2">
-                {report.store_name && (
-                  <IonItem lines="none" className="[--background:transparent] [--padding-start:0] [--inner-padding-end:0]">
-                    <IonIcon icon={storefrontOutline} slot="start" color="primary" />
-                    <IonLabel>
-                      <p className="text-xs text-gray-400 font-semibold uppercase">{t("storeName", currentLanguage)}</p>
-                      <h3 className="font-semibold text-gray-900">{report.store_name}</h3>
-                    </IonLabel>
-                  </IonItem>
-                )}
-                {report.barcode_scanned && (
-                  <IonItem lines="none" className="[--background:transparent] [--padding-start:0] [--inner-padding-end:0]">
-                    <IonLabel>
-                      <p className="text-xs text-gray-400 font-semibold uppercase">{t("barcode", currentLanguage)}</p>
-                      <h3 className="font-mono font-semibold text-gray-900">{report.barcode_scanned}</h3>
-                    </IonLabel>
-                  </IonItem>
-                )}
-              </IonCardContent>
-            </IonCard>
+            <div className="bg-white rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-5 flex flex-col gap-3">
+              {report.store_name && (
+                <div className="flex items-start gap-3">
+                  <IonIcon icon={storefrontOutline} className="text-xl text-[var(--color-primary)] mt-1" />
+                  <div>
+                    <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{t("storeName", currentLanguage)}</p>
+                    <h3 className="font-semibold text-gray-900 text-base">{report.store_name}</h3>
+                  </div>
+                </div>
+              )}
+              {report.barcode_scanned && (
+                <div className="flex items-start gap-3 mt-1">
+                  <div className="w-5 h-5 flex-shrink-0" /> {/* Spacer */}
+                  <div>
+                    <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{t("barcode", currentLanguage)}</p>
+                    <h3 className="font-mono font-semibold text-gray-900 text-[15px] bg-gray-50 px-2 py-0.5 rounded-md mt-1">{report.barcode_scanned}</h3>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
 
           {/* Reported to store badge */}

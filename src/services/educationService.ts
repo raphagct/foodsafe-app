@@ -1,6 +1,4 @@
 import type {
-  EducationArticle,
-  EducationCategory,
   EducationContent,
   EducationQuiz,
   QuizGradeResult,
@@ -32,37 +30,6 @@ export async function getEducationContent(language: LanguageCode = "en") {
   return getContent(language);
 }
 
-export async function getCategories(language: LanguageCode = "en"): Promise<EducationCategory[]> {
-  return (await getContent(language)).categories;
-}
-
-export async function getArticlesByCategory(
-  categoryId: string,
-  language: LanguageCode = "en",
-): Promise<EducationArticle[]> {
-  const content = await getContent(language);
-  return content.articles.filter((article) => article.category_id === categoryId);
-}
-
-export async function getArticleById(
-  id: string,
-  language: LanguageCode = "en",
-): Promise<EducationArticle | null> {
-  const content = await getContent(language);
-  return content.articles.find((article) => article.id === id) ?? null;
-}
-
-export async function getAllQuizzes(language: LanguageCode = "en"): Promise<EducationQuiz[]> {
-  return (await getContent(language)).quizzes;
-}
-
-export async function getQuiz(
-  quizId: string,
-  language: LanguageCode = "en",
-): Promise<EducationQuiz | null> {
-  const content = await getContent(language);
-  return content.quizzes.find((quiz) => quiz.id === quizId) ?? null;
-}
 
 export async function getDailyTip(language: LanguageCode = "en", date = new Date()) {
   const content = await getContent(language);

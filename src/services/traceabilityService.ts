@@ -33,6 +33,68 @@ export async function lookupByQR(rawValue: string): Promise<TraceabilityResult> 
 
   const batchId = db.qr_scan_lookup[key];
   if (!batchId) {
+    // If not found in mock DB, try Open Food Facts API
+    try {
+      // Check if it looks like a barcode (mostly digits)
+      if (/^\d+$/.test(key)) {
+        const offRes = await fetch(`https://world.openfoodfacts.org/api/v0/product/${key}.json`);
+        const offData = await offRes.json();
+
+        if (offData.status === 1) {
+          const offProduct = offData.product;
+          
+          return {
+            found: true,
+            batch: {
+              id: `OFF-${key}`,
+              product_id: key,
+              qr_payload: key,
+              qr_url: "",
+              status: "ACTIVE",
+              production_date: "N/A",
+              expiry_date: "N/A",
+            },
+            product: {
+              id: key,
+              barcode_gs1: key,
+              name: offProduct.product_name || "Unknown Product",
+              category: offProduct.categories?.split(",")[0] || "Unknown",
+              supplier_id: "OFF",
+              unit: offProduct.quantity || "N/A",
+              shelf_life_days: 0,
+              storage_temp_f: { min: 0, max: 0 },
+              storage_temp_c: { min: 0, max: 0 },
+              image_url: offProduct.image_url || offProduct.image_front_url || "",
+              qr_url: "",
+              country_of_origin: offProduct.countries || "Unknown",
+              allergens: offProduct.allergens_tags?.map((tag: string) => tag.replace('en:', '')) || [],
+              ingredients: offProduct.ingredients_text || "Not available",
+            },
+            supplier: {
+              id: "OFF",
+              name: offProduct.brands || "Unknown Brand",
+              type: "Manufacturer",
+              license: "N/A",
+              certification: [],
+              location: { state: "N/A", county: "N/A", address: "N/A", lat: 0, lng: 0 },
+              contact: { phone: "N/A", email: "N/A" },
+              inspector: "N/A",
+              last_audit: "N/A",
+              audit_result: "N/A",
+              products_grown: [],
+            },
+            expiryStatus: "VALID",
+            daysLeft: 999, // Unknown expiry
+            isRecall: false,
+            coldChain: null,
+            distributionTrail: [],
+          };
+        }
+      }
+    } catch (e) {
+      console.error("Open Food Facts fetch error:", e);
+    }
+
     return {
       found: false,
       scannedValue: key,

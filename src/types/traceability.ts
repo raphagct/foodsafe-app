@@ -1,5 +1,5 @@
 // ── Supplier ──────────────────────────────────────────────────────────────────
-export interface SupplierLocation {
+interface SupplierLocation {
   state: string;
   county: string;
   address: string;
@@ -7,7 +7,7 @@ export interface SupplierLocation {
   lng: number;
 }
 
-export interface Supplier {
+interface Supplier {
   id: string;
   name: string;
   type: string;
@@ -22,7 +22,7 @@ export interface Supplier {
 }
 
 // ── Product ───────────────────────────────────────────────────────────────────
-export interface StorageTemp {
+interface StorageTemp {
   min: number;
   max: number;
 }
@@ -45,7 +45,7 @@ export interface Product {
 }
 
 // ── Batch ─────────────────────────────────────────────────────────────────────
-export interface RecallInfo {
+interface RecallInfo {
   recall_number: string;
   class: string;
   issued_date: string;
@@ -59,7 +59,7 @@ export interface RecallInfo {
   severity: string;
 }
 
-export interface QCTest {
+interface QCTest {
   date: string;
   lab: string;
   result: string;
@@ -76,7 +76,7 @@ export interface ColdChainEntry {
   note?: string;
 }
 
-export interface DistributionEntry {
+interface DistributionEntry {
   dest_id: string;
   quantity_units: number;
   shipped_date: string;
@@ -84,7 +84,7 @@ export interface DistributionEntry {
   temp_f?: number;
 }
 
-export interface Batch {
+interface Batch {
   id: string;
   product_id: string;
   qr_payload: string;
@@ -104,7 +104,7 @@ export interface Batch {
 }
 
 // ── Distributor ───────────────────────────────────────────────────────────────
-export interface Distributor {
+interface Distributor {
   id: string;
   name: string;
   type: string;
