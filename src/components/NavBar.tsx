@@ -17,7 +17,7 @@ import EducationPage from "../modules/education/EducationPage";
 import HistoryPage from "../modules/history/HistoryPage";
 import ReportDetailPage from "../modules/report/ReportDetailPage";
 import BatchDetailPage from "../modules/traceability/BatchDetailPage";
-import FoodSafetyBot from "../modules/chatbot/FoodSafetyBot";
+import FoodSafetyBot from "../modules/chatbot/FoodSafetyBot.tsx";
 
 function NavBar() {
   const currentLanguage = getLanguage();
