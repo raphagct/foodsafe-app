@@ -25,10 +25,12 @@ import type { ScanHistoryRecord } from "../../types/traceability";
 import type { ReportRecord } from "../../types/report";
 import { REPORT_CATEGORIES } from "../../types/report";
 import LogoutButton from "../../components/LogoutButton";
+import { useAuth } from "../../contexts/AuthContext";
 import "./HistoryPage.css";
 
 function HistoryPage() {
   const router = useIonRouter();
+  const { user } = useAuth();
   const [reports, setReports] = useState<ReportRecord[]>([]);
   const [scans, setScans] = useState<ScanHistoryRecord[]>([]);
   const location = useLocation();
@@ -46,18 +48,20 @@ function HistoryPage() {
 
   useIonViewWillEnter(() => {
     async function fetchData() {
+      if (!user) return;
       setIsLoading(true);
-      
+
       const fetchReports = async () => {
         const { data, error } = await supabase
           .from("report")
           .select("*")
+          .eq("user_id", user.id)
           .order("created_at", { ascending: false });
         if (!error && data) setReports(data);
       };
 
       const fetchScans = async () => {
-        const data = await getRecentScans(50);
+        const data = await getRecentScans(user.id, 50);
         setScans(data);
       };
 

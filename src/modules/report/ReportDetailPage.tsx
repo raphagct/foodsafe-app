@@ -19,19 +19,23 @@ import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
 import type { ReportRecord } from "../../types/report";
+import { useAuth } from "../../contexts/AuthContext";
 import "../history/HistoryPage.css";
 
 function ReportDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
   const [report, setReport] = useState<ReportRecord | null>(null);
   const currentLanguage = getLanguage();
 
   useIonViewWillEnter(() => {
     async function fetchReport() {
+      if (!user) return;
       const { data, error } = await supabase
         .from("report")
         .select("*")
         .eq("report_id", id)
+        .eq("user_id", user.id)
         .single();
 
       if (error) {

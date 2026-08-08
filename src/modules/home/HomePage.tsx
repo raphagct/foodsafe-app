@@ -11,9 +11,11 @@ import { getDailyTip } from "../../services/educationService";
 import { t, getLanguage } from "../../utils/i18n";
 import type { ReportRecord } from "../../types/report";
 import type { DailyTip as DailyTipType } from "../../types/education";
+import { useAuth } from "../../contexts/AuthContext";
 
 function HomePage() {
   const router = useIonRouter();
+  const { user } = useAuth();
   const [reports, setReports] = useState<{
     id: string;
     photoUrl: string | null;
@@ -32,9 +34,11 @@ function HomePage() {
 
   useIonViewWillEnter(() => {
     async function fetchReports() {
+      if (!user) return;
       const { data, error } = await supabase
         .from("report")
         .select("*")
+        .eq("user_id", user.id)
         .order("created_at", { ascending: false })
         .limit(4);
 
@@ -54,7 +58,8 @@ function HomePage() {
     }
 
     async function fetchScans() {
-      const data = await getRecentScans(4);
+      if (!user) return;
+      const data = await getRecentScans(user.id, 4);
       const mapped = data.map((s) => {
         let photoUrl = null;
         if (s.full_response_json) {
