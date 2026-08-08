@@ -7,22 +7,22 @@ export const languages: Array<{
   label: string;
   flag: string;
 }> = [
-  {
-    code: "fr",
-    label: "Français",
-    flag: new URL("../assets/Flag_of_France.svg.png", import.meta.url).href,
-  },
-  {
-    code: "vi",
-    label: "Vietnamien",
-    flag: new URL("../assets/Flag_of_Vietnam.svg.png", import.meta.url).href,
-  },
-  {
-    code: "en",
-    label: "Anglais",
-    flag: new URL("../assets/Flag_of_the_United_Kingdom.svg.png", import.meta.url).href,
-  },
-];
+    {
+      code: "fr",
+      label: "Français",
+      flag: new URL("../assets/Flag_of_France.svg.png", import.meta.url).href,
+    },
+    {
+      code: "vi",
+      label: "Vietnamien",
+      flag: new URL("../assets/Flag_of_Vietnam.svg.png", import.meta.url).href,
+    },
+    {
+      code: "en",
+      label: "Anglais",
+      flag: new URL("../assets/Flag_of_the_United_Kingdom.svg.png", import.meta.url).href,
+    },
+  ];
 
 const defaultLanguage: LanguageCode = "en";
 

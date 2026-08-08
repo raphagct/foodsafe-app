@@ -10,6 +10,8 @@ import {
 import {
   arrowBackOutline,
   bookOutline,
+  bookmarkOutline,
+  bookmark as bookmarkFilled,
   checkmarkCircleOutline,
   timeOutline,
 } from "ionicons/icons";
@@ -30,7 +32,9 @@ type ArticleDetailProps = {
   categoryName?: string;
   labels: ArticleDetailLabels;
   isCompleted: boolean;
+  isBookmarked: boolean;
   onMarkComplete: (articleId: string) => void;
+  onToggleBookmark: (articleId: string) => void;
   onBack: () => void;
 };
 
@@ -281,7 +285,9 @@ function ArticleDetail({
   categoryName,
   labels,
   isCompleted,
+  isBookmarked,
   onMarkComplete,
+  onToggleBookmark,
   onBack,
 }: ArticleDetailProps) {
   return (
@@ -318,6 +324,16 @@ function ArticleDetail({
             <IonButton onClick={() => onMarkComplete(article.id)} className="font-bold [--border-radius:6px]">
               <IonIcon icon={checkmarkCircleOutline} slot="start" />
               {isCompleted ? labels.completed : labels.markComplete}
+            </IonButton>
+            <IonButton
+              fill="clear"
+              onClick={() => onToggleBookmark(article.id)}
+              className="m-0 h-10 w-10 [--border-radius:50%] [--padding-start:0] [--padding-end:0]"
+            >
+              <IonIcon 
+                icon={isBookmarked ? bookmarkFilled : bookmarkOutline} 
+                className={`text-[24px] transition-colors ${isBookmarked ? 'text-[var(--color-primary)]' : 'text-gray-400 hover:text-gray-600'}`} 
+              />
             </IonButton>
             <IonButton onClick={onBack} className="ml-auto font-bold [--border-radius:6px]">
               {labels.close}

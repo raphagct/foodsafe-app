@@ -36,26 +36,23 @@ Rules:
 5. Acknowledge uncertainty clearly rather than guessing.`;
 
     try {
-      const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": env.ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01"
-        },
-        body: JSON.stringify({
-          model: "claude-3-5-sonnet-20240620", // updated to a valid claude model name
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: [
-            ...history.slice(-10),   // keep last 10 turns for context
-            { role: "user", content: question }
-          ]
-        })
+      // Using Cloudflare's built-in free AI (Meta Llama 3.1)
+      const response = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fp8", {
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...history.slice(-10),   // keep last 10 turns for context
+          { role: "user", content: question }
+        ]
       });
 
-      const data  = await apiRes.json();
-      const answer = data.content?.[0]?.text ?? "No response received.";
+      const answer = response?.response;
+
+      if (!answer) {
+        return new Response(JSON.stringify({ error: "Empty response from AI." }), {
+          status: 502,
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+      }
 
       return new Response(JSON.stringify({ answer }), {
         headers: {
@@ -64,7 +61,8 @@ Rules:
         }
       });
     } catch (err) {
-      return new Response(JSON.stringify({ error: "Service temporarily unavailable." }), {
+      console.error("Worker fetch error:", err);
+      return new Response(JSON.stringify({ error: err?.message || "Service temporarily unavailable." }), {
         status: 503,
         headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
       });

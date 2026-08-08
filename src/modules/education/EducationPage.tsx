@@ -19,6 +19,8 @@ import {
 import {
   alertCircleOutline,
   bookOutline,
+  bookmarkOutline,
+  bookmark as bookmarkFilled,
   ribbonOutline,
   timeOutline,
   openOutline,
@@ -38,7 +40,7 @@ import ArticleDetail from "./ArticleDetail";
 import DailyTip from "./DailyTip";
 import QuizEngine from "./QuizEngine";
 import { useAuth } from "../../contexts/AuthContext";
-import { fetchUserProgress, markContentComplete } from "../../services/educationProgressService";
+import { fetchUserProgress, markContentComplete, toggleBookmarkContent } from "../../services/educationProgressService";
 
 
 
@@ -61,6 +63,7 @@ const labels: Record<
     completed: string;
     bookmark: string;
     bookmarked: string;
+    favorites: string;
     articleType: string;
     close: string;
     regulations: string;
@@ -90,6 +93,7 @@ const labels: Record<
     completed: "Lu",
     bookmark: "Favoris",
     bookmarked: "Retirer des favoris",
+    favorites: "Favoris",
     articleType: "Catégorie",
     close: "OK",
     regulations: "Références réglementaires",
@@ -118,6 +122,7 @@ const labels: Record<
     completed: "Đã đọc",
     bookmark: "Yeu thich",
     bookmarked: "Bo yeu thich",
+    favorites: "Yêu thích",
     articleType: "Danh mục",
     close: "OK",
     regulations: "Quy định tham khảo",
@@ -146,6 +151,7 @@ const labels: Record<
     completed: "Complete",
     bookmark: "Favorite",
     bookmarked: "Remove favorite",
+    favorites: "Favorites",
     articleType: "Category",
     close: "OK",
     regulations: "Regulation references",
@@ -206,15 +212,21 @@ function EducationPage() {
 
   const filteredArticles = useMemo(() => {
     return (content?.articles ?? []).filter((article) => {
+      if (activeCategory === "favorites") {
+        return progress.bookmarkedArticles.includes(article.id);
+      }
       return activeCategory === "all" || article.category_id === activeCategory;
     });
-  }, [activeCategory, content]);
+  }, [activeCategory, content, progress.bookmarkedArticles]);
 
   const filteredQuizzes = useMemo(() => {
     return (content?.quizzes ?? []).filter((quiz) => {
+      if (activeCategory === "favorites") {
+        return progress.bookmarkedArticles.includes(quiz.id);
+      }
       return activeCategory === "all" || quiz.category_id === activeCategory;
     });
-  }, [activeCategory, content]);
+  }, [activeCategory, content, progress.bookmarkedArticles]);
 
   async function markArticleComplete(articleId: string) {
     const isCurrentlyCompleted = progress.completedArticles.includes(articleId);
@@ -230,6 +242,23 @@ function EducationPage() {
 
     if (user) {
       await markContentComplete(user.id, articleId, "article", newCompletedState);
+    }
+  }
+
+  async function toggleBookmark(contentId: string, contentType: "article" | "quiz") {
+    const isCurrentlyBookmarked = progress.bookmarkedArticles.includes(contentId);
+    const newBookmarkState = !isCurrentlyBookmarked;
+
+    // Optimistic UI update
+    setProgress(prev => ({
+      ...prev,
+      bookmarkedArticles: newBookmarkState
+        ? [...prev.bookmarkedArticles, contentId]
+        : prev.bookmarkedArticles.filter((id) => id !== contentId),
+    }));
+
+    if (user) {
+      await toggleBookmarkContent(user.id, contentId, contentType, newBookmarkState);
     }
   }
 
@@ -327,6 +356,7 @@ function EducationPage() {
                 style={{ '--border-width': '0', '--border-color': 'transparent', '--padding-bottom': '0' } as React.CSSProperties}
               >
                 <IonSelectOption value="all">{copy.all}</IonSelectOption>
+                <IonSelectOption value="favorites">{copy.favorites}</IonSelectOption>
                 {content.categories.map((category) => (
                   <IonSelectOption key={category.id} value={category.id}>
                     {category.name}
@@ -351,6 +381,7 @@ function EducationPage() {
                 {filteredArticles.map((article) => {
                   const category = categoriesById.get(article.category_id);
                   const complete = progress.completedArticles.includes(article.id);
+                  const isBookmarked = progress.bookmarkedArticles.includes(article.id);
 
                   return (
                     <IonCard key={article.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-none">
@@ -383,9 +414,19 @@ function EducationPage() {
                           </span>
                         </div>
 
-                        <div className="mt-4 flex flex-wrap gap-2">
+                        <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
                           <IonButton size="small" onClick={() => setSelectedArticle(article)} className="font-bold [--border-radius:6px]">
                             {copy.read}
+                          </IonButton>
+                          <IonButton
+                            fill="clear"
+                            onClick={() => toggleBookmark(article.id, "article")}
+                            className="m-0 h-8 w-8 [--border-radius:50%] [--padding-start:0] [--padding-end:0]"
+                          >
+                            <IonIcon 
+                              icon={isBookmarked ? bookmarkFilled : bookmarkOutline} 
+                              className={`text-[22px] transition-colors ${isBookmarked ? 'text-[var(--color-primary)]' : 'text-gray-400 hover:text-gray-600'}`} 
+                            />
                           </IonButton>
                         </div>
                       </IonCardContent>
@@ -398,6 +439,7 @@ function EducationPage() {
                 {filteredQuizzes.map((quiz) => {
                   const category = categoriesById.get(quiz.category_id);
                   const bestScore = progress.quizScores[quiz.id];
+                  const isBookmarked = progress.bookmarkedArticles.includes(quiz.id);
 
                   return (
                     <IonCard key={quiz.id} className="m-0 rounded-xl border border-gray-100 [--background:white] bg-white shadow-none">
@@ -433,9 +475,21 @@ function EducationPage() {
                           </span>
                         </div>
 
-                        <IonButton size="small" onClick={() => setSelectedQuiz(quiz)} className="mt-4 font-bold [--border-radius:6px]">
-                          {copy.startQuiz}
-                        </IonButton>
+                        <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+                          <IonButton size="small" onClick={() => setSelectedQuiz(quiz)} className="font-bold [--border-radius:6px]">
+                            {copy.startQuiz}
+                          </IonButton>
+                          <IonButton
+                            fill="clear"
+                            onClick={() => toggleBookmark(quiz.id, "quiz")}
+                            className="m-0 h-8 w-8 [--border-radius:50%] [--padding-start:0] [--padding-end:0]"
+                          >
+                            <IonIcon 
+                              icon={isBookmarked ? bookmarkFilled : bookmarkOutline} 
+                              className={`text-[22px] transition-colors ${isBookmarked ? 'text-[var(--color-primary)]' : 'text-gray-400 hover:text-gray-600'}`} 
+                            />
+                          </IonButton>
+                        </div>
                       </IonCardContent>
                     </IonCard>
                   );
@@ -526,8 +580,10 @@ function EducationPage() {
               categoryName={categoriesById.get(selectedArticle.category_id)?.name}
               labels={copy}
               isCompleted={progress.completedArticles.includes(selectedArticle.id)}
+              isBookmarked={progress.bookmarkedArticles.includes(selectedArticle.id)}
               onBack={() => setSelectedArticle(null)}
               onMarkComplete={markArticleComplete}
+              onToggleBookmark={(id) => toggleBookmark(id, "article")}
             />
           ) : null}
         </IonModal>

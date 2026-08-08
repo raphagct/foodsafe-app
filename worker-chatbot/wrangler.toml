@@ -3,5 +3,5 @@ main = "index.js"
 compatibility_date = "2024-02-08"
 account_id = "88ad3c4312c3e94342d6cb4622130e37"
 
-# We will need to set the ANTHROPIC_API_KEY as a secret
-# using `wrangler secret put ANTHROPIC_API_KEY`
+[ai]
+binding = "AI"
