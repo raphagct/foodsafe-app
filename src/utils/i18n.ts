@@ -126,7 +126,17 @@ export type TranslationKey =
   | "no"
   // ── History tabs ───────────────────
   | "tabReports"
-  | "tabScans";
+  | "tabScans"
+  // ── Chatbot ────────────────────────
+  | "appMenuAssistant"
+  | "chatPlaceholder"
+  | "chatTitle"
+  | "chatSend"
+  | "botTyping"
+  | "chatWelcome"
+  | "chatExample1"
+  | "chatExample2"
+  | "smartSuggestions";
 
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -230,6 +240,16 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Rapports",
     tabScans: "Scans",
+    // Chatbot
+    appMenuAssistant: "Assistant",
+    chatPlaceholder: "Posez votre question...",
+    chatTitle: "Assistant IA",
+    chatSend: "Envoyer",
+    botTyping: "L'assistant écrit...",
+    chatWelcome: "Bonjour ! Je suis votre assistant de sécurité alimentaire. Posez-moi vos questions sur les règles de conservation, les rappels de produits, ou les bonnes pratiques d'hygiène.",
+    chatExample1: "Température de cuisson du bœuf haché ?",
+    chatExample2: "Combien de temps conserver le riz cuit ?",
+    smartSuggestions: "Suggestions intelligentes",
   },
   vi: {
     appNameFood: "Food",
@@ -332,6 +352,16 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Báo cáo",
     tabScans: "Quét",
+    // Chatbot
+    appMenuAssistant: "Trợ lý",
+    chatPlaceholder: "Hỏi câu hỏi của bạn...",
+    chatTitle: "Trợ lý AI",
+    chatSend: "Gửi",
+    botTyping: "Trợ lý đang viết...",
+    chatWelcome: "Xin chào! Tôi là trợ lý an toàn thực phẩm của bạn. Hãy hỏi tôi về các quy tắc bảo quản, thu hồi sản phẩm hoặc thực hành vệ sinh.",
+    chatExample1: "Nhiệt độ nấu chín thịt bò xay là bao nhiêu?",
+    chatExample2: "Cơm nấu chín để tủ lạnh được bao lâu?",
+    smartSuggestions: "Gợi ý thông minh",
   },
   en: {
     appNameFood: "Food",
@@ -434,6 +464,16 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // History tabs
     tabReports: "Reports",
     tabScans: "Scans",
+    // Chatbot
+    appMenuAssistant: "Assistant",
+    chatPlaceholder: "Ask your question...",
+    chatTitle: "AI Assistant",
+    chatSend: "Send",
+    botTyping: "Assistant is typing...",
+    chatWelcome: "Hello! I am your food safety assistant. Ask me questions about storage rules, product recalls, or hygiene best practices.",
+    chatExample1: "What internal temp should I cook ground beef to?",
+    chatExample2: "How long can I keep cooked rice in the fridge?",
+    smartSuggestions: "Smart suggestions",
   },
 };
 

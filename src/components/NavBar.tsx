@@ -8,7 +8,7 @@ import {
 } from "@ionic/react";
 import { Route, Redirect } from "react-router-dom";
 
-import { home, camera, school, time } from "ionicons/icons";
+import { home, camera, school, time, chatbubbles } from "ionicons/icons";
 import { t, getLanguage } from "../utils/i18n";
 
 import HomePage from "../modules/home/HomePage";
@@ -17,6 +17,7 @@ import EducationPage from "../modules/education/EducationPage";
 import HistoryPage from "../modules/history/HistoryPage";
 import ReportDetailPage from "../modules/report/ReportDetailPage";
 import BatchDetailPage from "../modules/traceability/BatchDetailPage";
+import FoodSafetyBot from "../modules/chatbot/FoodSafetyBot";
 
 function NavBar() {
   const currentLanguage = getLanguage();
@@ -43,6 +44,7 @@ function NavBar() {
           path="/tabs/history/report/:id"
           component={ReportDetailPage}
         />
+        <Route exact path="/tabs/assistant" component={FoodSafetyBot} />
 
         <Redirect exact from="/tabs" to="/tabs/home" />
       </IonRouterOutlet>
@@ -66,6 +68,11 @@ function NavBar() {
         <IonTabButton tab="history" href="/tabs/history">
           <IonIcon icon={time} />
           <IonLabel>{t("appMenuHistory", currentLanguage)}</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="assistant" href="/tabs/assistant">
+          <IonIcon icon={chatbubbles} />
+          <IonLabel>{t("appMenuAssistant", currentLanguage)}</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
