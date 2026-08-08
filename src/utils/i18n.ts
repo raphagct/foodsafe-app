@@ -136,13 +136,32 @@ export type TranslationKey =
   | "chatWelcome"
   | "chatExample1"
   | "chatExample2"
-  | "smartSuggestions";
+  | "smartSuggestions"
   // ── Alerts / Toasts ─────────────────
   | "productNameRequired"
   | "reportImageUploadError"
   | "reportSubmitError"
   | "reportSubmitSuccess"
-  | "scanSaveError";
+  | "scanSaveError"
+  // ── FDA Recall Alerts ────────────────
+  | "appMenuRecalls"
+  | "recallsPageTitle"
+  | "recallAlertsSection"
+  | "recallAlertsSubtitle"
+  | "viewRecalls"
+  | "noActiveRecallAlerts"
+  | "noRecallsFound"
+  | "recallsLoadError"
+  | "recallsOfflineNotice"
+  | "recallSeverityHigh"
+  | "recallSeverityMedium"
+  | "recallSeverityLow"
+  | "recallFirm"
+  | "recallDate"
+  | "recallDistributionPattern"
+  | "recallStatus"
+  | "dismiss"
+  | "refresh";
 
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -262,6 +281,25 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     reportSubmitError: "Impossible d'envoyer le rapport. Réessayez.",
     reportSubmitSuccess: "Rapport envoyé avec succès !",
     scanSaveError: "Scan effectué, mais non sauvegardé dans l'historique.",
+    // FDA Recall Alerts
+    appMenuRecalls: "Rappels",
+    recallsPageTitle: "Alertes de rappel",
+    recallAlertsSection: "Rappels alimentaires",
+    recallAlertsSubtitle: "Alertes récentes de la FDA",
+    viewRecalls: "Voir les rappels",
+    noActiveRecallAlerts: "Aucune alerte de rappel majeure en ce moment.",
+    noRecallsFound: "Aucun rappel trouvé.",
+    recallsLoadError: "Impossible de charger les rappels FDA.",
+    recallsOfflineNotice: "Affichage des données mises en cache (hors ligne).",
+    recallSeverityHigh: "Risque élevé",
+    recallSeverityMedium: "Risque modéré",
+    recallSeverityLow: "Risque faible",
+    recallFirm: "Entreprise",
+    recallDate: "Date du rappel",
+    recallDistributionPattern: "Distribution",
+    recallStatus: "Statut",
+    dismiss: "Ignorer",
+    refresh: "Actualiser",
   },
   vi: {
     appNameFood: "Food",
@@ -380,6 +418,25 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     reportSubmitError: "Không thể gửi báo cáo. Vui lòng thử lại.",
     reportSubmitSuccess: "Gửi báo cáo thành công!",
     scanSaveError: "Đã quét xong nhưng không lưu được vào lịch sử.",
+    // FDA Recall Alerts
+    appMenuRecalls: "Thu hồi",
+    recallsPageTitle: "Cảnh báo thu hồi",
+    recallAlertsSection: "Thu hồi thực phẩm",
+    recallAlertsSubtitle: "Cảnh báo mới nhất từ FDA",
+    viewRecalls: "Xem các vụ thu hồi",
+    noActiveRecallAlerts: "Hiện không có cảnh báo thu hồi lớn nào.",
+    noRecallsFound: "Không tìm thấy vụ thu hồi nào.",
+    recallsLoadError: "Không thể tải dữ liệu thu hồi từ FDA.",
+    recallsOfflineNotice: "Đang hiển thị dữ liệu đã lưu trước đó (ngoại tuyến).",
+    recallSeverityHigh: "Rủi ro cao",
+    recallSeverityMedium: "Rủi ro trung bình",
+    recallSeverityLow: "Rủi ro thấp",
+    recallFirm: "Công ty",
+    recallDate: "Ngày thu hồi",
+    recallDistributionPattern: "Phân phối",
+    recallStatus: "Trạng thái",
+    dismiss: "Bỏ qua",
+    refresh: "Làm mới",
   },
   en: {
     appNameFood: "Food",
@@ -498,6 +555,25 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     reportSubmitError: "Couldn't submit the report. Please try again.",
     reportSubmitSuccess: "Report submitted successfully!",
     scanSaveError: "Scan completed, but couldn't be saved to history.",
+    // FDA Recall Alerts
+    appMenuRecalls: "Recalls",
+    recallsPageTitle: "Recall Alerts",
+    recallAlertsSection: "Food Recalls",
+    recallAlertsSubtitle: "Latest alerts from the FDA",
+    viewRecalls: "View Recalls",
+    noActiveRecallAlerts: "No major recall alerts right now.",
+    noRecallsFound: "No recalls found.",
+    recallsLoadError: "Couldn't load FDA recall data.",
+    recallsOfflineNotice: "Showing cached data (offline).",
+    recallSeverityHigh: "High Risk",
+    recallSeverityMedium: "Medium Risk",
+    recallSeverityLow: "Low Risk",
+    recallFirm: "Company",
+    recallDate: "Recall Date",
+    recallDistributionPattern: "Distribution",
+    recallStatus: "Status",
+    dismiss: "Dismiss",
+    refresh: "Refresh",
   },
 };
 

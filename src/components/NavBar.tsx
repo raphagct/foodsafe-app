@@ -18,6 +18,7 @@ import HistoryPage from "../modules/history/HistoryPage";
 import ReportDetailPage from "../modules/report/ReportDetailPage";
 import BatchDetailPage from "../modules/traceability/BatchDetailPage";
 import FoodSafetyBot from "../modules/chatbot/FoodSafetyBot.tsx";
+import RecallsPage from "../modules/recalls/RecallsPage";
 
 function NavBar() {
   const currentLanguage = getLanguage();
@@ -45,6 +46,7 @@ function NavBar() {
           component={ReportDetailPage}
         />
         <Route exact path="/tabs/assistant" component={FoodSafetyBot} />
+        <Route exact path="/tabs/recalls" component={RecallsPage} />
 
         <Redirect exact from="/tabs" to="/tabs/home" />
       </IonRouterOutlet>
