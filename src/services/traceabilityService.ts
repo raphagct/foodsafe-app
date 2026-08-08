@@ -180,9 +180,11 @@ function analyzeColdChain(log: ColdChainEntry[], product: Product): ColdChainAna
  */
 export async function saveScanToHistory(
   rawValue: string,
-  result: TraceabilityResult
+  result: TraceabilityResult,
+  userId: string
 ): Promise<void> {
   const record: Omit<ScanHistoryRecord, "id"> = {
+    user_id: userId,
     scanned_at: new Date().toISOString(),
     raw_value: rawValue,
     lookup_key: rawValue.replace(/^https?:\/\/trace\.foodsafe\.io\/scan\//i, "").trim(),
@@ -225,10 +227,11 @@ export async function saveScanToHistory(
 /**
  * Fetch recent scan history from Supabase.
  */
-export async function getRecentScans(limit = 50): Promise<ScanHistoryRecord[]> {
+export async function getRecentScans(userId: string, limit = 50): Promise<ScanHistoryRecord[]> {
   const { data, error } = await supabase
     .from("scan_history")
     .select("*")
+    .eq("user_id", userId)
     .order("scanned_at", { ascending: false })
     .limit(limit);
 

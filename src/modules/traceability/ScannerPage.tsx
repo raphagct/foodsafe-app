@@ -14,8 +14,10 @@ import CreateReportModal from '../report/CreateReportModal';
 import { lookupByQR, saveScanToHistory } from '../../services/traceabilityService';
 import type { TraceabilityResult, TraceabilityResultNotFound } from '../../types/traceability';
 import { t, getLanguage } from '../../utils/i18n';
+import { useAuth } from '../../contexts/AuthContext';
 
 function ScannerPage() {
+  const { user } = useAuth();
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [mode, setMode] = useState<'photo' | 'qr'>('qr');
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +69,10 @@ function ScannerPage() {
 
   const handleQrResult = useCallback(async (decodedText: string) => {
     if (isProcessingRef.current) return;
+    if (!user) {
+      console.error("No authenticated user; cannot save scan.");
+      return;
+    }
     isProcessingRef.current = true;
     setIsLoading(true);
     setScanError(null);
@@ -76,7 +82,7 @@ function ScannerPage() {
       const result: TraceabilityResult = await lookupByQR(decodedText);
 
       // Save scan to Supabase history
-      await saveScanToHistory(decodedText, result);
+      await saveScanToHistory(decodedText, result, user.id);
 
       if (!result.found) {
         const notFound = result as TraceabilityResultNotFound;
@@ -103,7 +109,7 @@ function ScannerPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [router, stopQrScanner]);
+  }, [router, stopQrScanner, user]);
 
   const startQrScanner = useCallback(async () => {
     await stopQrScanner();

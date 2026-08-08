@@ -22,6 +22,7 @@ import { checkmarkCircle } from "ionicons/icons";
 import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface CreateReportModalProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ interface CreateReportModalProps {
 
 function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps) {
   const router = useIonRouter();
+  const { user } = useAuth();
   const [productName, setProductName] = useState("");
   const [riskLevel, setRiskLevel] = useState("UNSAFE");
   const [category, setCategory] = useState("");
@@ -63,6 +65,11 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
   const handleSubmit = async () => {
     if (!productName.trim()) {
       alert(t("productName", currentLanguage));
+      return;
+    }
+
+    if (!user) {
+      console.error("No authenticated user; cannot submit report.");
       return;
     }
 
@@ -112,6 +119,7 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
     }
 
     const { error } = await supabase.from("report").insert({
+      user_id: user.id,
       product_name: productName.trim(),
       risk_level: riskLevel,
       category: category || null,

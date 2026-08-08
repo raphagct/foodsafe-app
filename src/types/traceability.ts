@@ -163,6 +163,7 @@ export interface TraceabilityDatabase {
 // ── Scan History (for Supabase) ───────────────────────────────────────────────
 export interface ScanHistoryRecord {
   id?: string;
+  user_id: string;
   scanned_at: string;
   raw_value: string;
   lookup_key: string;
