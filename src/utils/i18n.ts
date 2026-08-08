@@ -137,6 +137,12 @@ export type TranslationKey =
   | "chatExample1"
   | "chatExample2"
   | "smartSuggestions";
+  // ── Alerts / Toasts ─────────────────
+  | "productNameRequired"
+  | "reportImageUploadError"
+  | "reportSubmitError"
+  | "reportSubmitSuccess"
+  | "scanSaveError";
 
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   fr: {
@@ -250,6 +256,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatExample1: "Température de cuisson du bœuf haché ?",
     chatExample2: "Combien de temps conserver le riz cuit ?",
     smartSuggestions: "Suggestions intelligentes",
+    // Alerts / Toasts
+    productNameRequired: "Merci de renseigner le nom du produit.",
+    reportImageUploadError: "Erreur lors de l'envoi de la photo. Réessayez.",
+    reportSubmitError: "Impossible d'envoyer le rapport. Réessayez.",
+    reportSubmitSuccess: "Rapport envoyé avec succès !",
+    scanSaveError: "Scan effectué, mais non sauvegardé dans l'historique.",
   },
   vi: {
     appNameFood: "Food",
@@ -362,6 +374,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatExample1: "Nhiệt độ nấu chín thịt bò xay là bao nhiêu?",
     chatExample2: "Cơm nấu chín để tủ lạnh được bao lâu?",
     smartSuggestions: "Gợi ý thông minh",
+    // Alerts / Toasts
+    productNameRequired: "Vui lòng nhập tên sản phẩm.",
+    reportImageUploadError: "Lỗi khi tải ảnh lên. Vui lòng thử lại.",
+    reportSubmitError: "Không thể gửi báo cáo. Vui lòng thử lại.",
+    reportSubmitSuccess: "Gửi báo cáo thành công!",
+    scanSaveError: "Đã quét xong nhưng không lưu được vào lịch sử.",
   },
   en: {
     appNameFood: "Food",
@@ -474,6 +492,12 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatExample1: "What internal temp should I cook ground beef to?",
     chatExample2: "How long can I keep cooked rice in the fridge?",
     smartSuggestions: "Smart suggestions",
+    // Alerts / Toasts
+    productNameRequired: "Please enter a product name.",
+    reportImageUploadError: "Error uploading the photo. Please try again.",
+    reportSubmitError: "Couldn't submit the report. Please try again.",
+    reportSubmitSuccess: "Report submitted successfully!",
+    scanSaveError: "Scan completed, but couldn't be saved to history.",
   },
 };
 
