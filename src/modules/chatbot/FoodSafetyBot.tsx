@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   IonPage,
   IonHeader,
@@ -18,6 +18,8 @@ import {
 import { send, hardwareChip, helpCircleOutline } from "ionicons/icons";
 import { askFoodSafetyQuestion, type ChatMessage } from "../../services/aiService";
 import { t, getLanguage } from "../../utils/i18n";
+import { Keyboard } from "@capacitor/keyboard";
+import { Capacitor } from "@capacitor/core";
 
 export default function FoodSafetyBot() {
   const lang = getLanguage();
@@ -26,6 +28,13 @@ export default function FoodSafetyBot() {
   const [loading, setLoading] = useState(false);
   const contentRef = useRef<HTMLIonContentElement | null>(null);
 
+  // Hide iOS form accessory bar on native
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      Keyboard.setAccessoryBarVisible({ isVisible: false }).catch(() => {});
+    }
+  }, []);
+
   // Scroll to bottom when messages change
   useEffect(() => {
     // Wait for the DOM to update before scrolling
@@ -33,6 +42,16 @@ export default function FoodSafetyBot() {
         contentRef.current?.scrollToBottom(300);
     }, 100);
   }, [messages, loading]);
+
+  const dismissKeyboard = () => {
+    if (Capacitor.isNativePlatform()) {
+      Keyboard.hide().catch(() => {});
+    }
+    // Fallback for web: blur the active element
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
 
   const handleSend = async () => {
     if (!question.trim()) return;
@@ -43,6 +62,9 @@ export default function FoodSafetyBot() {
     setMessages(newMessages);
     setQuestion("");
     setLoading(true);
+
+    // Dismiss the keyboard after sending
+    dismissKeyboard();
 
     const response = await askFoodSafetyQuestion(userMessage.content, messages);
     
@@ -167,7 +189,7 @@ export default function FoodSafetyBot() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleSend();
               }}
-              mode="md"
+              enterkeyhint="send"
               style={{
                 '--background': '#f1f5f9',
                 '--border-radius': '20px',
