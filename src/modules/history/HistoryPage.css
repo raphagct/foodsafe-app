@@ -1,0 +1,101 @@
+.history-section {
+  --background: var(--color-surface-alt);
+  box-shadow: none;
+}
+
+.view-all-button {
+  --color: var(--color-primary);
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --padding-start: 0;
+  --padding-end: 0;
+  --box-shadow: none;
+  text-transform: none;
+}
+
+/* Premium Card Styling */
+ion-item.history-card-item {
+  --background-hover: transparent;
+  --background-activated: rgba(0, 0, 0, 0.02);
+  --transition: none;
+  --border-radius: 20px;
+  --inner-border-width: 0;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+/* Force IonContent background */
+.history-content {
+  --background: var(--color-surface);
+}
+
+/* Force IonList background to be transparent */
+.history-list {
+  background: transparent !important;
+  --ion-background-color: transparent;
+}
+
+/* Ensure inner container has smooth transition */
+ion-item.history-card-item::part(native) {
+  transition: all 0.2s ease-out;
+}
+
+ion-item.history-card-item:active::part(native) {
+  transform: scale(0.98);
+}
+
+/* Custom Segment Styling */
+ion-segment.custom-segment {
+  --background: rgba(243, 244, 246, 0.8);
+  border-radius: 9999px;
+  padding: 4px;
+  border: 1px solid #E5E7EB;
+}
+
+ion-segment-button.custom-segment-button {
+  --indicator-color: white;
+  --indicator-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --color: #6B7280;
+  --color-checked: #111827;
+  font-weight: 600;
+  border-radius: 9999px;
+  margin: 0;
+  min-height: 40px;
+}
+
+ion-segment-button.custom-segment-button::part(indicator-background) {
+  border-radius: 9999px;
+}
+
+/* Animations */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0; /* Starts hidden, animation makes it visible */
+}
+
+/* Staggered animation delays */
+.animate-delay-1 { animation-delay: 50ms; }
+.animate-delay-2 { animation-delay: 100ms; }
+.animate-delay-3 { animation-delay: 150ms; }
+.animate-delay-4 { animation-delay: 200ms; }
+.animate-delay-5 { animation-delay: 250ms; }
+
+/* Custom Skeleton Styling */
+ion-skeleton-text {
+  --background: rgba(229, 231, 235, 0.5);
+  --background-rgb: 229, 231, 235;
+}

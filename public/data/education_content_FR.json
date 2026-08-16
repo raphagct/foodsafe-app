@@ -1,0 +1,886 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "module": "Education",
+    "description": "Contenu pédagogique sur la sécurité alimentaire pour affichage mobile",
+    "language": "fr",
+    "last_updated": "2026-06-09",
+    "content_types": [
+      "article",
+      "quiz",
+      "tip",
+      "infographic_data",
+      "regulation_ref"
+    ]
+  },
+  "categories": [
+    {
+      "id": "CAT-01",
+      "name": "Bases",
+      "icon": "book-open",
+      "color": "#4CAF50",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-02",
+      "name": "Conservation et température",
+      "icon": "thermometer",
+      "color": "#2196F3",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-03",
+      "name": "Maladies alimentaires",
+      "icon": "alert-triangle",
+      "color": "#F44336",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-04",
+      "name": "Achats intelligents",
+      "icon": "shopping-cart",
+      "color": "#FF9800",
+      "article_count": 3
+    },
+    {
+      "id": "CAT-05",
+      "name": "Manipulation sure",
+      "icon": "utensils",
+      "color": "#9C27B0",
+      "article_count": 3
+    }
+  ],
+  "articles": [
+    {
+      "id": "ART-001",
+      "category_id": "CAT-01",
+      "title": "Qu'est-ce que la sécurité alimentaire ?",
+      "summary": "Introduction aux notions de sécurité alimentaire, aux contaminations et aux risques pour la sante.",
+      "difficulty": "débutant",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La sécurité alimentaire regroupe les pratiques qui evitent qu un aliment rende malade pendant sa production, son transport, sa vente ou sa consommation."
+        },
+        {
+          "type": "heading",
+          "text": "Trois categories de contamination"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Biologique: bactéries, virus, moisissures et parasites.",
+            "Chimique: pesticides, metaux lourds, additifs non adaptes ou toxines.",
+            "Physique: verre, metal, os, pierre ou morceau d emballage."
+          ]
+        },
+        {
+          "type": "stat_box",
+          "stats": [
+            {
+              "value": "600 millions",
+              "label": "personnes malades chaque annee selon l OMS"
+            },
+            {
+              "value": "420000",
+              "label": "deces annuels lies aux aliments contamines"
+            },
+            {
+              "value": "30 pourcent",
+              "label": "des deces concernent les enfants de moins de 5 ans"
+            },
+            {
+              "value": "15.6 Md USD",
+              "label": "cout annuel estime aux Etats Unis"
+            }
+          ]
+        },
+        {
+          "type": "key_takeaway",
+          "text": "La sécurité alimentaire est une responsabilite partagee, de la ferme a l assiette."
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-003"
+      ],
+      "tags": [
+        "bases",
+        "contamination",
+        "sante"
+      ]
+    },
+    {
+      "id": "ART-002",
+      "category_id": "CAT-01",
+      "title": "Les 4 principes essentiels",
+      "summary": "Nettoyer, separer, cuire et refroidir avec des conseils pratiques.",
+      "difficulty": "débutant",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Quatre gestes simples reduisent fortement les risques: nettoyer, separer, cuire et refroidir."
+        },
+        {
+          "type": "card_list",
+          "cards": [
+            {
+              "title": "NETTOYER",
+              "points": [
+                "Laver les mains au savon pendant 20 secondes.",
+                "Rincer les fruits et legumes.",
+                "Nettoyer les surfaces apres contact avec du cru."
+              ]
+            },
+            {
+              "title": "SEPARER",
+              "points": [
+                "Utiliser des planches differentes.",
+                "Ne pas poser du cuit sur une assiette ayant contenu du cru.",
+                "Ranger la viande crue sous les aliments prets a manger."
+              ]
+            },
+            {
+              "title": "CUIRE",
+              "points": [
+                "Volaille: 74 \u00b0C.",
+                "Viande hachee: 71 \u00b0C.",
+                "Poisson: 63 \u00b0C.",
+                "Utiliser un thermometre alimentaire."
+              ]
+            },
+            {
+              "title": "REFROIDIR",
+              "points": [
+                "Réfrigérateur a 4 \u00b0C ou moins.",
+                "Refrigerer les aliments perissables dans les 2 heures.",
+                "Decongeler au réfrigérateur, a l eau froide ou au micro ondes."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "key_takeaway",
+          "text": "L odeur ou la couleur ne suffit pas. Le thermometre alimentaire reste le controle le plus fiable."
+        }
+      ],
+      "related_articles": [
+        "ART-001",
+        "ART-004"
+      ],
+      "tags": [
+        "nettoyer",
+        "separer",
+        "cuire",
+        "refroidir"
+      ]
+    },
+    {
+      "id": "ART-003",
+      "category_id": "CAT-03",
+      "title": "Maladies alimentaires et premiers gestes",
+      "summary": "Symptomes frequents, causes possibles et actions utiles en cas de doute.",
+      "difficulty": "intermédiaire",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "alert_box",
+          "severity": "danger",
+          "text": "Appeler les urgences en cas de convulsions, perte de connaissance, difficulte respiratoire, vomissements sanglants ou symptomes chez une personne vulnerable."
+        },
+        {
+          "type": "symptoms_table",
+          "columns": [
+            "Pathogene",
+            "Incubation",
+            "Symptomes",
+            "Sources"
+          ],
+          "rows": [
+            [
+              "Salmonella",
+              "6 a 72 h",
+              "Diarrhee, fievre, crampes",
+              "Oeufs, volaille, produits crus"
+            ],
+            [
+              "E coli O157:H7",
+              "3 a 4 jours",
+              "Crampes severes, diarrhee sanglante",
+              "Boeuf peu cuit, legumes crus"
+            ],
+            [
+              "Norovirus",
+              "12 a 48 h",
+              "Vomissements, diarrhee",
+              "Coquillages, eau contaminee"
+            ],
+            [
+              "Listeria",
+              "1 a 4 semaines",
+              "Fievre et complications chez personnes a risque",
+              "Charcuterie, fromages au lait cru"
+            ]
+          ]
+        },
+        {
+          "type": "steps",
+          "steps": [
+            "Arreter de manger l aliment suspect.",
+            "Garder un echantillon ferme si une analyse est utile.",
+            "Boire de petites gorgees regulieres.",
+            "Eviter les medicaments sans avis medical.",
+            "Consulter si les symptomes sont graves ou durent."
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-001",
+        "ART-004"
+      ],
+      "tags": [
+        "maladie",
+        "symptomes",
+        "premiers secours"
+      ]
+    },
+    {
+      "id": "ART-004",
+      "category_id": "CAT-02",
+      "title": "La zone de danger des températures",
+      "summary": "Pourquoi la température est essentielle pour limiter la multiplication bactérienne.",
+      "difficulty": "intermédiaire",
+      "read_time_min": 5,
+      "content_blocks": [
+        {
+          "type": "infographic_data",
+          "chart_type": "température_scale",
+          "zones": [
+            {
+              "temp_f": "165+",
+              "temp_c": "74+",
+              "label": "Sûreté pour volaille bien cuite",
+              "color": "#4CAF50",
+              "safe": true
+            },
+            {
+              "temp_f": "145-165",
+              "temp_c": "63-74",
+              "label": "Surete pour la plupart des proteines",
+              "color": "#8BC34A",
+              "safe": true
+            },
+            {
+              "temp_f": "40-140",
+              "temp_c": "4-60",
+              "label": "Zone de danger",
+              "color": "#F44336",
+              "safe": false
+            },
+            {
+              "temp_f": "33-40",
+              "temp_c": "1-4",
+              "label": "Réfrigérateur",
+              "color": "#2196F3",
+              "safe": true
+            },
+            {
+              "temp_f": "<=32",
+              "temp_c": "<=0",
+              "label": "Congélateur",
+              "color": "#1565C0",
+              "safe": true
+            }
+          ]
+        },
+        {
+          "type": "key_fact",
+          "text": "Entre 4 \u00b0C et 60 \u00b0C, les bactéries peuvent se multiplier rapidement."
+        },
+        {
+          "type": "rule",
+          "title": "Regle des 2 heures et 1 heure",
+          "description": "Un aliment perissable ne doit pas rester plus de 2 heures dans la zone de danger. Au dessus de 32 \u00b0C, la limite est 1 heure."
+        },
+        {
+          "type": "faq",
+          "items": [
+            {
+              "question": "La congelation tue les bactéries",
+              "answer": "Non. Elle ralentit surtout leur croissance. Une cuisson correcte reste necessaire."
+            },
+            {
+              "question": "Un aliment qui sent bon est forcement sur",
+              "answer": "Non. Beaucoup de pathogenes ne changent pas l odeur, le gout ou l apparence."
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-005"
+      ],
+      "tags": [
+        "température",
+        "refrigeration"
+      ]
+    },
+    {
+      "id": "ART-005",
+      "category_id": "CAT-04",
+      "title": "Lire une etiquette alimentaire",
+      "summary": "Comprendre ingredients, allergenes, dates et informations nutritionnelles.",
+      "difficulty": "débutant",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Les etiquettes donnent des informations utiles pour choisir, conserver et consommer un produit plus surement."
+        },
+        {
+          "type": "checklist",
+          "title": "Informations importantes",
+          "items": [
+            {
+              "label": "Nom du produit",
+              "note": "Nom courant de l aliment."
+            },
+            {
+              "label": "Quantite nette",
+              "note": "Poids, volume ou nombre de portions."
+            },
+            {
+              "label": "Ingredients",
+              "note": "Classes par quantite decroissante."
+            },
+            {
+              "label": "Allergenes",
+              "note": "Les allergenes majeurs doivent etre visibles."
+            },
+            {
+              "label": "Dates",
+              "note": "Date limite, qualite ou vente selon le cas."
+            }
+          ]
+        },
+        {
+          "type": "allergen_list",
+          "title": "Allergenes majeurs",
+          "items": [
+            {
+              "name": "Lait",
+              "sources": "beurre, fromage, creme"
+            },
+            {
+              "name": "Oeufs",
+              "sources": "oeufs, mayonnaise"
+            },
+            {
+              "name": "Poisson",
+              "sources": "thon, saumon, cabillaud"
+            },
+            {
+              "name": "Crustaces",
+              "sources": "crevettes, crabe, homard"
+            },
+            {
+              "name": "Ble",
+              "sources": "farine, pain, pates"
+            },
+            {
+              "name": "Soja",
+              "sources": "tofu, edamame"
+            },
+            {
+              "name": "Arachides",
+              "sources": "beurre de cacahuete"
+            },
+            {
+              "name": "Fruits a coque",
+              "sources": "amandes, noix, cajou"
+            },
+            {
+              "name": "Sesame",
+              "sources": "graines, huile, tahini"
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-006"
+      ],
+      "tags": [
+        "etiquette",
+        "allergenes"
+      ]
+    },
+    {
+      "id": "ART-006",
+      "category_id": "CAT-04",
+      "title": "Certifications alimentaires",
+      "summary": "Comprendre les labels et certifications que l on voit sur les emballages.",
+      "difficulty": "intermédiaire",
+      "read_time_min": 7,
+      "content_blocks": [
+        {
+          "type": "certification_cards",
+          "cards": [
+            {
+              "name": "USDA Organic",
+              "means": "Production avec restrictions sur pesticides de synthese, OGM et irradiation."
+            },
+            {
+              "name": "HACCP",
+              "means": "Methode de maitrise des risques dans la production alimentaire."
+            },
+            {
+              "name": "ISO 22000",
+              "means": "Norme internationale de management de la sécurité alimentaire."
+            },
+            {
+              "name": "MSC et ASC",
+              "means": "Labels lies aux produits de la mer et a la durabilite."
+            }
+          ]
+        },
+        {
+          "type": "warning_box",
+          "title": "Attention au marketing",
+          "text": "Des termes comme naturel ou fermier peuvent etre ambigus sans controle officiel."
+        }
+      ],
+      "related_articles": [
+        "ART-005"
+      ],
+      "tags": [
+        "certification",
+        "HACCP"
+      ]
+    },
+    {
+      "id": "ART-007",
+      "category_id": "CAT-05",
+      "title": "Manipuler les aliments en cuisine",
+      "summary": "Bonnes pratiques pour decongeler, cuire, refroidir et conserver.",
+      "difficulty": "débutant",
+      "read_time_min": 6,
+      "content_blocks": [
+        {
+          "type": "heading",
+          "text": "Decongeler en sécurité"
+        },
+        {
+          "type": "methods_list",
+          "methods": [
+            {
+              "name": "Au réfrigérateur",
+              "description": "Methode la plus sure car l aliment reste a température controlee.",
+              "rating": "Meilleur"
+            },
+            {
+              "name": "Sous eau froide",
+              "description": "Garder l emballage ferme et cuire immediatement.",
+              "rating": "Bon"
+            },
+            {
+              "name": "Au micro ondes",
+              "description": "Cuire immediatement apres décongélation.",
+              "rating": "Acceptable"
+            }
+          ]
+        },
+        {
+          "type": "cooling_techniques",
+          "techniques": [
+            "Diviser les grands volumes.",
+            "Utiliser un bain d eau glacee.",
+            "Ne pas placer un grand volume chaud directement au réfrigérateur."
+          ]
+        },
+        {
+          "type": "refrigerator_storage_chart",
+          "title": "Durees indicatives au réfrigérateur",
+          "rows": [
+            {
+              "food": "Viande hachee crue",
+              "days": "1 a 2 jours"
+            },
+            {
+              "food": "Volaille crue",
+              "days": "1 a 2 jours"
+            },
+            {
+              "food": "Poisson cru",
+              "days": "1 a 2 jours"
+            },
+            {
+              "food": "Restes cuits",
+              "days": "3 a 4 jours"
+            }
+          ]
+        }
+      ],
+      "related_articles": [
+        "ART-002",
+        "ART-004"
+      ],
+      "tags": [
+        "cuisine",
+        "conservation"
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "QUIZ-001",
+      "title": "Bases de la sécurité alimentaire",
+      "category_id": "CAT-01",
+      "difficulty": "débutant",
+      "question_count": 6,
+      "time_limit_seconds": 180,
+      "pass_score": 67,
+      "questions": [
+        {
+          "id": "Q001",
+          "question": "Quelle est la zone de danger des températures.",
+          "options": [
+            "A. 0 \u00b0C a 38 \u00b0C",
+            "B. 4 \u00b0C a 60 \u00b0C",
+            "C. 10 \u00b0C a 74 \u00b0C",
+            "D. 1 \u00b0C a 49 \u00b0C"
+          ],
+          "correct_answer": "B",
+          "explanation": "La zone de danger est comprise entre 4 \u00b0C et 60 \u00b0C."
+        },
+        {
+          "id": "Q002",
+          "question": "Combien de temps faut il se laver les mains.",
+          "options": [
+            "A. 5 secondes",
+            "B. 10 secondes",
+            "C. 20 secondes",
+            "D. 60 secondes"
+          ],
+          "correct_answer": "C",
+          "explanation": "Il faut au moins 20 secondes avec de l eau et du savon."
+        },
+        {
+          "id": "Q003",
+          "question": "Quel pathogene est souvent associe a la volaille crue.",
+          "options": [
+            "A. Listeria monocytogenes",
+            "B. Clostridium botulinum",
+            "C. Salmonella",
+            "D. Staphylococcus aureus"
+          ],
+          "correct_answer": "C",
+          "explanation": "Salmonella est souvent liee a la volaille insuffisamment cuite."
+        },
+        {
+          "id": "Q004",
+          "question": "Que signifie la contamination croisée.",
+          "options": [
+            "A. Cuire deux proteines ensemble",
+            "B. Transfert de microbes du cru vers le pret a manger",
+            "C. Conserver apres expiration",
+            "D. Utiliser une mauvaise température"
+          ],
+          "correct_answer": "B",
+          "explanation": "Elle correspond au transfert de microbes entre aliments ou surfaces."
+        },
+        {
+          "id": "Q005",
+          "question": "Quelle est la methode la plus sure pour decongeler la viande.",
+          "options": [
+            "A. Sur le plan de travail",
+            "B. Dans l eau chaude",
+            "C. Au réfrigérateur",
+            "D. Avec une source de chaleur"
+          ],
+          "correct_answer": "C",
+          "explanation": "Le réfrigérateur maintient la viande a température sure."
+        },
+        {
+          "id": "Q006",
+          "question": "Un aliment qui sent bon est toujours sur. Vrai ou faux.",
+          "options": [
+            "A. Vrai",
+            "B. Faux",
+            "C. Vrai, les sens suffisent",
+            "D. Cela depend toujours"
+          ],
+          "correct_answer": "B",
+          "explanation": "De nombreux pathogenes ne changent pas l odeur ou l aspect."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-002",
+      "title": "Lire les etiquettes alimentaires",
+      "category_id": "CAT-04",
+      "difficulty": "intermédiaire",
+      "question_count": 5,
+      "time_limit_seconds": 180,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q007",
+          "question": "Dans quel ordre les ingredients sont listes.",
+          "options": [
+            "A. Alphabetique",
+            "B. Importance nutritionnelle",
+            "C. Par poids, le plus present en premier",
+            "D. Par allergenicite"
+          ],
+          "correct_answer": "C",
+          "explanation": "Les ingredients sont listes par ordre decroissant de poids."
+        },
+        {
+          "id": "Q008",
+          "question": "Une date a utiliser de preference avant indique quoi.",
+          "options": [
+            "A. Danger immediat apres la date",
+            "B. Qualite reduite possible mais pas forcement danger",
+            "C. Retrait legal obligatoire",
+            "D. Maladie garantie"
+          ],
+          "correct_answer": "B",
+          "explanation": "C est souvent une date de qualite."
+        },
+        {
+          "id": "Q009",
+          "question": "Combien d allergenes majeurs sont declares aux Etats Unis.",
+          "options": [
+            "A. 5",
+            "B. 7",
+            "C. 8",
+            "D. 9"
+          ],
+          "correct_answer": "D",
+          "explanation": "Le sesame a ete ajoute comme 9e allergene majeur."
+        },
+        {
+          "id": "Q010",
+          "question": "Le terme naturel signifie que le produit est.",
+          "options": [
+            "A. Verifie sans additif",
+            "B. Biologique",
+            "C. Peu defini juridiquement par la FDA",
+            "D. Sans OGM"
+          ],
+          "correct_answer": "C",
+          "explanation": "Le terme est surtout marketing sans label controle."
+        },
+        {
+          "id": "Q011",
+          "question": "Le pourcentage de valeurs quotidiennes se base sur combien de calories.",
+          "options": [
+            "A. 1500",
+            "B. 2000",
+            "C. 2500",
+            "D. 1800"
+          ],
+          "correct_answer": "B",
+          "explanation": "La reference utilisee est generalement 2000 calories."
+        }
+      ]
+    },
+    {
+      "id": "QUIZ-003",
+      "title": "Maladies alimentaires et pathogenes",
+      "category_id": "CAT-03",
+      "difficulty": "avancé",
+      "question_count": 5,
+      "time_limit_seconds": 240,
+      "pass_score": 80,
+      "questions": [
+        {
+          "id": "Q012",
+          "question": "Listeria est particulierement dangereuse pour quel groupe.",
+          "options": [
+            "A. Adultes sportifs",
+            "B. Femmes enceintes, nouveaux nes, personnes agees ou immunodeprimees",
+            "C. Personnes intolerantes au gluten",
+            "D. Enfants de 5 a 12 ans"
+          ],
+          "correct_answer": "B",
+          "explanation": "Ces groupes ont un risque plus eleve de complications."
+        },
+        {
+          "id": "Q013",
+          "question": "Quel pathogene produit une toxine dans les conserves maison mal preparees.",
+          "options": [
+            "A. Salmonella typhi",
+            "B. Clostridium botulinum",
+            "C. Staphylococcus aureus",
+            "D. Bacillus cereus"
+          ],
+          "correct_answer": "B",
+          "explanation": "C botulinum peut produire une neurotoxine dangereuse."
+        },
+        {
+          "id": "Q014",
+          "question": "Bacillus cereus est souvent lie a quel aliment.",
+          "options": [
+            "A. Poulet cru",
+            "B. Riz cuit laisse a température ambiante",
+            "C. Fromage mou",
+            "D. Huîtres crues"
+          ],
+          "correct_answer": "B",
+          "explanation": "Le riz cuit garde au chaud est un cas classique."
+        },
+        {
+          "id": "Q015",
+          "question": "Quel niveau FDA concerne le mercure dans le poisson.",
+          "options": [
+            "A. 0.1 ppm",
+            "B. 0.5 ppm",
+            "C. 1.0 ppm",
+            "D. 5.0 ppm"
+          ],
+          "correct_answer": "C",
+          "explanation": "Le niveau d action est 1.0 ppm."
+        },
+        {
+          "id": "Q016",
+          "question": "Quelle est la voie principale de transmission du norovirus.",
+          "options": [
+            "A. Viande peu cuite",
+            "B. Air expire",
+            "C. Voie fecale orale",
+            "D. Produits laitiers non pasteurises"
+          ],
+          "correct_answer": "C",
+          "explanation": "Le norovirus se transmet surtout par voie fecale orale."
+        }
+      ]
+    }
+  ],
+  "daily_tips": [
+    {
+      "id": "TIP-001",
+      "icon": "🧼",
+      "text": "Lavez vos mains au savon pendant 20 secondes avant de cuisiner.",
+      "category": "hygiène",
+      "fact": "C'est environ le temps de chanter deux fois 'Joyeux Anniversaire'. C'est le geste le plus simple et efficace pour éviter les contaminations."
+    },
+    {
+      "id": "TIP-002",
+      "icon": "🌡️",
+      "text": "Gardez le réfrigérateur a 4 \u00b0C ou moins.",
+      "category": "conservation",
+      "fact": "Vérifiez-le tous les mois avec un thermomètre. Les joints de porte s'usent avec le temps et la température peut remonter à votre insu."
+    },
+    {
+      "id": "TIP-003",
+      "icon": "🔪",
+      "text": "Utilisez des planches séparées pour éviter la contamination croisée.",
+      "category": "cuisine",
+      "fact": "Codes couleurs standard : rouge pour la viande crue, jaune pour la volaille, vert pour les fruits et légumes, blanc pour le pain et les laitages."
+    },
+    {
+      "id": "TIP-004",
+      "icon": "📦",
+      "text": "Appliquez FIFO: premier entré, premier sorti.",
+      "category": "conservation",
+      "fact": "Placez les articles les plus anciens à l'avant lorsque vous rangez vos courses. Cela réduit le gaspillage et garantit une consommation sûre."
+    },
+    {
+      "id": "TIP-005",
+      "icon": "🌡️",
+      "text": "Un thermometre alimentaire est le controle le plus fiable.",
+      "category": "cuisson",
+      "fact": "Les indices visuels comme la couleur de la viande ou du jus ne sont pas des indicateurs fiables. Seule la température garantit la sécurité."
+    },
+    {
+      "id": "TIP-006",
+      "icon": "🥫",
+      "text": "Ne consommez jamais une conserve bombée ou très cabossée.",
+      "category": "conservation",
+      "fact": "Ce sont des signes de contamination potentielle par Clostridium botulinum. La toxine botulique est mortelle, ne goûtez jamais pour tester."
+    },
+    {
+      "id": "TIP-007",
+      "icon": "🥬",
+      "text": "Rincez les fruits et legumes meme si vous les epluchez.",
+      "category": "cuisson",
+      "fact": "Couper des fruits ou légumes non lavés peut transférer les bactéries de la peau directement dans la chair que vous allez consommer."
+    },
+    {
+      "id": "TIP-008",
+      "icon": "⏱️",
+      "text": "Un plat cuit laisse plus de 2 heures dehors devient risque.",
+      "category": "conservation",
+      "fact": "Par temps chaud (plus de 32 °C), les bactéries se multiplient très vite, réduisant ce délai de sécurité à 1 heure seulement."
+    },
+    {
+      "id": "TIP-009",
+      "icon": "🐣",
+      "text": "Gardez les oeufs dans leur boite au frais.",
+      "category": "conservation",
+      "fact": "Conservez-les au centre du réfrigérateur là où la température est stable, plutôt que dans la porte où l'ouverture crée des écarts thermiques."
+    },
+    {
+      "id": "TIP-010",
+      "icon": "🦪",
+      "text": "Les personnes vulnerables doivent éviter les coquillages crus.",
+      "category": "cuisson",
+      "fact": "Les personnes vulnérables (femmes enceintes, enfants, seniors) doivent toujours consommer les coquillages bien cuits."
+    }
+  ],
+  "regulations_us": [
+    {
+      "code": "21 CFR Part 101",
+      "title": "Etiquetage alimentaire",
+      "authority": "FDA",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-101"
+    },
+    {
+      "code": "21 CFR Part 110",
+      "title": "Bonnes pratiques de fabrication alimentaire",
+      "authority": "FDA",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/part-110"
+    },
+    {
+      "code": "21 CFR Part 117",
+      "title": "Analyse des dangers et controles preventifs",
+      "authority": "FDA",
+      "year": 2015
+    },
+    {
+      "code": "FSMA",
+      "title": "Loi de sécurité alimentaire orientée prévention",
+      "authority": "FDA",
+      "year": 2011,
+      "url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/full-text-food-safety-modernization-act-fsma"
+    },
+    {
+      "code": "9 CFR Parts 416 & 417",
+      "title": "Règles HACCP pour viande et volaille",
+      "authority": "USDA FSIS"
+    },
+    {
+      "code": "FALCPA",
+      "title": "Etiquetage des allergenes alimentaires",
+      "authority": "FDA",
+      "year": 2004
+    },
+    {
+      "code": "FASTER Act",
+      "title": "Ajout du sesame comme allergene majeur",
+      "authority": "FDA",
+      "year": 2021
+    }
+  ],
+  "emergency_contacts_us": {
+    "emergency": "911",
+    "fda_consumer_hotline": "1-888-723-3366",
+    "usda_meat_poultry_hotline": "1-888-674-6854",
+    "poison_control": "1-800-222-1222",
+    "cdc_info": "1-800-CDC-INFO (1-800-232-4636)",
+    "report_foodborne_illness": "https://www.foodsafety.gov/report-a-problem/report-a-foodborne-illness"
+  }
+}

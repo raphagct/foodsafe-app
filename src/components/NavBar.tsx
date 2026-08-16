@@ -8,15 +8,17 @@ import {
 } from "@ionic/react";
 import { Route, Redirect } from "react-router-dom";
 
-import { home, camera, school, time } from "ionicons/icons";
+import { home, camera, school, time, chatbubbles } from "ionicons/icons";
 import { t, getLanguage } from "../utils/i18n";
 
-import HomePage from "../pages/HomePage/HomePage";
-import CameraPage from "../pages/CameraPage/CameraPage";
-import EducationPage from "../pages/EducationPage/EducationPage";
-import HistoryPage from "../pages/HistoryPage/HistoryPage";
-import ReportDetailsPage from "../pages/HistoryPage/ReportDetailsPage";
-import TraceabilityPage from "../pages/CameraPage/TraceabiltyPage/TraceabilityPage";
+import HomePage from "../modules/home/HomePage";
+import ScannerPage from "../modules/traceability/ScannerPage";
+import EducationPage from "../modules/education/EducationPage";
+import HistoryPage from "../modules/history/HistoryPage";
+import ReportDetailPage from "../modules/report/ReportDetailPage";
+import BatchDetailPage from "../modules/traceability/BatchDetailPage";
+import FoodSafetyBot from "../modules/chatbot/FoodSafetyBot.tsx";
+import RecallsPage from "../modules/recalls/RecallsPage";
 
 function NavBar() {
   const currentLanguage = getLanguage();
@@ -25,19 +27,26 @@ function NavBar() {
     <IonTabs>
       <IonRouterOutlet>
         <Route exact path="/tabs/home" component={HomePage} />
-        <Route exact path="/tabs/camera" component={CameraPage} />
+        <Route exact path="/tabs/camera" component={ScannerPage} />
         <Route
           exact
           path="/tabs/camera/traceability/:id"
-          component={TraceabilityPage}
+          component={BatchDetailPage}
+        />
+        <Route
+          exact
+          path="/tabs/history/traceability/:id"
+          component={BatchDetailPage}
         />
         <Route exact path="/tabs/education" component={EducationPage} />
         <Route exact path="/tabs/history" component={HistoryPage} />
         <Route
           exact
           path="/tabs/history/report/:id"
-          component={ReportDetailsPage}
+          component={ReportDetailPage}
         />
+        <Route exact path="/tabs/assistant" component={FoodSafetyBot} />
+        <Route exact path="/tabs/recalls" component={RecallsPage} />
 
         <Redirect exact from="/tabs" to="/tabs/home" />
       </IonRouterOutlet>
@@ -61,6 +70,11 @@ function NavBar() {
         <IonTabButton tab="history" href="/tabs/history">
           <IonIcon icon={time} />
           <IonLabel>{t("appMenuHistory", currentLanguage)}</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="assistant" href="/tabs/assistant">
+          <IonIcon icon={chatbubbles} />
+          <IonLabel>{t("appMenuAssistant", currentLanguage)}</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IonPopover } from "@ionic/react";
 import { getCurrentLanguage, languages, setLanguage, t } from "../utils/i18n";
 
@@ -47,17 +48,26 @@ function CheckIcon() {
 function LanguageButton() {
   const currentLanguage = getCurrentLanguage();
   const currentCode = currentLanguage.code as LanguageCode;
+  const [popoverEvent, setPopoverEvent] = useState<Event | undefined>(undefined);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (code: LanguageCode) => {
     setLanguage(code);
+    setIsOpen(false);
     window.location.reload();
+  };
+
+  const handleOpen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPopoverEvent(e.nativeEvent);
+    setIsOpen(true);
   };
 
   return (
     <>
       <button
-        id="language-trigger"
         type="button"
+        onClick={handleOpen}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -68,6 +78,13 @@ function LanguageButton() {
           boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
           cursor: "pointer",
           padding: "7px 12px 7px 10px",
+          minHeight: 44,
+          minWidth: 44,
+          touchAction: "manipulation",
+          WebkitTapHighlightColor: "transparent",
+          position: "relative",
+          zIndex: 10,
+          userSelect: "none",
         }}
       >
         <img
@@ -79,16 +96,21 @@ function LanguageButton() {
             borderRadius: "50%",
             objectFit: "cover",
             boxShadow: "0 0 0 1px rgba(0,0,0,0.07)",
+            pointerEvents: "none",
           }}
         />
-        <span style={{ fontSize: 13, fontWeight: 500, color: "#111", letterSpacing: "0.02em" }}>
+        <span style={{ fontSize: 13, fontWeight: 500, color: "#111", letterSpacing: "0.02em", pointerEvents: "none" }}>
           {LANG_SHORT[currentCode]}
         </span>
-        <ChevronIcon />
+        <span style={{ pointerEvents: "none", display: "inline-flex" }}>
+          <ChevronIcon />
+        </span>
       </button>
 
       <IonPopover
-        trigger="language-trigger"
+        isOpen={isOpen}
+        event={popoverEvent}
+        onDidDismiss={() => setIsOpen(false)}
         side="bottom"
         alignment="center"
         showBackdrop={false}
@@ -133,6 +155,9 @@ function LanguageButton() {
                 border: "none",
                 cursor: "pointer",
                 textAlign: "left",
+                minHeight: 44,
+                touchAction: "manipulation",
+                WebkitTapHighlightColor: "transparent",
               }}
             >
               <img
