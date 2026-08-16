@@ -18,7 +18,7 @@ import {
   IonIcon,
   useIonRouter,
 } from "@ionic/react";
-import { checkmarkCircle } from "ionicons/icons";
+import { checkmarkCircle, ellipseOutline } from "ionicons/icons";
 import { supabase } from "../../services/supabaseClient";
 import { t, getLanguage } from "../../utils/i18n";
 import { REPORT_CATEGORIES, WARNING_SIGNS } from "../../types/report";
@@ -231,8 +231,11 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
 
           {/* Warning Signs */}
           <div>
-            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5 px-1">
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5 px-1">
               {t("warningSigns", currentLanguage)}
+            </p>
+            <p className="text-xs text-gray-400 mb-2.5 px-1">
+              {t("warningSignsHint", currentLanguage)}
             </p>
             <div className="flex flex-wrap gap-2">
               {WARNING_SIGNS.map(ws => {
@@ -248,10 +251,11 @@ function CreateReportModal({ isOpen, photoUrl, onClose }: CreateReportModalProps
                       paddingEnd: "14px",
                       height: "34px",
                       borderRadius: "999px",
+                      boxShadow: isSelected ? "none" : "0 1px 3px rgba(0,0,0,0.08)",
                     }}
-                    className="text-xs font-semibold m-0"
+                    className="text-xs font-semibold m-0 cursor-pointer transition-transform active:scale-95"
                   >
-                    {isSelected && <IonIcon icon={checkmarkCircle} />}
+                    <IonIcon icon={isSelected ? checkmarkCircle : ellipseOutline} />
                     <IonLabel>{ws.label}</IonLabel>
                   </IonChip>
                 );

@@ -119,6 +119,7 @@ export type TranslationKey =
   // ── Report enrichment ──────────────
   | "category"
   | "warningSigns"
+  | "warningSignsHint"
   | "storeName"
   | "barcode"
   | "reportedToStore"
@@ -257,6 +258,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Report enrichment
     category: "Catégorie",
     warningSigns: "Signes d'alerte",
+    warningSignsHint: "Touchez pour sélectionner un ou plusieurs signes",
     storeName: "Nom du magasin",
     barcode: "Code-barres",
     reportedToStore: "Signalé au magasin",
@@ -394,6 +396,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Report enrichment
     category: "Danh mục",
     warningSigns: "Dấu hiệu cảnh báo",
+    warningSignsHint: "Chạm để chọn một hoặc nhiều dấu hiệu",
     storeName: "Tên cửa hàng",
     barcode: "Mã vạch",
     reportedToStore: "Đã báo cáo cửa hàng",
@@ -531,6 +534,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Report enrichment
     category: "Category",
     warningSigns: "Warning Signs",
+    warningSignsHint: "Tap to select one or more signs",
     storeName: "Store Name",
     barcode: "Barcode",
     reportedToStore: "Reported to Store",
